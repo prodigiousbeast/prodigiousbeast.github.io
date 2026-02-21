@@ -617,13 +617,12 @@ function resetBooth(booth) {
    Used by BOTH booth clicks and vendor clicks */
 function toggleBoothById(boothId) {
   const booth = [...document.querySelectorAll(".booth")]
-    .find(b => b.textContent.trim() === boothId);
-
-  if (!booth) return;
+    .find(b => b.textContent.trim() === boothId);  
 
   if (activeBooth && activeBooth !== booth) {
     resetBooth(activeBooth);
   }
+  if (!booth) return;
 
   if (booth.classList.contains("has-logo")) {
     resetBooth(booth);
