@@ -101,10 +101,18 @@ body {
   position: absolute;
   z-index: 1000;
   pointer-events: none;
-  background: white;
-  border: 1px solid rgba(0,0,0,0.2);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  padding: 6px;
+
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.1);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25),
+    0 0 0 1px rgba(255,255,255,0.6) inset;
+
+  padding: 14px;
+
+  animation: logo-pop 0.18s ease-out;
 }
 
 .booth-logo-large img {
@@ -112,7 +120,17 @@ body {
   height: 100%;
   object-fit: contain;
 }
-
+/* Small entrance animation */
+@keyframes logo-pop {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
 /* Major structures */
 .ballroom {
@@ -167,7 +185,9 @@ body {
 
   display: flex;
   flex-direction: column;
-   backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -6px 24px rgba(0,0,0,0.15);
 }
 
 /* Header stays fixed */
@@ -185,16 +205,70 @@ body {
   overflow-y: auto;
 }
 
+/* Scrollbar itself (Chrome / Edge) */
+#vendor-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+#vendor-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
+#vendor-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 /* Vendor rows */
 .vendor-item {
   min-height: 36px; /* 10 items visible */
   font-size: 14px;
   cursor: pointer;
+  background: #fff;
+  border: none;
+  border-bottom: 1px solid #eef2f7;
+  padding: 10px 12px;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.vendor-item:hover {
+  background: #f1f5f9;
+  transform: translateX(2px);
 }
 
 .vendor-item.active {
   background-color: #dbeafe;
   border-left: 4px solid #0d6efd;
+}
+/* Booth text */
+.vendor-item small {
+  font-size: 12px;
+}
+
+/* Sponsorship badge polish */
+.vendor-item .badge {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: #374151;
+}
+/* Vendor logo in list */
+.vendor-logo {
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.vendor-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 </style>
@@ -394,7 +468,7 @@ const DEFAULT_LOGO = "hcc_logo.svg";
 
 
 const LOGOS = {
-  ACCENTURE: "https://www.accenture.com/_acnmedia/images/logos/accenture.svg",
+  //ACCENTURE: "https://www.accenture.com/_acnmedia/images/logos/accenture.svg",
   TELUS: "TELUS_Health_CareCentres_EN_Vert.svg",
   WELL: "https://well.company/wp-content/uploads/well-logo.svg",
   WORKDAY: "https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg",
@@ -406,14 +480,14 @@ const LOGOS = {
   SOLVENTUM: "https://www.solventum.com/content/dam/solventum/logo/solventum-logo.svg",
   ALCIDION: "https://www.alcidion.com/wp-content/uploads/Alcidion-logo.svg",
   MEDITECH: "https://ehr.meditech.com/themes/custom/meditech/logo.svg",
-  DCM: "https://www.dcm.ca/wp-content/uploads/dcm-logo.svg",
+  //DCM: "https://www.dcm.ca/wp-content/uploads/dcm-logo.svg",
   TALI: "https://www.tali.ai/wp-content/uploads/tali-logo.svg",
   NOVARI: "https://novarihealth.com/wp-content/uploads/novari-logo.svg",
   ORACLE: "https://www.oracle.com/a/ocom/img/oracle-logo.svg",
   AWS: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
   GOOGLE_CLOUD: "https://cloud.google.com/images/social-icon-google-cloud-1200-630.png", // consider SVG
   STRYKER: "https://www.stryker.com/content/dam/stryker/logo/stryker-logo.svg",
-  AKINOX: "https://akinoxsolutions.com/wp-content/uploads/2022/03/akinox-logo.svg"
+  //AKINOX: "https://akinoxsolutions.com/wp-content/uploads/2022/03/akinox-logo.svg"
 };
 
 const boothLogos = {
@@ -438,7 +512,7 @@ const boothLogos = {
   22: DEFAULT_LOGO,
   23: DEFAULT_LOGO,
   24: DEFAULT_LOGO,
-  25: LOGOS.DCM,
+  25: DEFAULT_LOGO,
   26: DEFAULT_LOGO,
   27: DEFAULT_LOGO,
   28: LOGOS.PHILIPS,
@@ -457,7 +531,7 @@ const boothLogos = {
   41: LOGOS.MEDITECH,
   42: DEFAULT_LOGO,
   43: DEFAULT_LOGO,
-  44: LOGOS.DCM,
+  44: DEFAULT_LOGO,
   45: LOGOS.PETAL,
   46: DEFAULT_LOGO,
   47: DEFAULT_LOGO,
@@ -529,7 +603,7 @@ const boothLogos = {
   113: DEFAULT_LOGO,
   114: LOGOS.TELUS,
   115: LOGOS.TELUS,
-  116: LOGOS.AKINOX,
+  116: DEFAULT_LOGO,
   117: DEFAULT_LOGO,
   118: DEFAULT_LOGO,
   119: DEFAULT_LOGO,
@@ -597,7 +671,10 @@ const boothLogos = {
 };
 
 
-
+function getVendorLogo(vendorName) {
+  const key = vendorName.toUpperCase().replace(/[^A-Z]/g, "_");
+  return LOGOS[key] || DEFAULT_LOGO;
+}
 
 /* Click handler */
 let activeBooth = null;
@@ -848,15 +925,22 @@ vendors.forEach(vendor => {
     item.dataset.booth = boothId;
     item.dataset.vendor = vendor.name.toLowerCase();
 
-    item.innerHTML = `
-      <div class="d-flex justify-content-between align-items-center">
-        <div>
-          <strong>${vendor.name}</strong><br>
-          <small class="text-muted">Booth ${boothId}</small>
-        </div>
-        <span class="badge bg-secondary">${vendor.sponsorship}</span>
-      </div>
-    `;
+    const logo = getVendorLogo(vendor.name);
+
+item.innerHTML = `
+  <div class="d-flex align-items-center gap-3">
+    <div class="vendor-logo">
+      <img src="${logo}" alt="${vendor.name} logo">
+    </div>
+
+    <div class="flex-grow-1">
+      <strong>${vendor.name}</strong><br>
+      <small class="text-muted">Booth ${boothId}</small>
+    </div>
+
+    <span class="badge">${vendor.sponsorship}</span>
+  </div>
+`;
   item.style.minHeight = "36px";
   item.classList.add("vendor-item");
     item.addEventListener("click", () => {
