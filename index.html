@@ -1,0 +1,679 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>Pixel-Perfect Floor Plan (Aligned)</title>
+
+<style>
+:root {
+  /* === MEASURED FROM PNG === */
+  --booth-w: 57px;
+  --booth-h: 57px;
+  --gap-x: 6px;
+  --gap-y: 6px;
+
+  --green: #B6FCD5;
+  --yellow: #F5FCB6;
+  --blue: #B6E8FC;
+}
+
+/* Page */
+body {
+  margin: 0;
+  background: #ccc;
+  font-family: Arial, sans-serif;
+}
+
+/* Scrollable viewport */
+.viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* === CANVAS = EXACT PNG SIZE === */
+.canvas {
+  position: relative;
+  width: 3048px;
+  height: 2046px;
+  background: #fff;
+  transform-origin: top left;
+}
+
+/* Overlay (true 1:1) */
+.canvas.overlay {
+  background: url(floorplan.png) no-repeat top left;
+}
+
+/* Booths */
+.booth {
+  position: absolute;
+  width: var(--booth-w);
+  height: var(--booth-h);
+  background: var(--green);
+  border: 1px solid #555;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+}
+
+.booth.yellow {
+  background: var(--yellow);
+  --booth-w: 59px;
+  --booth-h: 118px;
+  
+}
+.booth.blue{
+    background: var(--blue);
+    --booth-w: 22px;
+    --booth-h: 44px;
+    
+}
+/* Hover = slightly darker shade (same color family) */
+.booth:hover {
+  filter: brightness(0.92);
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,0.15);
+}
+
+/* When image is active */
+.booth.has-logo {
+  padding: 0;
+  background: #fff; /* fallback behind transparent logos */
+}
+
+/* Logo image inside booth */
+.booth img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none; /* click still belongs to booth */
+}
+/* ===== Large logo display (5x booth size) ===== */
+.booth-logo-large {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  padding: 6px;
+}
+
+.booth-logo-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+/* Major structures */
+.ballroom {
+  position: absolute;
+  border: 2px solid #000;
+}
+
+.room {
+  position: absolute;
+  border: 2px solid #000;
+}
+
+.room span {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-weight: bold;
+}
+
+.location-marker {
+  width: 40px;
+  height: 40px;
+  background-color: #337ab7;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(45deg);
+  margin: 20px;
+  position: relative;
+}
+.location-marker:after {
+  content: '';
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  position: absolute;
+  border-radius: 50%;
+  top: 13px;
+  left: 13px;
+}
+</style>
+</head>
+<body>
+<div class="viewport">
+    <div class="canvas overlay" id="canvas">
+        <div class="booth yellow" style="left: 312px;top: 1563px;">1</div>
+        <div class="booth yellow" style="left: 312px;top: 1441px;">3</div>
+        <div class="booth yellow" style="left: 312px;top: 1195px;">5</div>
+        <div class="booth" style="left: 312px;top: 1133px;">7</div>
+        <div class="booth" style="left: 312px; top: 1071px;">8</div>
+        <div class="booth" style="left: 312px; top: 1009px;">9</div>
+        <div class="booth" style="left: 312px; top: 948px;">10</div>
+        <div class="booth" style="left: 272px; top: 839px;">11</div>
+        <div class="booth" style="left: 333px; top: 839px;">12</div>
+        <div class="booth" style="left: 394px; top: 839px;">13</div>
+        <div class="booth" style="left: 455px; top: 839px;">14</div>
+        <div class="booth" style="left: 377px; top: 948px;">15</div>
+        <div class="booth" style="left: 377px; top: 1009px;">16</div>
+        <div class="booth" style="left: 377px; top: 1071px;">17</div>
+        <div class="booth" style="left: 377px; top: 1134px;">18</div>
+        <div class="booth" style="left: 377px; top: 1195px;">19</div>
+        <div class="booth" style="left: 377px; top:1256px;">20</div>
+        <div class="booth" style="left: 328px; top: 500px;">21</div>
+        <div class="booth" style="left: 328px; top: 534px;">22</div>
+        <div class="booth" style="left: 328px; top: 568px;">23</div>
+        <div class="booth" style="left: 328px; top: 602px;">24</div>
+        <div class="booth" style="left: 328px; top: 636px;">25</div>
+        <div class="booth" style="left: 328px; top: 670px;">26</div>
+        <div class="booth" style="left: 328px; top: 704px;">27</div>
+        <div class="booth" style="left: 328px; top: 738px;">28</div>
+        <div class="booth" style="left: 479px; top: 1256px;">29</div>
+        <div class="booth" style="left: 479px; top: 1195px;">30</div>
+        <div class="booth" style="left: 479px; top: 1133px;">31</div>
+        <div class="booth" style="left: 479px; top: 1071px;">32</div>
+        <div class="booth" style="left: 479px; top: 1009px;">33</div>
+        <div class="booth" style="left: 479px; top: 948px;">34</div>
+        <div class="booth" style="left: 543px; top: 948px;">35</div>
+        <div class="booth" style="left: 543px; top: 1009px;">36</div>
+        <div class="booth" style="left: 543px; top: 1071px;">37</div>
+        <div class="booth" style="left: 543px; top: 1133px;">38</div>
+        <div class="booth" style="left: 543px; top: 1195px;">39</div>
+        <div class="booth" style="left: 543px; top: 1256px;">40</div>
+        <div class="booth" style="left: 540px; top: 500px;">41</div>
+        <div class="booth" style="left: 540px; top: 534px;">42</div>
+        <div class="booth" style="left: 540px; top: 568px;">43</div>
+        <div class="booth" style="left: 540px; top: 602px;">44</div>
+        <div class="booth" style="left: 540px; top: 636px;">45</div>
+        <div class="booth" style="left: 540px; top: 670px;">46</div>
+        <div class="booth" style="left: 540px; top: 704px;">47</div>
+        <div class="booth" style="left: 540px; top: 738px;">48</div>
+        <div class="booth" style="left: 645px; top: 1256px;">49</div>
+        <div class="booth" style="left: 645px; top: 1195px;">50</div>
+        <div class="booth" style="left: 645px; top: 1133px;">51</div>
+        <div class="booth" style="left: 645px; top: 1071px;">52</div>
+        <div class="booth" style="left: 645px; top: 1009px;">53</div>
+        <div class="booth" style="left: 645px; top: 948px;">54</div>
+        <div class="booth" style="left: 584px; top: 636px;">55</div>
+        <div class="booth" style="left: 705px; top: 948px;">56</div>
+        <div class="booth" style="left: 705px; top: 1009px;">57</div>
+        <div class="booth" style="left: 705px; top:1071px;">58</div>
+        <div class="booth" style="left: 705px; top: 1133px;">59</div>
+        <div class="booth" style="left: 705px; top: 1256px;">60</div>
+        <div class="booth" style="left: 705px; top: 500px;">61</div>
+        <div class="booth" style="left: 628px; top: 534px;">62</div>
+        <div class="booth" style="left: 628px; top: 568px;">63</div>
+        <div class="booth" style="left: 628px; top: 602px;">64</div>
+        <div class="booth" style="left: 628px; top: 636px;">65</div>
+        <div class="booth" style="left: 628px; top: 670px;">66</div>
+        <div class="booth" style="left: 628px; top: 704px;">67</div>
+        <div class="booth" style="left: 628px; top: 738px;">68</div>
+        <div class="booth" style="left: 628px; top: 772px;">69</div>
+        <div class="booth" style="left: 628px; top: 806px;">70</div>
+        <div class="booth" style="left: 672px; top: 500px;">71</div>
+        <div class="booth" style="left: 672px; top: 534px;">72</div>
+        <div class="booth" style="left: 672px; top: 568px;">73</div>
+        <div class="booth" style="left: 672px; top: 602px;">74</div>
+        <div class="booth" style="left: 672px; top: 636px;">75</div>
+        <div class="booth" style="left: 672px; top: 670px;">76</div>
+        <div class="booth" style="left: 672px; top: 704px;">77</div>
+        <div class="booth" style="left: 672px; top: 738px;">78</div>
+        <div class="booth" style="left: 672px; top: 772px;">79</div>
+        <div class="booth" style="left: 672px; top: 806px;">80</div>
+        <div class="booth" style="left: 716px; top: 500px;">81</div>
+        <div class="booth" style="left: 716px; top: 534px;">82</div>
+        <div class="booth" style="left: 716px; top: 568px;">83</div>
+        <div class="booth" style="left: 716px; top: 602px;">84</div>
+        <div class="booth" style="left: 716px; top: 636px;">85</div>
+        <div class="booth" style="left: 716px; top: 670px;">86</div>
+        <div class="booth" style="left: 716px; top: 704px;">87</div>
+        <div class="booth" style="left: 716px; top: 738px;">88</div>
+        <div class="booth" style="left: 716px; top: 772px;">89</div>
+        <div class="booth" style="left: 716px; top: 806px;">90</div>
+        <div class="booth" style="left: 760px; top: 500px;">91</div>
+        <div class="booth" style="left: 760px; top: 534px;">92</div>
+        <div class="booth" style="left: 760px; top: 568px;">93</div>
+        <div class="booth" style="left: 760px; top: 602px;">94</div>
+        <div class="booth" style="left: 760px; top: 636px;">95</div>
+        <div class="booth" style="left: 760px; top: 670px;">96</div>
+        <div class="booth" style="left: 760px; top: 704px;">97</div>
+        <div class="booth" style="left: 760px; top: 738px;">98</div>
+        <div class="booth" style="left: 760px; top: 772px;">99</div>
+        <div class="booth" style="left: 760px; top: 806px;">100</div>
+        <div class="booth" style="left: 900px; top: 500px;">101</div>
+        <div class="booth" style="left: 900px; top: 534px;">102</div>
+        <div class="booth" style="left: 900px; top: 568px;">103</div>
+        <div class="booth" style="left: 900px; top: 602px;">104</div>
+        <div class="booth" style="left: 900px; top: 636px;">105</div>
+        <div class="booth" style="left: 900px; top: 670px;">106</div>
+        <div class="booth" style="left: 900px; top: 704px;">107</div>
+        <div class="booth" style="left: 900px; top: 738px;">108</div>
+        <div class="booth" style="left: 900px; top: 772px;">109</div>
+        <div class="booth" style="left: 900px; top: 806px;">110</div>
+        <div class="booth" style="left: 944px; top: 500px;">111</div>
+        <div class="booth" style="left: 944px; top: 534px;">112</div>
+        <div class="booth" style="left: 944px; top: 568px;">113</div>
+        <div class="booth" style="left: 944px; top: 602px;">114</div>
+        <div class="booth" style="left: 944px; top: 636px;">115</div>
+        <div class="booth" style="left: 944px; top: 670px;">116</div>
+        <div class="booth" style="left: 944px; top: 704px;">117</div>
+        <div class="booth" style="left: 944px; top: 738px;">118</div>
+        <div class="booth" style="left: 944px; top: 772px;">119</div>
+        <div class="booth" style="left: 944px; top: 806px;">120</div>
+        <div class="booth" style="left: 988px; top: 500px;">121</div>
+        <div class="booth" style="left: 988px; top: 534px;">122</div>
+        <div class="booth" style="left: 988px; top: 568px;">123</div>
+        <div class="booth" style="left: 988px; top: 602px;">124</div>
+        <div class="booth" style="left: 988px; top: 636px;">125</div>
+        <div class="booth" style="left: 988px; top: 670px;">126</div>
+        <div class="booth" style="left: 988px; top: 704px;">127</div>
+        <div class="booth" style="left: 988px; top: 738px;">128</div>
+        <div class="booth" style="left: 988px; top: 772px;">129</div>
+        <div class="booth" style="left: 988px; top: 806px;">130</div>
+        <div class="booth" style="left: 1032px; top: 500px;">131</div>
+        <div class="booth" style="left: 1032px; top: 534px;">132</div>
+        <div class="booth" style="left: 1032px; top: 568px;">133</div>
+        <div class="booth" style="left: 1032px; top: 602px;">134</div>
+        <div class="booth" style="left: 1032px; top: 636px;">135</div>
+        <div class="booth" style="left: 1032px; top: 670px;">136</div>
+        <div class="booth" style="left: 1032px; top: 704px;">137</div>
+        <div class="booth" style="left: 1032px; top: 738px;">138</div>
+        <div class="booth" style="left: 1032px; top: 772px;">139</div>
+        <div class="booth" style="left: 1032px; top: 806px;">140</div>
+        <div class="booth" style="left: 1076px; top: 500px;">141</div>
+        <div class="booth" style="left: 1076px; top: 534px;">142</div>
+        <div class="booth" style="left: 1076px; top: 568px;">143</div>
+        <div class="booth" style="left: 1076px; top: 602px;">144</div>
+        <div class="booth" style="left: 1076px; top: 636px;">145</div>
+        <div class="booth" style="left: 564px; top: 1820px;">146</div>
+        <div class="booth" style="left: 1076px; top: 704px;">147</div>
+        <div class="booth" style="left: 1076px; top: 738px;">148</div>
+        <div class="booth" style="left: 1076px; top: 772px;">149</div>
+        <div class="booth" style="left: 1076px; top: 806px;">150</div>
+        <div class="booth" style="left: 1120px; top: 500px;">151</div>
+        <div class="booth" style="left: 1120px; top: 534px;">152</div>
+        <div class="booth" style="left: 1120px; top: 568px;">153</div>
+        <div class="booth" style="left: 1120px; top: 602px;">154</div>
+        <div class="booth" style="left: 1120px; top: 636px;">155</div>
+        <div class="booth" style="left: 1120px; top: 670px;">156</div>
+        <div class="booth" style="left: 1120px; top: 704px;">157</div>
+        <div class="booth" style="left: 1120px; top: 738px;">158</div>
+        <div class="booth" style="left: 1120px; top: 772px;">159</div>
+        <div class="booth" style="left: 1120px; top: 806px;">160</div>
+        <div class="booth blue" style="left: 510px; top: 1960px;">A</div>
+        <div class="location-marker" style="left: 689px; top: 1699px;"></div>
+        <div class="you-are-here" style="position: relative; left: 753px; top: 1636px; padding: 10px; display: inline-block; font-size: 25px">You are here</div>
+    </div>
+</div>
+
+
+<script>
+const canvas = document.getElementById("canvas");
+
+const BW = 38, BH = 28, GX = 6, GY = 6;
+
+/Booth helper 
+function booth(x, y, label, yellow=false) {
+  const b = document.createElement("div");
+  b.className = "booth" + (yellow ? " yellow" : "");
+  b.style.left = x + "px";
+  b.style.top = y + "px";
+  b.textContent = label;
+  canvas.appendChild(b);
+}
+
+/* === B1 (LEFT BLOCK – MEASURED START POINT) === */
+let startX = 240;
+let startY = 500;
+let n = 1;
+
+for (let c = 0; c < 4; c++) {
+  for (let r = 0; r < 10; r++) {
+    booth(
+      startX + c * (BW + GX),
+      startY + r * (BH + GY),
+      n,
+      n <= 8
+    );
+    n++;
+  }
+}
+ 
+/* === B2 (CENTER BLOCK) === */
+startX = 540;
+startY = 500;
+n = 41;
+
+for (let c = 0; c < 6; c++) {
+  for (let r = 0; r < 10; r++) {
+    booth(
+      startX + c * (BW + GX),
+      startY + r * (BH + GY),
+      n++
+    );
+  }
+}
+
+/* === B3 (RIGHT BLOCK) === */
+startX = 900;
+startY = 500;
+n = 101;
+
+for (let c = 0; c < 6; c++) {
+  for (let r = 0; r < 10; r++) {
+    booth(
+      startX + c * (BW + GX),
+      startY + r * (BH + GY),
+      n++
+    );
+  }
+}
+
+/* Overlay toggle */
+document.addEventListener("keydown", e => {
+  if (e.key.toLowerCase() === "o") {
+    canvas.classList.toggle("overlay");
+  }
+});
+
+/* ===== Booth logo handling ===== */
+const DEFAULT_LOGO = "hcc_logo.svg";
+
+
+const LOGOS = {
+  ACCENTURE: "https://www.accenture.com/_acnmedia/images/logos/accenture.svg",
+  TELUS: "TELUS_Health_CareCentres_EN_Vert.svg",
+  WELL: "https://well.company/wp-content/uploads/well-logo.svg",
+  WORKDAY: "https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg",
+  PETAL: "https://petal-health.com/wp-content/uploads/petal-logo.svg",
+  TELADOC: "https://www.teladochealth.com/wp-content/uploads/teladoc-logo.svg",
+  DELOITTE: "https://www2.deloitte.com/content/dam/Deloitte/global/Images/logos/deloitte-logo.svg",
+  PHILIPS: "https://www.philips.com/c-dam/corporate/newscenter/global-standard/resources/philips-logo.svg",
+  NOVARTIS: "https://www.novartis.com/sites/novartis_com/files/novartis-logo.svg",
+  SOLVENTUM: "https://www.solventum.com/content/dam/solventum/logo/solventum-logo.svg",
+  ALCIDION: "https://www.alcidion.com/wp-content/uploads/Alcidion-logo.svg",
+  MEDITECH: "https://ehr.meditech.com/themes/custom/meditech/logo.svg",
+  DCM: "https://www.dcm.ca/wp-content/uploads/dcm-logo.svg",
+  TALI: "https://www.tali.ai/wp-content/uploads/tali-logo.svg",
+  NOVARI: "https://novarihealth.com/wp-content/uploads/novari-logo.svg",
+  ORACLE: "https://www.oracle.com/a/ocom/img/oracle-logo.svg",
+  AWS: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+  GOOGLE_CLOUD: "https://cloud.google.com/images/social-icon-google-cloud-1200-630.png", // consider SVG
+  STRYKER: "https://www.stryker.com/content/dam/stryker/logo/stryker-logo.svg",
+  AKINOX: "https://akinoxsolutions.com/wp-content/uploads/2022/03/akinox-logo.svg"
+};
+
+const boothLogos = {
+  1: DEFAULT_LOGO,
+  3: DEFAULT_LOGO,
+  5: DEFAULT_LOGO,
+  7: DEFAULT_LOGO,
+  8: DEFAULT_LOGO,
+  9: DEFAULT_LOGO,
+  10: DEFAULT_LOGO,
+  11: DEFAULT_LOGO,
+  12: DEFAULT_LOGO,
+  13: DEFAULT_LOGO,
+  14: DEFAULT_LOGO,
+  15: DEFAULT_LOGO,
+  16: DEFAULT_LOGO,
+  17: DEFAULT_LOGO,
+  18: DEFAULT_LOGO,
+  19: DEFAULT_LOGO,
+  20: DEFAULT_LOGO,
+  21: LOGOS.SOLVENTUM,
+  22: DEFAULT_LOGO,
+  23: DEFAULT_LOGO,
+  24: DEFAULT_LOGO,
+  25: LOGOS.DCM,
+  26: DEFAULT_LOGO,
+  27: DEFAULT_LOGO,
+  28: LOGOS.PHILIPS,
+  29: DEFAULT_LOGO,
+  30: DEFAULT_LOGO,
+  31: DEFAULT_LOGO,
+  32: DEFAULT_LOGO,
+  33: DEFAULT_LOGO,
+  34: DEFAULT_LOGO,
+  35: DEFAULT_LOGO,
+  36: DEFAULT_LOGO,
+  37: DEFAULT_LOGO,
+  38: DEFAULT_LOGO,
+  39: DEFAULT_LOGO,
+  40: DEFAULT_LOGO,
+  41: LOGOS.MEDITECH,
+  42: DEFAULT_LOGO,
+  43: DEFAULT_LOGO,
+  44: LOGOS.DCM,
+  45: LOGOS.PETAL,
+  46: DEFAULT_LOGO,
+  47: DEFAULT_LOGO,
+  48: DEFAULT_LOGO,
+  49: LOGOS.DELOITTE,
+  50: DEFAULT_LOGO,
+  51: DEFAULT_LOGO,
+  52: DEFAULT_LOGO,
+  53: DEFAULT_LOGO,
+  54: DEFAULT_LOGO,
+  55: DEFAULT_LOGO,
+  56: DEFAULT_LOGO,
+  57: DEFAULT_LOGO,
+  58: DEFAULT_LOGO,
+  59: LOGOS.WORKDAY,
+  60: LOGOS.WORKDAY,
+  61: LOGOS.DELOITTE,
+  62: LOGOS.TALI,
+  63: DEFAULT_LOGO,
+  64: DEFAULT_LOGO,
+  65: LOGOS.PETAL,
+  66: LOGOS.TELADOC,
+  67: LOGOS.NOVARTIS,
+  68: LOGOS.NOVARTIS,
+  69: LOGOS.NOVARI,
+  70: LOGOS.WELL,
+  71: LOGOS.WELL,
+  72: LOGOS.WELL,
+  73: LOGOS.WELL,
+  74: DEFAULT_LOGO,
+  75: DEFAULT_LOGO,
+  76: DEFAULT_LOGO,
+  77: DEFAULT_LOGO,
+  78: DEFAULT_LOGO,
+  79: DEFAULT_LOGO,
+  80: LOGOS.WELL,
+  81: LOGOS.WELL,
+  82: LOGOS.WELL,
+  83: LOGOS.WELL,
+  84: LOGOS.NOVARI,
+  85: DEFAULT_LOGO,
+  86: DEFAULT_LOGO,
+  87: LOGOS.TELADOC,
+  88: DEFAULT_LOGO,
+  89: DEFAULT_LOGO,
+  90: DEFAULT_LOGO,
+  91: LOGOS.ALCIDION,
+  92: DEFAULT_LOGO,
+  93: DEFAULT_LOGO,
+  94: DEFAULT_LOGO,
+  95: DEFAULT_LOGO,
+  96: DEFAULT_LOGO,
+  97: DEFAULT_LOGO,
+  98: DEFAULT_LOGO,
+  99: DEFAULT_LOGO,
+  100: DEFAULT_LOGO,
+  101: DEFAULT_LOGO,
+  102: DEFAULT_LOGO,
+  103: DEFAULT_LOGO,
+  104: DEFAULT_LOGO,
+  105: DEFAULT_LOGO,
+  106: DEFAULT_LOGO,
+  107: LOGOS.ACCENTURE,
+  108: LOGOS.AWS,
+  109: LOGOS.AWS,
+  110: DEFAULT_LOGO,
+  111: DEFAULT_LOGO,
+  112: DEFAULT_LOGO,
+  113: DEFAULT_LOGO,
+  114: LOGOS.TELUS,
+  115: LOGOS.TELUS,
+  116: LOGOS.AKINOX,
+  117: DEFAULT_LOGO,
+  118: DEFAULT_LOGO,
+  119: DEFAULT_LOGO,
+  120: DEFAULT_LOGO,
+  121: DEFAULT_LOGO,
+  122: DEFAULT_LOGO,
+  123: DEFAULT_LOGO,
+  124: DEFAULT_LOGO,
+  125: DEFAULT_LOGO,
+  126: LOGOS.GOOGLE_CLOUD,
+  127: LOGOS.GOOGLE_CLOUD,
+  128: LOGOS.TELUS,
+  129: LOGOS.TELUS,
+  130: DEFAULT_LOGO,
+  131: DEFAULT_LOGO,
+  132: DEFAULT_LOGO,
+  133: DEFAULT_LOGO,
+  134: DEFAULT_LOGO,
+  135: DEFAULT_LOGO,
+  136: DEFAULT_LOGO,
+  137: DEFAULT_LOGO,
+  138: DEFAULT_LOGO,
+  139: DEFAULT_LOGO,
+  140: DEFAULT_LOGO,
+  141: DEFAULT_LOGO,
+  142: DEFAULT_LOGO,
+  143: DEFAULT_LOGO,
+  144: DEFAULT_LOGO,
+  145: DEFAULT_LOGO,
+  146: LOGOS.ORACLE,
+  147: LOGOS.ORACLE,
+  148: LOGOS.ORACLE,
+  149: LOGOS.STRYKER,
+  150: LOGOS.STRYKER,
+  151: DEFAULT_LOGO,
+  152: DEFAULT_LOGO,
+  153: DEFAULT_LOGO,
+  154: DEFAULT_LOGO,
+  155: DEFAULT_LOGO,
+  156: DEFAULT_LOGO,
+  157: DEFAULT_LOGO,
+  158: DEFAULT_LOGO,
+  159: DEFAULT_LOGO,
+  160: DEFAULT_LOGO,
+
+  /* Lettered booths */
+  A: DEFAULT_LOGO,
+  B: DEFAULT_LOGO,
+  C: DEFAULT_LOGO,
+  D: DEFAULT_LOGO,
+  E: DEFAULT_LOGO,
+  F: DEFAULT_LOGO,
+  G: DEFAULT_LOGO,
+  H: DEFAULT_LOGO,
+  I: DEFAULT_LOGO,
+  J: DEFAULT_LOGO,
+  K: DEFAULT_LOGO,
+  L: DEFAULT_LOGO,
+  M: DEFAULT_LOGO,
+  N: DEFAULT_LOGO,
+  O: DEFAULT_LOGO,
+  P: DEFAULT_LOGO,
+  Q: DEFAULT_LOGO,
+  R: DEFAULT_LOGO
+};
+
+
+
+
+/* Click handler */
+let activeBooth = null;
+
+function resetBooth(booth) {
+  if (!booth) return;
+
+  booth.classList.remove("has-logo");
+  booth.innerHTML = booth._originalHTML;
+
+  if (booth._largeLogo) {
+    booth._largeLogo.remove();
+    booth._largeLogo = null;
+  }
+}
+
+
+document.querySelectorAll(".booth").forEach(booth => {
+  booth._originalHTML = booth.innerHTML;
+  const boothId = booth.textContent.trim();
+
+  booth.addEventListener("click", () => {
+    const logoUrl = boothLogos[boothId] || DEFAULT_LOGO;
+
+    /* If clicking a DIFFERENT booth, close the previous one */
+    if (activeBooth && activeBooth !== booth) {
+      resetBooth(activeBooth);
+      activeBooth = null;
+    }
+
+    /* Toggle OFF (same booth clicked again) */
+    if (booth.classList.contains("has-logo")) {
+      resetBooth(booth);
+      activeBooth = null;
+      return;
+    }
+
+    /* Toggle ON */
+    booth.classList.add("has-logo");
+    booth.innerHTML = "";
+
+    /* Small logo inside booth */
+    const smallImg = document.createElement("img");
+    smallImg.src = logoUrl;
+    booth.appendChild(smallImg);
+
+    /* Large logo (5x booth size) */
+    const rect = booth.getBoundingClientRect();
+    const canvas = document.getElementById("canvas");
+    const canvasRect = canvas.getBoundingClientRect();
+
+    const largeLogo = document.createElement("div");
+    largeLogo.className = "booth-logo-large";
+
+    const largeW = rect.width * 5;
+    const largeH = rect.height * 5;
+
+    largeLogo.style.width = largeW + "px";
+    largeLogo.style.height = largeH + "px";
+
+    let left = rect.right - canvasRect.left + 12;
+    let top  = rect.top - canvasRect.top;
+
+    if (left + largeW > canvasRect.width) {
+      left = rect.left - canvasRect.left - largeW - 12;
+    }
+
+    largeLogo.style.left = left + "px";
+    largeLogo.style.top  = top + "px";
+
+    const largeImg = document.createElement("img");
+    largeImg.src = logoUrl;
+
+    largeLogo.appendChild(largeImg);
+    canvas.appendChild(largeLogo);
+
+    booth._largeLogo = largeLogo;
+    activeBooth = booth;
+  });
+});
+</script>
+</body></html>
