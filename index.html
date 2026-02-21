@@ -364,92 +364,30 @@ body {
         <div class="location-marker" style="left: 158px; top: 562px;"></div>
         <div class="you-are-here" style="position: relative; left: 191px; top: 514px; padding: 10px; display: inline-block; font-size: 10px">You are here</div>
     <!-- Vendor Scrollbar (Bottom) -->
-      <div id="vendor-bar" class="border-top bg-light">
-        <div class="p-2 fw-bold">Vendors</div>
-
-        <div id="vendor-scroll">
-          <div
-            id="vendor-list"
-            class="list-group list-group-flush"
-            tabindex="0"
-          ></div>
-        </div>
+      <!-- Vendor Bar -->
+    <div id="vendor-bar">
+      <div class="vendor-header">
+        Vendors
+        <!-- ✅ SEARCH ADDED -->
+        <input
+          id="vendor-search"
+          class="form-control form-control-sm mt-1"
+          placeholder="Search vendor or booth…"
+        />
       </div>
+
+      <div id="vendor-scroll">
+        <div id="vendor-list"
+             class="list-group list-group-flush"
+             tabindex="0"></div>
+      </div>
+    </div>
     </div>
 </div>
 
 
 <script>
 const canvas = document.getElementById("canvas");
-
-const BW = 38, BH = 28, GX = 6, GY = 6;
-/*
-//Booth helper 
-function booth(x, y, label, yellow=false) {
-  const b = document.createElement("div");
-  b.className = "booth" + (yellow ? " yellow" : "");
-  b.style.left = x + "px";
-  b.style.top = y + "px";
-  b.textContent = label;
-  canvas.appendChild(b);
-}
-startX = 900;
-*/
-
-/* === B1 (LEFT BLOCK – MEASURED START POINT) === 
-let startX = 240;
-let startY = 500;
-let n = 1;
-
-for (let c = 0; c < 4; c++) {
-  for (let r = 0; r < 10; r++) {
-    booth(
-      startX + c * (BW + GX),
-      startY + r * (BH + GY),
-      n,
-      n <= 8
-    );
-    n++;
-  }
-}*/
-startX = 900;
- 
-/* === B2 (CENTER BLOCK) === 
-startX = 540;
-startY = 500;
-n = 41;
-
-for (let c = 0; c < 6; c++) {
-  for (let r = 0; r < 10; r++) {
-    booth(
-      startX + c * (BW + GX),
-      startY + r * (BH + GY),
-      n++
-    );
-  }
-}
-*/
-startX = 900;
-/* === B3 (RIGHT BLOCK) === 
-startY = 500;
-n = 101;
-
-for (let c = 0; c < 6; c++) {
-  for (let r = 0; r < 10; r++) {
-    booth(
-      startX + c * (BW + GX),
-      startY + r * (BH + GY),
-      n++
-    );
-  }
-}*/
-
-/* Overlay toggle */
-document.addEventListener("keydown", e => {
-  if (e.key.toLowerCase() === "o") {
-    canvas.classList.toggle("overlay");
-  }
-});
 
 /* ===== Booth logo handling ===== */
 const DEFAULT_LOGO = "hcc_logo.svg";
@@ -675,71 +613,96 @@ function resetBooth(booth) {
     booth._largeLogo = null;
   }
 }
+/* 🔑 SINGLE TOGGLE FUNCTION
+   Used by BOTH booth clicks and vendor clicks */
+function toggleBoothById(boothId) {
+  const booth = [...document.querySelectorAll(".booth")]
+    .find(b => b.textContent.trim() === boothId);
 
+  if (!booth) return;
 
+  if (activeBooth && activeBooth !== booth) {
+    resetBooth(activeBooth);
+  }
+
+  if (booth.classList.contains("has-logo")) {
+    resetBooth(booth);
+    activeBooth = null;
+    syncVendorHighlight(null);
+    return;
+  }
+
+  booth.classList.add("has-logo");
+  booth.innerHTML = "";
+
+  const logoUrl = boothLogos[boothId] || DEFAULT_LOGO;
+
+  const smallImg = document.createElement("img");
+  smallImg.src = logoUrl;
+  booth.appendChild(smallImg);
+
+  const rect = booth.getBoundingClientRect();
+  const canvasRect = canvas.getBoundingClientRect();
+
+  const largeLogo = document.createElement("div");
+  largeLogo.className = "booth-logo-large";
+
+  const largeW = rect.width * 5;
+  const largeH = rect.height * 5;
+
+  largeLogo.style.width = largeW + "px";
+  largeLogo.style.height = largeH + "px";
+
+  let left = rect.right - canvasRect.left + 12;
+  let top  = rect.top - canvasRect.top;
+
+  if (left + largeW > canvasRect.width) {
+    left = rect.left - canvasRect.left - largeW - 12;
+  }
+
+  largeLogo.style.left = left + "px";
+  largeLogo.style.top  = top + "px";
+
+  const largeImg = document.createElement("img");
+  largeImg.src = logoUrl;
+  largeLogo.appendChild(largeImg);
+  canvas.appendChild(largeLogo);
+
+  booth._largeLogo = largeLogo;
+  activeBooth = booth;
+  syncVendorHighlight(boothId);
+}
+
+/* === Booth click now routes through toggle === */
 document.querySelectorAll(".booth").forEach(booth => {
   booth._originalHTML = booth.innerHTML;
-  const boothId = booth.textContent.trim();
-
   booth.addEventListener("click", () => {
-    const logoUrl = boothLogos[boothId] || DEFAULT_LOGO;
-
-    /* If clicking a DIFFERENT booth, close the previous one */
-    if (activeBooth && activeBooth !== booth) {
-      resetBooth(activeBooth);
-      activeBooth = null;
-    }
-
-    /* Toggle OFF (same booth clicked again) */
-    if (booth.classList.contains("has-logo")) {
-      resetBooth(booth);
-      activeBooth = null;
-      return;
-    }
-
-    /* Toggle ON */
-    booth.classList.add("has-logo");
-    booth.innerHTML = "";
-
-    /* Small logo inside booth */
-    const smallImg = document.createElement("img");
-    smallImg.src = logoUrl;
-    booth.appendChild(smallImg);
-
-    /* Large logo (5x booth size) */
-    const rect = booth.getBoundingClientRect();
-    const canvas = document.getElementById("canvas");
-    const canvasRect = canvas.getBoundingClientRect();
-
-    const largeLogo = document.createElement("div");
-    largeLogo.className = "booth-logo-large";
-
-    const largeW = rect.width * 5;
-    const largeH = rect.height * 5;
-
-    largeLogo.style.width = largeW + "px";
-    largeLogo.style.height = largeH + "px";
-
-    let left = rect.right - canvasRect.left + 12;
-    let top  = rect.top - canvasRect.top;
-
-    if (left + largeW > canvasRect.width) {
-      left = rect.left - canvasRect.left - largeW - 12;
-    }
-
-    largeLogo.style.left = left + "px";
-    largeLogo.style.top  = top + "px";
-
-    const largeImg = document.createElement("img");
-    largeImg.src = logoUrl;
-
-    largeLogo.appendChild(largeImg);
-    canvas.appendChild(largeLogo);
-
-    booth._largeLogo = largeLogo;
-    activeBooth = booth;
+    toggleBoothById(booth.textContent.trim());
   });
 });
+
+/* === Sync vendor highlight === */
+function syncVendorHighlight(boothId) {
+  document.querySelectorAll(".vendor-item").forEach(item => {
+    item.classList.toggle(
+      "active",
+      boothId && item.dataset.booth === boothId
+    );
+  });
+}
+
+/* === SEARCH (vendor OR booth) === */
+document.getElementById("vendor-search")
+  .addEventListener("input", e => {
+    const q = e.target.value.toLowerCase();
+    vendorItems.forEach(item => {
+      const match =
+        item.dataset.booth.includes(q) ||
+        item.dataset.vendor.includes(q);
+      item.style.display = match ? "" : "none";
+    });
+  });
+
 
 // Example data (replace with your event data)
   const vendors = [
@@ -897,28 +860,9 @@ vendors.forEach(vendor => {
     `;
   item.style.minHeight = "36px";
   item.classList.add("vendor-item");
-    /* Sidebar → booth */
     item.addEventListener("click", () => {
-      const boothEl = [...document.querySelectorAll(".booth")]
-        .find(b => b.textContent.trim() === boothId);
-
-      if (boothEl) {
-        document
-          .querySelectorAll(".vendor-item")
-          .forEach(i => i.classList.remove("active"));
-
-        item.classList.add("active");
-
-        boothEl.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-        boothEl.classList.remove("pulse");
-        void boothEl.offsetWidth; // force reflow
-        boothEl.classList.add("pulse");
-        boothEl.click();
-      }
-    });
+  toggleBoothById(boothId);
+});
 
     vendorItems.push(item);
     vendorListEl.appendChild(item);
