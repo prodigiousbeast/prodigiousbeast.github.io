@@ -5,8 +5,8 @@
 <style>
 :root {
   /* === MEASURED FROM PNG === */
-  --booth-w: 57px;
-  --booth-h: 57px;
+  --booth-w: 14px;
+  --booth-h: 20px;
   --gap-x: 6px;
   --gap-y: 6px;
 
@@ -43,7 +43,7 @@ body {
 
 /* Overlay (true 1:1) */
 .canvas.overlay {
-  background: url(floorplan_9_16.png) no-repeat top left;
+  background: url(floorplan_1080.png) no-repeat top left;
 }
 
 /* Booths */
@@ -53,7 +53,7 @@ body {
   height: var(--booth-h);
   background: var(--green);
   border: 1px solid #555;
-  font-size: 24px;
+  font-size: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -295,7 +295,7 @@ body {
         <div class="booth" style="left: 1076px; top: 568px;">143</div>
         <div class="booth" style="left: 1076px; top: 602px;">144</div>
         <div class="booth" style="left: 1076px; top: 636px;">145</div>
-        <div class="booth" style="left: 564px; top: 1820px;">146</div>
+        <div class="booth" style="left: 139px; top: 615px;">146</div>
         <div class="booth" style="left: 1076px; top: 704px;">147</div>
         <div class="booth" style="left: 1076px; top: 738px;">148</div>
         <div class="booth" style="left: 1076px; top: 772px;">149</div>
@@ -321,7 +321,7 @@ body {
 const canvas = document.getElementById("canvas");
 
 const BW = 38, BH = 28, GX = 6, GY = 6;
-
+/*
 //Booth helper 
 function booth(x, y, label, yellow=false) {
   const b = document.createElement("div");
@@ -331,8 +331,10 @@ function booth(x, y, label, yellow=false) {
   b.textContent = label;
   canvas.appendChild(b);
 }
+startX = 900;
+*/
 
-/* === B1 (LEFT BLOCK – MEASURED START POINT) === */
+/* === B1 (LEFT BLOCK – MEASURED START POINT) === 
 let startX = 240;
 let startY = 500;
 let n = 1;
@@ -347,9 +349,10 @@ for (let c = 0; c < 4; c++) {
     );
     n++;
   }
-}
+}*/
+startX = 900;
  
-/* === B2 (CENTER BLOCK) === */
+/* === B2 (CENTER BLOCK) === 
 startX = 540;
 startY = 500;
 n = 41;
@@ -363,9 +366,9 @@ for (let c = 0; c < 6; c++) {
     );
   }
 }
-
-/* === B3 (RIGHT BLOCK) === */
+*/
 startX = 900;
+/* === B3 (RIGHT BLOCK) === 
 startY = 500;
 n = 101;
 
@@ -377,7 +380,7 @@ for (let c = 0; c < 6; c++) {
       n++
     );
   }
-}
+}*/
 
 /* Overlay toggle */
 document.addEventListener("keydown", e => {
