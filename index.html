@@ -1,7 +1,10 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <title>Pixel-Perfect Floor Plan (Aligned)</title>
-
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
 <style>
 :root {
   /* === MEASURED FROM PNG === */
@@ -148,9 +151,113 @@ body {
   top: 5px;
   left: 5px;
 }
+/* === Vendor Sidebar (7:16) === */
+#vendor-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  height: 100vh;
+  width: calc(100vh * 7 / 16);
+
+  max-width: 360px;   /* safety cap for ultra-wide screens */
+  min-width: 260px;   /* usability floor */
+
+  background: rgba(248, 249, 250, 0.96);
+  border-left: 1px solid #ddd;
+  z-index: 3000;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scroll area only (not header) */
+#vendor-scroll {
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Sidebar items */
+.vendor-item {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.vendor-item:hover {
+  background-color: #eef2f5;
+}
+
+.vendor-item.active {
+  background-color: #dbeafe;
+  border-left: 4px solid #0d6efd;
+}
+/* === Collapsed sidebar === */
+#vendor-sidebar.collapsed {
+  transform: translateX(100%);
+}
+
+/* Smooth slide */
+#vendor-sidebar {
+  transition: transform 0.25s ease;
+}
+
+/* === Booth pulse animation === */
+@keyframes boothPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(13,110,253,0.6); }
+  70%  { box-shadow: 0 0 0 6px rgba(13,110,253,0); }
+  100% { box-shadow: 0 0 0 0 rgba(13,110,253,0); }
+}
+
+.booth.pulse {
+  animation: boothPulse 0.8s ease-out;
+}
+
+/* === Mobile auto-hide === */
+@media (max-width: 768px) {
+  #vendor-sidebar {
+    width: 100vw;
+    max-width: none;
+  }
+}
 </style>
 </head>
 <body>
+<!-- Vendor Sidebar -->
+<div id="vendor-sidebar">
+  <div class="p-3 border-bottom">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <strong>Vendors</strong>
+      <button
+        id="sidebar-toggle"
+        class="btn btn-sm btn-outline-secondary"
+      >
+        ☰
+      </button>
+    </div>
+
+    <input
+      id="vendor-search"
+      type="text"
+      class="form-control form-control-sm mb-2"
+      placeholder="Search vendor or booth…"
+    />
+
+    <select id="tier-filter" class="form-select form-select-sm">
+      <option value="all">All sponsorships</option>
+      <option value="platinum">Platinum</option>
+      <option value="gold">Gold</option>
+      <option value="silver">Silver</option>
+    </select>
+  </div>
+
+  <div id="vendor-scroll">
+    <div
+      id="vendor-list"
+      class="list-group list-group-flush"
+      tabindex="0"
+    ></div>
+  </div>
+</div>
 <div class="viewport">
     <div class="canvas overlay" id="canvas">
         <div class="booth yellow" style="left: 77px;top: 529px;">1</div>
@@ -678,5 +785,275 @@ document.querySelectorAll(".booth").forEach(booth => {
     activeBooth = booth;
   });
 });
+
+// Example data (replace with your event data)
+  const vendors = [
+{id:"v-accenture",name:"Accenture",booths:["92"],sponsorship:"Diamond"},
+{id:"v-accenture",name:"Accenture",booths:["107"],sponsorship:"Diamond"},
+{id:"v-telus health",name:"Telus Health",booths:["114"],sponsorship:"Diamond"},
+{id:"v-telus health",name:"Telus Health",booths:["115"],sponsorship:"Diamond"},
+{id:"v-telus health",name:"Telus Health",booths:["128"],sponsorship:"Diamond"},
+{id:"v-telus health",name:"Telus Health",booths:["129"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["70"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["83"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["71"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["82"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["72"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["81"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["73"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["80"],sponsorship:"Diamond"},
+{id:"v-amplify care",name:"Amplify Care",booths:["29"],sponsorship:"Platinum"},
+{id:"v-amplify care",name:"Amplify Care",booths:["40"],sponsorship:"Platinum"},
+{id:"v-workday",name:"Workday",booths:["59"],sponsorship:"Platinum"},
+{id:"v-workday",name:"Workday",booths:["60"],sponsorship:"Platinum"},
+{id:"v-petal health",name:"Petal Health",booths:["45"],sponsorship:"Platinum"},
+{id:"v-petal health",name:"Petal Health",booths:["65"],sponsorship:"Platinum"},
+{id:"v-teledoc health canada",name:"Teledoc Health Canada",booths:["66"],sponsorship:"Platinum"},
+{id:"v-teledoc health canada",name:"Teledoc Health Canada",booths:["87"],sponsorship:"Platinum"},
+{id:"v-deloitte",name:"Deloitte",booths:["49"],sponsorship:"Gold"},
+{id:"v-deloitte",name:"Deloitte",booths:["61"],sponsorship:"Gold"},
+{id:"v-philips healthcare",name:"Philips Healthcare",booths:["28"],sponsorship:"Gold"},
+{id:"v-novartis canada",name:"Novartis Canada",booths:["67"],sponsorship:"Silver"},
+{id:"v-novartis canada",name:"Novartis Canada",booths:["68"],sponsorship:"Silver"},
+{id:"v-solventum",name:"Solventum",booths:["21"],sponsorship:"Bronze"},
+{id:"v-alcidion",name:"Alcidion",booths:["91"],sponsorship:"Bronze"},
+{id:"v-meditech",name:"Meditech",booths:["41"],sponsorship:"Bronze"},
+{id:"v-dcm",name:"DCM",booths:["25"],sponsorship:"Bronze"},
+{id:"v-dcm",name:"DCM",booths:["44"],sponsorship:"Bronze"},
+{id:"v-tali ai",name:"Tali AI",booths:["62"],sponsorship:"Bronze"},
+{id:"v-venuti",name:"Venuti",booths:["111"],sponsorship:"Exhibitor"},
+{id:"v-healthtech consultants",name:"Healthtech Consultants",booths:["88"],sponsorship:"Exhibitor"},
+{id:"v-cybernet manufacturing",name:"Cybernet Manufacturing",booths:["48"],sponsorship:"Exhibitor"},
+{id:"v-securmedic",name:"SecurMEDIC",booths:["142"],sponsorship:"Exhibitor"},
+{id:"v-novari health",name:"Novari Health",booths:["69"],sponsorship:"Exhibitor"},
+{id:"v-novari health",name:"Novari Health",booths:["84"],sponsorship:"Exhibitor"},
+{id:"v-oracle",name:"Oracle",booths:["146"],sponsorship:"Diamond"},
+{id:"v-oracle",name:"Oracle",booths:["147"],sponsorship:"Diamond"},
+{id:"v-oracle",name:"Oracle",booths:["148"],sponsorship:"Diamond"},
+{id:"v-amazon web services",name:"Amazon Web Services",booths:["108"],sponsorship:"Platinum"},
+{id:"v-amazon web services",name:"Amazon Web Services",booths:["109"],sponsorship:"Platinum"},
+{id:"v-google cloud",name:"Google Cloud",booths:["126"],sponsorship:"Gold"},
+{id:"v-google cloud",name:"Google Cloud",booths:["127"],sponsorship:"Gold"},
+{id:"v-stryker",name:"Stryker",booths:["149"],sponsorship:"Bronze"},
+{id:"v-stryker",name:"Stryker",booths:["150"],sponsorship:"Bronze"},
+{id:"v-akinox",name:"Akinox",booths:["116"],sponsorship:"Exhibitor"},
+{id:"v-cloud diagnostics canada",name:"Cloud Diagnostics Canada",booths:["112"],sponsorship:"Exhibitor"},
+{id:"v-infologiq",name:"infologiQ",booths:["20"],sponsorship:"Exhibitor"},
+{id:"v-think research",name:"Think Research",booths:["63"],sponsorship:"Exhibitor"},
+{id:"v-think research",name:"Think Research",booths:["64"],sponsorship:"Exhibitor"},
+{id:"v-sciteline inc.",name:"Sciteline Inc.",booths:["85"],sponsorship:"Exhibitor"},
+{id:"v-surge learning inc.",name:"Surge Learning Inc.",booths:["131"],sponsorship:"Exhibitor"},
+{id:"v-stratford group",name:"Stratford Group",booths:["24"],sponsorship:"Exhibitor"},
+{id:"v-mariner",name:"Mariner",booths:["135"],sponsorship:"Platinum"},
+{id:"v-ontariomd",name:"OntarioMD",booths:["113"],sponsorship:"Bronze"},
+{id:"v-ontariomd",name:"OntarioMD",booths:["130"],sponsorship:"Bronze"},
+{id:"v-kainos",name:"Kainos",booths:["89"],sponsorship:"Silver"},
+{id:"v-kainos",name:"Kainos",booths:["90"],sponsorship:"Silver"},
+{id:"v-alayacare",name:"AlayaCare",booths:["136"],sponsorship:"Exhibitor"},
+{id:"v-well health",name:"WELL Health",booths:["70"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["83"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["71"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["82"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["72"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["81"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["73"],sponsorship:"Diamond"},
+{id:"v-well health",name:"WELL Health",booths:["80"],sponsorship:"Diamond"},
+{id:"v-smartprint inc.",name:"Smartprint Inc.",booths:["86"],sponsorship:"Exhibitor"},
+{id:"v-smile digital health",name:"Smile Digital Health",booths:["46"],sponsorship:"Silver"},
+{id:"v-canimmunize",name:"CaNImmunize",booths:["26"],sponsorship:"Bronze"},
+{id:"v-pwc",name:"PwC",booths:["132"],sponsorship:"Bronze"},
+{id:"v-pwc",name:"PwC",booths:["133"],sponsorship:"Bronze"},
+{id:"v-process fusin inc.",name:"Process Fusin Inc.",booths:["42"],sponsorship:"Gold"},
+{id:"v-cdw canada",name:"CDW Canada",booths:["22"],sponsorship:"Silver"},
+{id:"v-cdw canada",name:"CDW Canada",booths:["23"],sponsorship:"Silver"},
+{id:"v-plume ia",name:"Plume IA",booths:["110"],sponsorship:"Exhibitor"},
+{id:"v-goautomate inc.",name:"GoAutomate Inc.",booths:["50"],sponsorship:"Exhibitor"},
+{id:"v-digital health canada",name:"Digital Health Canada",booths:["1"],sponsorship:"Host"},
+{id:"v-digital health canada",name:"Digital Health Canada",booths:["2"],sponsorship:"Host"},
+{id:"v-canada health inforway",name:"Canada Health Inforway",booths:["3"],sponsorship:"Host"},
+{id:"v-canada health inforway",name:"Canada Health Inforway",booths:["4"],sponsorship:"Host"},
+{id:"v-cihi",name:"CIHI",booths:["5"],sponsorship:"Host"},
+{id:"v-cihi",name:"CIHI",booths:["6"],sponsorship:"Host"},
+{id:"v-heidi health",name:"Heidi Health",booths:["93"],sponsorship:"Bronze"},
+{id:"v-heidi health",name:"Heidi Health",booths:["94"],sponsorship:"Bronze"},
+{id:"v-quest diagnostics",name:"Quest Diagnostics",booths:["134"],sponsorship:"Exhibitor"},
+{id:"v-lime health",name:"Lime Health",booths:["43"],sponsorship:"Exhibitor"},
+{id:"v-baxter corporation",name:"Baxter Corporation",booths:["144"],sponsorship:"Exhibitor"},
+{id:"v-baxter corporation",name:"Baxter Corporation",booths:["145"],sponsorship:"Exhibitor"},
+{id:"v-ricoh canada",name:"Ricoh Canada",booths:["47"],sponsorship:"Exhibitor"},
+{id:"v-umano medical",name:"Umano Medical",booths:["56"],sponsorship:"Exhibitor"},
+{id:"v-altera digital health",name:"Altera Digital Health",booths:["117"],sponsorship:"Exhibitor"},
+{id:"v-altera digital health",name:"Altera Digital Health",booths:["118"],sponsorship:"Exhibitor"},
+{id:"v-piicomm inc.",name:"PiiComm Inc.",booths:["76"],sponsorship:"Gold"},
+{id:"v-piicomm inc.",name:"PiiComm Inc.",booths:["77"],sponsorship:"Gold"},
+{id:"v-dmf systems",name:"DMF Systems",booths:["137"],sponsorship:"Exhibitor"},
+{id:"v-zebra technologies",name:"Zebra Technologies",booths:["27"],sponsorship:"Exhibitor"},
+{id:"v-mikata health",name:"Mikata Health",booths:["39"],sponsorship:"Exhibitor"},
+{id:"v-checs (15100259 canada inc.)",name:"CheCS (15100259 Canada Inc.)",booths:["95"],sponsorship:"Exhibitor"},
+{id:"v-thinkon",name:"ThinkOn",booths:["105"],sponsorship:"Bronze"},
+{id:"v-cgi",name:"CGI",booths:["124"],sponsorship:"Bronze"},
+{id:"v-cgi",name:"CGI",booths:["125"],sponsorship:"Bronze"},
+{id:"v-vitall",name:"VITALL",booths:["58"],sponsorship:"Exhibitor"},
+{id:"v-sunco communications and installations",name:"Sunco Communications and Installations",booths:["30"],sponsorship:"Exhibitor"},
+{id:"v-ergotron",name:"Ergotron",booths:["19"],sponsorship:"Exhibitor"},
+{id:"v-cabot technologies",name:"Cabot Technologies",booths:["R"],sponsorship:"StartUp"},
+{id:"v-integraite",name:"INTEGRAiTE",booths:["Q"],sponsorship:"StartUp"},
+{id:"v-dt health ai",name:"DT Health AI",booths:["P"],sponsorship:"StartUp"},
+{id:"v-caredove inc.",name:"Caredove Inc.",booths:["78"],sponsorship:"Exhibitor"},
+{id:"v-deetken insight",name:"Deetken Insight",booths:["7"],sponsorship:"Exhibitor"},
+{id:"v-luma health",name:"Luma Health",booths:["143"],sponsorship:"Exhibitor"},
+{id:"v-harris arc health",name:"Harris Arc Health",booths:["75"],sponsorship:"Exhibitor"},
+{id:"v-trend micro",name:"Trend Micro",booths:["106"],sponsorship:"Exhibitor"},
+{id:"v-tectonic advisory services inc.",name:"Tectonic Advisory Services Inc.",booths:["38"],sponsorship:"Exhibitor"},
+{id:"v-healthasyst",name:"HealthAsyst",booths:["51"],sponsorship:"Exhibitor"},
+{id:"v-acf technologies",name:"ACF Technologies",booths:["98"],sponsorship:"Exhibitor"},
+{id:"v-virtual hallway",name:"Virtual Hallway",booths:["O"],sponsorship:"StartUp"},
+{id:"v-tangent",name:"Tangent",booths:["31"],sponsorship:"Exhibitor"},
+{id:"v-fonemed",name:"Fonemed",booths:["18"],sponsorship:"Exhibitor"},
+{id:"v-staffschedulecare",name:"StaffScheduleCare",booths:["138"],sponsorship:"Exhibitor"},
+{id:"v-softeck solutions, inc.",name:"Softeck Solutions, Inc.",booths:["104"],sponsorship:"Exhibitor"},
+{id:"v-ibm canada",name:"IBM Canada",booths:["57"],sponsorship:"Gold"},
+{id:"v-barrington consulting group",name:"Barrington Consulting Group",booths:["37"],sponsorship:"Exhibitor"},
+{id:"v-mara consulting",name:"Mara Consulting",booths:["55"],sponsorship:"Exhibitor"},
+{id:"v-strongest families institute",name:"Strongest Families Institute",booths:["A"],sponsorship:"StartUp"}];
+
+
+const vendorListEl = document.getElementById("vendor-list");
+const searchInput = document.getElementById("vendor-search");
+
+let vendorItems = [];
+
+/* Build vendor list */
+vendors.forEach(vendor => {
+  vendor.booths.forEach(boothId => {
+    const item = document.createElement("button");
+    item.className = "list-group-item list-group-item-action vendor-item";
+    item.dataset.booth = boothId;
+    item.dataset.vendor = vendor.name.toLowerCase();
+
+    item.innerHTML = `
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <strong>${vendor.name}</strong><br>
+          <small class="text-muted">Booth ${boothId}</small>
+        </div>
+        <span class="badge bg-secondary">${vendor.sponsorship}</span>
+      </div>
+    `;
+
+    /* Sidebar → booth */
+    item.addEventListener("click", () => {
+      const boothEl = [...document.querySelectorAll(".booth")]
+        .find(b => b.textContent.trim() === boothId);
+
+      if (boothEl) {
+        document
+          .querySelectorAll(".vendor-item")
+          .forEach(i => i.classList.remove("active"));
+
+        item.classList.add("active");
+
+        boothEl.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+        boothEl.classList.remove("pulse");
+        void boothEl.offsetWidth; // force reflow
+        boothEl.classList.add("pulse");
+        boothEl.click();
+      }
+    });
+
+    vendorItems.push(item);
+    vendorListEl.appendChild(item);
+  });
+});
+document.querySelectorAll(".booth").forEach(booth => {
+  booth.addEventListener("click", () => {
+    const boothId = booth.textContent.trim();
+
+    document
+      .querySelectorAll(".vendor-item")
+      .forEach(item => {
+        item.classList.toggle(
+          "active",
+          item.dataset.booth === boothId
+        );
+      });
+  });
+});
+searchInput.addEventListener("input", e => {
+  const q = e.target.value.toLowerCase();
+
+  vendorItems.forEach(item => {
+    const match =
+      item.dataset.vendor.includes(q) ||
+      item.dataset.booth.includes(q);
+
+    item.style.display = match ? "" : "none";
+  });
+});
+const sidebar = document.getElementById("vendor-sidebar");
+const toggleBtn = document.getElementById("sidebar-toggle");
+
+toggleBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("collapsed");
+});
+const tierFilter = document.getElementById("tier-filter");
+
+tierFilter.addEventListener("change", () => {
+  const tier = tierFilter.value;
+
+  vendorItems.forEach(item => {
+    const itemTier = item
+      .querySelector(".badge")
+      .textContent
+      .toLowerCase();
+
+    const show =
+      tier === "all" || itemTier === tier;
+
+    item.style.display = show ? "" : "none";
+  });
+});
+let focusedIndex = 0;
+
+document
+  .getElementById("vendor-list")
+  .addEventListener("keydown", e => {
+    const visibleItems = vendorItems.filter(
+      i => i.style.display !== "none"
+    );
+
+    if (!visibleItems.length) return;
+
+    if (e.key === "ArrowDown") {
+      focusedIndex = Math.min(
+        focusedIndex + 1,
+        visibleItems.length - 1
+      );
+      visibleItems[focusedIndex].focus();
+      e.preventDefault();
+    }
+
+    if (e.key === "ArrowUp") {
+      focusedIndex = Math.max(focusedIndex - 1, 0);
+      visibleItems[focusedIndex].focus();
+      e.preventDefault();
+    }
+
+    if (e.key === "Enter") {
+      visibleItems[focusedIndex].click();
+    }
+  });
+  
+function autoHideSidebar() {
+  if (window.innerWidth <= 768) {
+    sidebar.classList.add("collapsed");
+  }
+}
+  
+  autoHideSidebar();
+  
 </script>
 </body></html>
