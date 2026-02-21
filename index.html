@@ -96,22 +96,22 @@ body {
   object-fit: contain;
   pointer-events: none; /* click still belongs to booth */
 }
-/* ===== Large logo display (5x booth size) ===== */
+/* ===== Large logo display (fixed size) ===== */
 .booth-logo-large {
   position: absolute;
   z-index: 1000;
   pointer-events: none;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  padding: 6px;
 
-  background: linear-gradient(180deg, #ffffff, #f8fafc);
-  border-radius: 16px;
-  border: 1px solid rgba(0,0,0,0.1);
+  width: 120px;   /* fixed width */
+  height: 80px;   /* fixed height */
 
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.25),
-    0 0 0 1px rgba(255,255,255,0.6) inset;
-
-  padding: 14px;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: logo-pop 0.18s ease-out;
 }
 
@@ -119,6 +119,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
 }
 /* Small entrance animation */
 @keyframes logo-pop {
@@ -690,6 +691,10 @@ function resetBooth(booth) {
     booth._largeLogo = null;
   }
 }
+
+const LARGE_LOGO_WIDTH = 120;  // fixed width in px
+const LARGE_LOGO_HEIGHT = 80;  // fixed height in px
+
 /* 🔑 SINGLE TOGGLE FUNCTION
    Used by BOTH booth clicks and vendor clicks */
 function toggleBoothById(boothId) {
@@ -723,17 +728,16 @@ function toggleBoothById(boothId) {
   const largeLogo = document.createElement("div");
   largeLogo.className = "booth-logo-large";
 
-  const largeW = rect.width * 5;
-  const largeH = rect.height * 5;
-
-  largeLogo.style.width = largeW + "px";
-  largeLogo.style.height = largeH + "px";
+    // Use fixed size instead of scaling
+  largeLogo.style.width = LARGE_LOGO_WIDTH + "px";
+  largeLogo.style.height = LARGE_LOGO_HEIGHT + "px";
 
   let left = rect.right - canvasRect.left + 12;
   let top  = rect.top - canvasRect.top;
 
-  if (left + largeW > canvasRect.width) {
-    left = rect.left - canvasRect.left - largeW - 12;
+  // Move to left if it would overflow
+  if (left + LARGE_LOGO_WIDTH > canvasRect.width) {
+    left = rect.left - canvasRect.left - LARGE_LOGO_WIDTH - 12;
   }
 
   largeLogo.style.left = left + "px";
