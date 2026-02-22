@@ -917,47 +917,99 @@ document.getElementById("vendor-search")
 {id:"v-mara consulting",name:"Mara Consulting",booths:["55"],sponsorship:"Exhibitor"},
 {id:"v-strongest families institute",name:"Strongest Families Institute",booths:["A"],sponsorship:"StartUp"}];
 
-
 const vendorListEl = document.getElementById("vendor-list");
-
 
 let vendorItems = [];
 
-/* Build vendor list */
-vendors.forEach(vendor => {
-  vendor.booths.forEach(boothId => {
-    const item = document.createElement("button");
-    item.className = "list-group-item list-group-item-action vendor-item";
-    item.dataset.booth = boothId;
-    item.dataset.vendor = vendor.name.toLowerCase();
+function getVendorList() {
+    
 
-    const logo = getVendorLogo(vendor.name);
+    /* Build vendor list */
+    vendors.forEach(vendor => {
+        vendor.booths.forEach(boothId => {
+            const item = document.createElement("button");
+            item.className = "list-group-item list-group-item-action vendor-item";
+            item.dataset.booth = boothId;
+            item.dataset.vendor = vendor.name.toLowerCase();
 
-item.innerHTML = `
-  <div class="d-flex align-items-center gap-3">
-    <div class="vendor-logo">
-      <img src="${logo}" alt="${vendor.name} logo">
-    </div>
+            const logo = getVendorLogo(vendor.name);
 
-    <div class="flex-grow-1">
-      <strong>${vendor.name}</strong><br>
-      <small class="text-muted">Booth ${boothId}</small>
-    </div>
+            item.innerHTML = `
+                <div class="d-flex align-items-center gap-3">
+                    <div class="vendor-logo">
+                        <img src="${logo}" alt="${vendor.name} logo">
+                    </div>
 
-    <span class="badge">${vendor.sponsorship}</span>
-  </div>
-`;
-  item.style.minHeight = "36px";
-  item.classList.add("vendor-item");
-    item.addEventListener("click", () => {
-  toggleBoothById(boothId);
-});
+                    <div class="flex-grow-1">
+                        <strong>${vendor.name}</strong><br>
+                        <small class="text-muted">Booth ${boothId}</small>
+                    </div>
+                    <span class="badge sponsorship-badge">${vendor.sponsorship}</span>
+                </div>
+            `;
 
-    vendorItems.push(item);
-    vendorListEl.appendChild(item);
-  });
-});
-document.querySelectorAll(".booth").forEach(booth => {
+            item.style.minHeight = "36px";
+            item.classList.add("vendor-item");
+
+            /* ===== Hover & Click effects ===== */
+            item.addEventListener("click", () => {
+                toggleBoothById(boothId);
+            });
+
+            // Add hover effects
+            item.addEventListener("mouseenter", () => {
+                item.style.backgroundColor = "#e7f1ff"; // light blue
+                item.style.transform = "translateX(2px)";
+            });
+            item.addEventListener("mouseleave", () => {
+                item.style.backgroundColor = "";
+                item.style.transform = "";
+            });
+            vendorItems.push(item);
+            vendorListEl.appendChild(item);
+
+            // Color the badge based on sponsorship
+            const badge = item.querySelector(".sponsorship-badge");
+            switch (vendor.sponsorship.toLowerCase()) {
+                case "diamond":
+                    badge.style.backgroundColor = "#b9f2ff";
+                    badge.style.color = "#000";
+                    break;
+                case "platinum":
+                    badge.style.backgroundColor = "#e5e4e2";
+                    badge.style.color = "#000";
+                    break;
+                case "gold":
+                    badge.style.backgroundColor = "#ffd700";
+                    badge.style.color = "#000";
+                    break;
+                case "silver":
+                    badge.style.backgroundColor = "#c0c0c0";
+                    badge.style.color = "#000";
+                    break;
+                case "bronze":
+                    badge.style.backgroundColor = "#cd7f32";
+                    badge.style.color = "#fff";
+                    break;
+                case "host":
+                    badge.style.backgroundColor = "#4caf50";
+                    badge.style.color = "#fff";
+                    break;
+                case "exhibitor":
+                    badge.style.backgroundColor = "#0d6efd";
+                    badge.style.color = "#fff";
+                    break;
+                default:
+                    badge.style.backgroundColor = "#999";
+                    badge.style.color = "#fff";
+            }
+
+            
+        });
+    });
+
+            
+  document.querySelectorAll(".booth").forEach(booth => {
   booth.addEventListener("click", () => {
     const boothId = booth.textContent.trim();
 
@@ -971,6 +1023,9 @@ document.querySelectorAll(".booth").forEach(booth => {
       });
   });
 });
+}
+getVendorList();
+
 let focusedIndex = 0;
 
 document
