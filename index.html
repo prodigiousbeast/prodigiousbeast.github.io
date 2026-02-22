@@ -37,11 +37,16 @@ body {
 
 /* === CANVAS = EXACT PNG SIZE === */
 .canvas {
-  position: relative;
+  position: fixed;
   width: 1080px;
   height: 1920px;
   background: #fff;
   overflow: hidden;
+  right: 0px;
+  left: 0px;
+  bottom; 0;
+  min-width: 1200px;          /* adjust to your real canvas width */
+  min-height: 800px;          /* adjust to your real canvas height */
 }
 
 /* Overlay (true 1:1) */
@@ -461,6 +466,7 @@ body {
     </div>
     </div>
 </div>
+
 
 
 <script>
