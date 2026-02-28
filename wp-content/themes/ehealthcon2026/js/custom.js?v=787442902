@@ -1,0 +1,92 @@
+jQuery(document).ready(function(){
+
+	if(getViewportWidth()>999){
+		jQuery('#header .header-left > nav > ul').superfish({ 
+			delay:200, animation:{opacity:'show', height:'show'}, speed:'fast', dropShadows:false 
+		});
+	}
+
+	jQuery('#header .menu-icon').click(function(){
+		jQuery("#header").addClass("show-menu");
+		return false;
+	});
+
+	jQuery('#header .menu-container .close-icon').click(function(){
+		jQuery("#header").removeClass("show-menu");
+		return false;
+	});
+	
+	jQuery("ul.view-mobile li.menu-item-has-children").click(function(){
+		
+		if ( jQuery(this).hasClass('active') ) {
+			jQuery(".view-mobile li").removeClass('active');
+			jQuery("ul.sub-menu-level-1").slideUp();
+		} else {
+			jQuery(".view-mobile li").removeClass('active');
+			jQuery("ul.sub-menu-level-1").slideUp();
+			jQuery(this).find("ul.sub-menu-level-1").slideToggle();
+			jQuery(this).toggleClass('active');
+		}
+		
+	});
+
+	jQuery('.scroll').click(function(){
+		var id = jQuery(this).attr("href");
+		jQuery('html,body').animate({ scrollTop: jQuery(id).offset().top - 87 }, 500);
+		return false;
+	});	
+	
+	jQuery(window).scroll(function() {
+		if (jQuery(this).scrollTop() > 150 ) {
+			jQuery("#header").addClass("active");
+		}
+		else{
+			jQuery("#header").removeClass("active");
+		}
+	});
+	
+	/* popup */
+	jQuery(".popup-link").click(function(){
+		var popupID = "#" + jQuery(this).data("popup");
+		jQuery(popupID).show();
+		jQuery(popupID).animate({opacity:1}, 500);
+	});	
+	jQuery(".popup-content .close-icon").click(function(){
+		
+		var videoURL = jQuery(this).parent().find("iframe").attr("src"); // get video url
+		jQuery(this).parent().find("iframe").attr("src", videoURL); // reload video with video url to stop play
+		
+		jQuery(this).parents(".popup").animate({opacity:0}, 500, function(){
+			jQuery(this).hide();
+		});
+		
+	});	
+	
+});
+
+function getViewportWidth() {
+    if(window.undefined != window.innerWidth){
+        return window.innerWidth; 
+    }
+    if("CSS1Compat" == document.compatMode) {
+        return document.documentElement.clientWidth; 
+    }
+    if(document.body){
+        return document.body.clientWidth; 
+    }
+    return window.undefined
+}
+
+function getViewportHeight() {
+    if(window.innerHeight != window.undefined) {
+        return window.innerHeight;
+    }
+    if("CSS1Compat" == document.compatMode) {
+        return document.documentElement.clientHeight;
+    }
+    if(document.body) {
+        return document.body.clientHeight; 
+    }
+    return window.undefined; 
+}
+

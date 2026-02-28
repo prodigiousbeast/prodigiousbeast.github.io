@@ -1,1071 +1,499 @@
-<html lang="en"><head>
-<meta charset="UTF-8">
-<title>Pixel-Perfect Floor Plan (Aligned)</title>
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-/>
-<style>
-:root {
-  /* === MEASURED FROM PNG === */
-  --booth-w: 25px;
-  --booth-h: 25px;
-  --gap-x: 6px;
-  --gap-y: 6px;
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-  --green: #B6FCD5;
-  --yellow: #F5FCB6;
-  --blue: #B6E8FC;
-}
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes" />
+	<meta name="format-detection" content="telephone=no" />
+	
+	<title>Exhibit Opportunities - Booth Space - e-Health Conference and Tradeshow</title>
+	
+    <!-- CSS  -->
+	<link rel="stylesheet" href="../../../wp-content/themes/ehealthcon2026/css/bootstrap.min.css" type="text/css" media="all" />
+ 	<link rel="stylesheet" href="../../../wp-content/themes/ehealthcon2026/style.css%3Fv=1.1.css" type="text/css" media="all" />
+ 	<link rel="stylesheet" href="../../../wp-content/themes/ehealthcon2026/css/mobile.css%3Fv=1.1.css" type="text/css" media="all" />
 
-/* Page */
-body {
-  margin: 0;
-  background: #ccc;
-  font-family: Arial, sans-serif;
-}
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-/* === Viewport === */
-.viewport {
-  width: 1080px;
-  height: 1940px;
-  margin: 0 auto;
-  overflow: hidden;
-  background: #ccc;
-}
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
 
-
-/* === CANVAS = EXACT PNG SIZE === */
-.canvas {
-  position: relative;
-  width: 1080px;
-  height: 1920px;
-  background: #fff;
-  overflow: hidden;
-  right: 0px;
-  left: 0px;
-  bottom; 0px;
-  min-width: 1200px;          /* adjust to your real canvas width */
-  min-height: 800px;          /* adjust to your real canvas height */
-}
+	<!-- This site is optimized with the Yoast SEO plugin v27.0 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<link rel="canonical" href="index.html" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Exhibit Opportunities - Booth Space - e-Health Conference and Tradeshow" />
+	<meta property="og:description" content="Exhibit Booth Space Standard Exhibit Booth Price: $6,500* The e-Health trade show floor sells out every year—reserve your space today! Exhibitors receive: 2 exhibitor registrations per 10’ x 10’ Exhibit Booth Space (a maximum of four additional exhibit staff registrations may be purchased at a discounted rate) Recognition as an exhibitor with your logo on [&hellip;]" />
+	<meta property="og:url" content="https://www.e-healthconference.com/e-health26/e-health-sponsorship/exhibit-opportunities/" />
+	<meta property="og:site_name" content="e-Health Conference and Tradeshow" />
+	<meta property="article:modified_time" content="2026-02-02T01:12:57+00:00" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Est. reading time" />
+	<meta name="twitter:data1" content="2 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.e-healthconference.com/e-health26/e-health-sponsorship/exhibit-opportunities/","url":"https://www.e-healthconference.com/e-health26/e-health-sponsorship/exhibit-opportunities/","name":"Exhibit Opportunities - Booth Space - e-Health Conference and Tradeshow","isPartOf":{"@id":"https://www.e-healthconference.com/#website"},"datePublished":"2025-07-16T20:53:25+00:00","dateModified":"2026-02-02T01:12:57+00:00","breadcrumb":{"@id":"https://www.e-healthconference.com/e-health26/e-health-sponsorship/exhibit-opportunities/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.e-healthconference.com/e-health26/e-health-sponsorship/exhibit-opportunities/"]}]},{"@type":"BreadcrumbList","@id":"https://www.e-healthconference.com/e-health26/e-health-sponsorship/exhibit-opportunities/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.e-healthconference.com/"},{"@type":"ListItem","position":2,"name":"e-Health26","item":"https://www.e-healthconference.com/e-health26/"},{"@type":"ListItem","position":3,"name":"e-Health Sponsorship","item":"https://www.e-healthconference.com/e-health26/e-health-sponsorship/"},{"@type":"ListItem","position":4,"name":"Exhibit Opportunities &#8211; Booth Space"}]},{"@type":"WebSite","@id":"https://www.e-healthconference.com/#website","url":"https://www.e-healthconference.com/","name":"e-Health Conference and Tradeshow","description":"Learn. Connect. Network.","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.e-healthconference.com/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"}]}</script>
+	<!-- / Yoast SEO plugin. -->
 
 
-
-/* Overlay (true 1:1) */
-.canvas.overlay {
-  background: url(506_test.png) no-repeat top left;
-}
-
-/* Booths */
-.booth {
-  position: absolute;
-  width: var(--booth-w);
-  height: var(--booth-h);
-  background: var(--green);
-  border: 1px solid #555;
-  font-size: 10px;
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.15s ease, box-shadow 0.15s ease;
-  overflow: hidden;
-}
-
-.booth.yellow {
-  background: var(--yellow);
-  --booth-w: 26px;
-  --booth-h: 52px;
-  
-}
-.booth.blue{
-    background: var(--blue);
-    --booth-w: 11px;
-    --booth-h: 20px;
-    
-}
-/* Hover = slightly darker shade (same color family) */
-.booth:hover {
-  filter: brightness(0.92);
-  box-shadow: inset 0 0 0 2px rgba(0,0,0,0.15);
-}
-
-/* When image is active */
-.booth.has-logo {
-  padding: 0;
-  background: #fff; /* fallback behind transparent logos */
-}
-
-/* Logo image inside booth */
-.booth img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  pointer-events: none; /* click still belongs to booth */
-}
-/* ===== Large logo display (fixed size) ===== */
-.booth-logo-large {
-  position: absolute;
-  z-index: 1000;
-  pointer-events: none;
-  background: white;
-  border: 1px solid rgba(0,0,0,0.2);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  padding: 6px;
-
-  width: 120px;   /* fixed width */
-  height: 80px;   /* fixed height */
-  border-radius: 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: logo-pop 0.18s ease-out;
-}
-
-.booth-logo-large img {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  object-fit: contain;
-  display: block;
-}
-/* Small entrance animation */
-@keyframes logo-pop {
-  from {
-    transform: scale(0.92);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* Major structures */
-.ballroom {
-  position: absolute;
-  border: 2px solid #000;
-}
-
-.room {
-  position: absolute;
-  border: 2px solid #000;
-}
-
-.room span {
-  position: absolute;
-  top: 6px;
-  right: 8px;
-  font-weight: bold;
-}
-
-.location-marker {
-  width: 15px;
-  height: 15px;
-  background-color: #337ab7;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(45deg);
-  margin: 20px;
-  position: relative;
-}
-.location-marker:after {
-  content: '';
-  width: 5px;
-  height: 5px;
-  background-color: white;
-  position: absolute;
-  border-radius: 50%;
-  top: 5px;
-  left: 5px;
-}
-
-/* === Vendor Bar Overlay (Bottom) === */
-#vendor-bar {
-  position: absolute;
-  left: -4px;
-  bottom: 1721px;
-
-  width: 932px;
-  height: 200px; /* enough for 10 vendors */
-
-  background: rgba(248, 249, 250, 0.96);
-  border-top: 2px solid #ccc;
-  z-index: 2500;
-
-  display: flex;
-  flex-direction: column;
-  backdrop-filter: blur(2px);
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 -6px 24px rgba(0,0,0,0.15);
-}
-
-/* Header stays fixed */
-.vendor-header {
-  padding: 6px 10px;
-  font-weight: bold;
-  font-size: 14px;
-  border-bottom: 1px solid #ddd;
-  background: #f8f9fa;
-}
-
-/* Scroll area only */
-#vendor-scroll {
-  flex: 1;
-  overflow-y: auto;
-}
-
-/* Scrollbar itself (Chrome / Edge) */
-#vendor-scroll::-webkit-scrollbar {
-  width: 8px;
-}
-#vendor-scroll::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 8px;
-}
-#vendor-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Vendor rows */
-.vendor-item {
-  min-height: 36px; /* 10 items visible */
-  font-size: 14px;
-  cursor: pointer;
-  background: #fff;
-  border: none;
-  border-bottom: 1px solid #eef2f7;
-  padding: 10px 12px;
-  transition: background 0.15s ease, transform 0.1s ease;
-}
-
-.vendor-item:hover {
-  background: #f1f5f9;
-  transform: translateX(2px);
-}
-
-.vendor-item.active {
-  background-color: #dbeafe;
-  border-left: 4px solid #0d6efd;
-}
-/* Booth text */
-.vendor-item small {
-  font-size: 12px;
-}
-
-/* Sponsorship badge polish */
-.vendor-item .badge {
-  font-size: 11px;
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: #e5e7eb;
-  color: #374151;
-}
-/* Vendor logo in list */
-.vendor-logo {
-  width: 36px;
-  height: 36px;
-  background: #fff;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px;
-  flex-shrink: 0;
-}
-
-.vendor-logo img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
+<link rel='dns-prefetch' href='https://stats.wp.com/' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.e-healthconference.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.e-healthconference.com%2Fe-health26%2Fe-health-sponsorship%2Fexhibit-opportunities%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://www.e-healthconference.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.e-healthconference.com%2Fe-health26%2Fe-health-sponsorship%2Fexhibit-opportunities%2F&#038;format=xml" />
+		<style>
+			.lazyload,
+			.lazyloading {
+				max-width: 100%;
+			}
+		</style>
+		<style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
 </style>
-</head>
-<body>
+<style id='wp-block-library-inline-css' type='text/css'>
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}.has-text-align-center{text-align:center}.has-text-align-left{text-align:left}.has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
 
-<div class="viewport">
-    <div class="canvas overlay" id="canvas">
-        <div class="booth yellow" style="left: 49px;top: 480px;">1</div>
-       <!-- <div class="booth yellow" style="left: 312px;top: 1441px;">3</div>
-        <div class="booth yellow" style="left: 312px;top: 1195px;">5</div>
-        <div class="booth" style="left: 312px;top: 1133px;">7</div>
-        <div class="booth" style="left: 312px; top: 1071px;">8</div>
-        <div class="booth" style="left: 312px; top: 1009px;">9</div>
-        <div class="booth" style="left: 312px; top: 948px;">10</div>
-        <div class="booth" style="left: 272px; top: 839px;">11</div>
-        <div class="booth" style="left: 333px; top: 839px;">12</div>
-        <div class="booth" style="left: 394px; top: 839px;">13</div>
-        <div class="booth" style="left: 455px; top: 839px;">14</div>
-        <div class="booth" style="left: 377px; top: 948px;">15</div>
-        <div class="booth" style="left: 377px; top: 1009px;">16</div>
-        <div class="booth" style="left: 377px; top: 1071px;">17</div>
-        <div class="booth" style="left: 377px; top: 1134px;">18</div>
-        <div class="booth" style="left: 377px; top: 1195px;">19</div>
-        <div class="booth" style="left: 377px; top:1256px;">20</div>
-        <div class="booth" style="left: 328px; top: 500px;">21</div>
-        <div class="booth" style="left: 328px; top: 534px;">22</div>
-        <div class="booth" style="left: 328px; top: 568px;">23</div>
-        <div class="booth" style="left: 328px; top: 602px;">24</div>
-        <div class="booth" style="left: 328px; top: 636px;">25</div>
-        <div class="booth" style="left: 328px; top: 670px;">26</div>
-        <div class="booth" style="left: 328px; top: 704px;">27</div>
-        <div class="booth" style="left: 328px; top: 738px;">28</div>
-        <div class="booth" style="left: 479px; top: 1256px;">29</div>
-        <div class="booth" style="left: 479px; top: 1195px;">30</div>
-        <div class="booth" style="left: 479px; top: 1133px;">31</div>
-        <div class="booth" style="left: 479px; top: 1071px;">32</div>
-        <div class="booth" style="left: 479px; top: 1009px;">33</div>
-        <div class="booth" style="left: 479px; top: 948px;">34</div>
-        <div class="booth" style="left: 543px; top: 948px;">35</div>
-        <div class="booth" style="left: 543px; top: 1009px;">36</div>
-        <div class="booth" style="left: 543px; top: 1071px;">37</div>
-        <div class="booth" style="left: 543px; top: 1133px;">38</div>
-        <div class="booth" style="left: 543px; top: 1195px;">39</div>
-        <div class="booth" style="left: 543px; top: 1256px;">40</div>
-        <div class="booth" style="left: 540px; top: 500px;">41</div>
-        <div class="booth" style="left: 540px; top: 534px;">42</div>
-        <div class="booth" style="left: 540px; top: 568px;">43</div>
-        <div class="booth" style="left: 540px; top: 602px;">44</div>
-        <div class="booth" style="left: 540px; top: 636px;">45</div>
-        <div class="booth" style="left: 540px; top: 670px;">46</div>
-        <div class="booth" style="left: 540px; top: 704px;">47</div>
-        <div class="booth" style="left: 540px; top: 738px;">48</div>
-        <div class="booth" style="left: 645px; top: 1256px;">49</div>
-        <div class="booth" style="left: 645px; top: 1195px;">50</div>
-        <div class="booth" style="left: 645px; top: 1133px;">51</div>
-        <div class="booth" style="left: 645px; top: 1071px;">52</div>
-        <div class="booth" style="left: 645px; top: 1009px;">53</div>
-        <div class="booth" style="left: 645px; top: 948px;">54</div>
-        <div class="booth" style="left: 584px; top: 636px;">55</div>
-        <div class="booth" style="left: 705px; top: 948px;">56</div>
-        <div class="booth" style="left: 705px; top: 1009px;">57</div>
-        <div class="booth" style="left: 705px; top:1071px;">58</div>
-        <div class="booth" style="left: 705px; top: 1133px;">59</div>
-        <div class="booth" style="left: 705px; top: 1256px;">60</div>
-        <div class="booth" style="left: 705px; top: 500px;">61</div>
-        <div class="booth" style="left: 628px; top: 534px;">62</div>
-        <div class="booth" style="left: 628px; top: 568px;">63</div>
-        <div class="booth" style="left: 628px; top: 602px;">64</div>
-        <div class="booth" style="left: 628px; top: 636px;">65</div>
-        <div class="booth" style="left: 628px; top: 670px;">66</div>
-        <div class="booth" style="left: 628px; top: 704px;">67</div>
-        <div class="booth" style="left: 628px; top: 738px;">68</div>
-        <div class="booth" style="left: 628px; top: 772px;">69</div>
-        <div class="booth" style="left: 628px; top: 806px;">70</div>
-        <div class="booth" style="left: 672px; top: 500px;">71</div>
-        <div class="booth" style="left: 672px; top: 534px;">72</div>
-        <div class="booth" style="left: 672px; top: 568px;">73</div>
-        <div class="booth" style="left: 672px; top: 602px;">74</div>
-        <div class="booth" style="left: 672px; top: 636px;">75</div>
-        <div class="booth" style="left: 672px; top: 670px;">76</div>
-        <div class="booth" style="left: 672px; top: 704px;">77</div>
-        <div class="booth" style="left: 672px; top: 738px;">78</div>
-        <div class="booth" style="left: 672px; top: 772px;">79</div>
-        <div class="booth" style="left: 672px; top: 806px;">80</div>
-        <div class="booth" style="left: 716px; top: 500px;">81</div>
-        <div class="booth" style="left: 716px; top: 534px;">82</div>
-        <div class="booth" style="left: 716px; top: 568px;">83</div>
-        <div class="booth" style="left: 716px; top: 602px;">84</div>
-        <div class="booth" style="left: 716px; top: 636px;">85</div>
-        <div class="booth" style="left: 716px; top: 670px;">86</div>
-        <div class="booth" style="left: 716px; top: 704px;">87</div>
-        <div class="booth" style="left: 716px; top: 738px;">88</div>
-        <div class="booth" style="left: 716px; top: 772px;">89</div>
-        <div class="booth" style="left: 716px; top: 806px;">90</div>
-        <div class="booth" style="left: 760px; top: 500px;">91</div>
-        <div class="booth" style="left: 760px; top: 534px;">92</div>
-        <div class="booth" style="left: 760px; top: 568px;">93</div>
-        <div class="booth" style="left: 760px; top: 602px;">94</div>
-        <div class="booth" style="left: 760px; top: 636px;">95</div>
-        <div class="booth" style="left: 760px; top: 670px;">96</div>
-        <div class="booth" style="left: 760px; top: 704px;">97</div>
-        <div class="booth" style="left: 760px; top: 738px;">98</div>
-        <div class="booth" style="left: 760px; top: 772px;">99</div>
-        <div class="booth" style="left: 760px; top: 806px;">100</div>
-        <div class="booth" style="left: 900px; top: 500px;">101</div>
-        <div class="booth" style="left: 900px; top: 534px;">102</div>
-        <div class="booth" style="left: 900px; top: 568px;">103</div>
-        <div class="booth" style="left: 900px; top: 602px;">104</div>
-        <div class="booth" style="left: 900px; top: 636px;">105</div>
-        <div class="booth" style="left: 900px; top: 670px;">106</div>
-        <div class="booth" style="left: 900px; top: 704px;">107</div>
-        <div class="booth" style="left: 900px; top: 738px;">108</div>
-        <div class="booth" style="left: 900px; top: 772px;">109</div>
-        <div class="booth" style="left: 900px; top: 806px;">110</div>
-        <div class="booth" style="left: 944px; top: 500px;">111</div>
-        <div class="booth" style="left: 944px; top: 534px;">112</div>
-        <div class="booth" style="left: 944px; top: 568px;">113</div>
-        <div class="booth" style="left: 944px; top: 602px;">114</div>
-        <div class="booth" style="left: 944px; top: 636px;">115</div>
-        <div class="booth" style="left: 944px; top: 670px;">116</div>
-        <div class="booth" style="left: 944px; top: 704px;">117</div>
-        <div class="booth" style="left: 944px; top: 738px;">118</div>
-        <div class="booth" style="left: 944px; top: 772px;">119</div>
-        <div class="booth" style="left: 944px; top: 806px;">120</div>
-        <div class="booth" style="left: 988px; top: 500px;">121</div>
-        <div class="booth" style="left: 988px; top: 534px;">122</div>
-        <div class="booth" style="left: 988px; top: 568px;">123</div>
-        <div class="booth" style="left: 988px; top: 602px;">124</div>
-        <div class="booth" style="left: 988px; top: 636px;">125</div>
-        <div class="booth" style="left: 988px; top: 670px;">126</div>
-        <div class="booth" style="left: 988px; top: 704px;">127</div>
-        <div class="booth" style="left: 988px; top: 738px;">128</div>
-        <div class="booth" style="left: 988px; top: 772px;">129</div>
-        <div class="booth" style="left: 988px; top: 806px;">130</div>
-        <div class="booth" style="left: 1032px; top: 500px;">131</div>
-        <div class="booth" style="left: 1032px; top: 534px;">132</div>
-        <div class="booth" style="left: 1032px; top: 568px;">133</div>
-        <div class="booth" style="left: 1032px; top: 602px;">134</div>
-        <div class="booth" style="left: 1032px; top: 636px;">135</div>
-        <div class="booth" style="left: 1032px; top: 670px;">136</div>
-        <div class="booth" style="left: 1032px; top: 704px;">137</div>
-        <div class="booth" style="left: 1032px; top: 738px;">138</div>
-        <div class="booth" style="left: 1032px; top: 772px;">139</div>
-        <div class="booth" style="left: 1032px; top: 806px;">140</div>
-        <div class="booth" style="left: 1076px; top: 500px;">141</div>
-        <div class="booth" style="left: 1076px; top: 534px;">142</div>
-        <div class="booth" style="left: 1076px; top: 568px;">143</div>
-        <div class="booth" style="left: 1076px; top: 602px;">144</div>
-        <div class="booth" style="left: 1076px; top: 636px;">145</div>-->
-        <div class="booth" style="left: 156px; top: 589px;">146</div>
-       <!-- <div class="booth" style="left: 1076px; top: 704px;">147</div>
-        <div class="booth" style="left: 1076px; top: 738px;">148</div>
-        <div class="booth" style="left: 1076px; top: 772px;">149</div>
-        <div class="booth" style="left: 1076px; top: 806px;">150</div>
-        <div class="booth" style="left: 1120px; top: 500px;">151</div>
-        <div class="booth" style="left: 1120px; top: 534px;">152</div>
-        <div class="booth" style="left: 1120px; top: 568px;">153</div>
-        <div class="booth" style="left: 1120px; top: 602px;">154</div>
-        <div class="booth" style="left: 1120px; top: 636px;">155</div>
-        <div class="booth" style="left: 1120px; top: 670px;">156</div>
-        <div class="booth" style="left: 1120px; top: 704px;">157</div>
-        <div class="booth" style="left: 1120px; top: 738px;">158</div>
-        <div class="booth" style="left: 1120px; top: 772px;">159</div>
-        <div class="booth" style="left: 1120px; top: 806px;">160</div>-->
-        <div class="booth blue" style="left: 132px; top: 648px;">A</div>
-        <div class="location-marker" style="left: 192px; top: 530px;"></div>
-        <div class="you-are-here" style="position: relative; left: 226px; top: 486px; padding: 10px; display: inline-block; font-size: 10px">You are here</div>
-    <!-- Vendor Scrollbar (Bottom) -->
-      <!-- Vendor Bar -->
-    <div id="vendor-bar">
-      <div class="vendor-header">
-        Vendors
-        <!-- ✅ SEARCH ADDED -->
-        <input
-          id="vendor-search"
-          class="form-control form-control-sm mt-1"
-          placeholder="Search vendor or booth…"
-        />
-      </div>
+/*# sourceURL=wp-block-library-inline-css */
+</style>
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
 
-      <div id="vendor-scroll">
-        <div id="vendor-list"
-             class="list-group list-group-flush"
-             tabindex="0"></div>
-      </div>
-    </div>
-    </div>
-</div>
+<link rel='stylesheet' id='pb-accordion-blocks-style-css' href='../../../wp-content/plugins/accordion-blocks/build/index.css%3Fver=1.5.0.css' type='text/css' media='all' />
+<link rel='stylesheet' id='collapscore-css-css' href='../../../wp-content/plugins/jquery-collapse-o-matic/css/core_style.css%3Fver=1.0.css' type='text/css' media='all' />
+<link rel='stylesheet' id='collapseomatic-css-css' href='../../../wp-content/plugins/jquery-collapse-o-matic/css/light_style.css%3Fver=1.6.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-pagenavi-css' href='../../../wp-content/plugins/wp-pagenavi/pagenavi-css.css%3Fver=2.70.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wrve-css-css' href='../../../wp-content/plugins/responsive-video-embed/css/rve.min.css%3Fver=6.9.1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='tablepress-default-css' href='../../../wp-content/tablepress-combined.min.css%3Fver=21.css' type='text/css' media='all' />
+<link rel="stylesheet" type="text/css" href="../../../wp-content/plugins/smart-slider-3/Public/SmartSlider3/Application/Frontend/Assets/dist/smartslider.min.css%3Fver=c397fa89.css" media="all">
+<style data-related="n2-ss-28">div#n2-ss-28 .n2-ss-slider-1{display:grid;position:relative;}div#n2-ss-28 .n2-ss-slider-2{display:grid;position:relative;overflow:hidden;padding:0px 0px 0px 0px;border:0px solid RGBA(62,62,62,1);border-radius:0px;background-clip:padding-box;background-repeat:repeat;background-position:50% 50%;background-size:cover;background-attachment:scroll;z-index:1;}div#n2-ss-28:not(.n2-ss-loaded) .n2-ss-slider-2{background-image:none !important;}div#n2-ss-28 .n2-ss-slider-3{display:grid;grid-template-areas:'cover';position:relative;overflow:hidden;z-index:10;}div#n2-ss-28 .n2-ss-slider-3 > *{grid-area:cover;}div#n2-ss-28 .n2-ss-slide-backgrounds,div#n2-ss-28 .n2-ss-slider-3 > .n2-ss-divider{position:relative;}div#n2-ss-28 .n2-ss-slide-backgrounds{z-index:10;}div#n2-ss-28 .n2-ss-slide-backgrounds > *{overflow:hidden;}div#n2-ss-28 .n2-ss-slide-background{transform:translateX(-100000px);}div#n2-ss-28 .n2-ss-slider-4{place-self:center;position:relative;width:100%;height:100%;z-index:20;display:grid;grid-template-areas:'slide';}div#n2-ss-28 .n2-ss-slider-4 > *{grid-area:slide;}div#n2-ss-28.n2-ss-full-page--constrain-ratio .n2-ss-slider-4{height:auto;}div#n2-ss-28 .n2-ss-slide{display:grid;place-items:center;grid-auto-columns:100%;position:relative;z-index:20;-webkit-backface-visibility:hidden;transform:translateX(-100000px);}div#n2-ss-28 .n2-ss-slide{perspective:1500px;}div#n2-ss-28 .n2-ss-slide-active{z-index:21;}.n2-ss-background-animation{position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;}div#n2-ss-28 .nextend-arrow{cursor:pointer;overflow:hidden;line-height:0 !important;z-index:18;-webkit-user-select:none;}div#n2-ss-28 .nextend-arrow img{position:relative;display:block;}div#n2-ss-28 .nextend-arrow img.n2-arrow-hover-img{display:none;}div#n2-ss-28 .nextend-arrow:FOCUS img.n2-arrow-hover-img,div#n2-ss-28 .nextend-arrow:HOVER img.n2-arrow-hover-img{display:inline;}div#n2-ss-28 .nextend-arrow:FOCUS img.n2-arrow-normal-img,div#n2-ss-28 .nextend-arrow:HOVER img.n2-arrow-normal-img{display:none;}div#n2-ss-28 .nextend-arrow-animated{overflow:hidden;}div#n2-ss-28 .nextend-arrow-animated > div{position:relative;}div#n2-ss-28 .nextend-arrow-animated .n2-active{position:absolute;}div#n2-ss-28 .nextend-arrow-animated-fade{transition:background 0.3s, opacity 0.4s;}div#n2-ss-28 .nextend-arrow-animated-horizontal > div{transition:all 0.4s;transform:none;}div#n2-ss-28 .nextend-arrow-animated-horizontal .n2-active{top:0;}div#n2-ss-28 .nextend-arrow-previous.nextend-arrow-animated-horizontal .n2-active{left:100%;}div#n2-ss-28 .nextend-arrow-next.nextend-arrow-animated-horizontal .n2-active{right:100%;}div#n2-ss-28 .nextend-arrow-previous.nextend-arrow-animated-horizontal:HOVER > div,div#n2-ss-28 .nextend-arrow-previous.nextend-arrow-animated-horizontal:FOCUS > div{transform:translateX(-100%);}div#n2-ss-28 .nextend-arrow-next.nextend-arrow-animated-horizontal:HOVER > div,div#n2-ss-28 .nextend-arrow-next.nextend-arrow-animated-horizontal:FOCUS > div{transform:translateX(100%);}div#n2-ss-28 .nextend-arrow-animated-vertical > div{transition:all 0.4s;transform:none;}div#n2-ss-28 .nextend-arrow-animated-vertical .n2-active{left:0;}div#n2-ss-28 .nextend-arrow-previous.nextend-arrow-animated-vertical .n2-active{top:100%;}div#n2-ss-28 .nextend-arrow-next.nextend-arrow-animated-vertical .n2-active{bottom:100%;}div#n2-ss-28 .nextend-arrow-previous.nextend-arrow-animated-vertical:HOVER > div,div#n2-ss-28 .nextend-arrow-previous.nextend-arrow-animated-vertical:FOCUS > div{transform:translateY(-100%);}div#n2-ss-28 .nextend-arrow-next.nextend-arrow-animated-vertical:HOVER > div,div#n2-ss-28 .nextend-arrow-next.nextend-arrow-animated-vertical:FOCUS > div{transform:translateY(100%);}div#n2-ss-28 .n2-ss-slide-limiter{max-width:600px;}div#n2-ss-28 .n-uc-GgYZIwfOr4TC{padding:10px 10px 10px 10px}div#n2-ss-28 .n-uc-cM3u82IrFtkZ{padding:10px 10px 10px 10px}div#n2-ss-28 .n-uc-XVw6bcMPvQt4{padding:10px 10px 10px 10px}div#n2-ss-28 .nextend-arrow img{width: 32px}@media (min-width: 1200px){div#n2-ss-28 [data-hide-desktopportrait="1"]{display: none !important;}}@media (orientation: landscape) and (max-width: 1199px) and (min-width: 901px),(orientation: portrait) and (max-width: 1199px) and (min-width: 701px){div#n2-ss-28 .n2-ss-slide-limiter{max-width:600px;}div#n2-ss-28 [data-hide-tabletportrait="1"]{display: none !important;}}@media (orientation: landscape) and (max-width: 900px),(orientation: portrait) and (max-width: 700px){div#n2-ss-28 .n2-ss-slide-limiter{max-width:600px;}div#n2-ss-28 [data-hide-mobileportrait="1"]{display: none !important;}div#n2-ss-28 .nextend-arrow img{width: 16px}}</style>
+<style data-related="n2-ss-29">div#n2-ss-29 .n2-ss-slider-1{display:grid;position:relative;}div#n2-ss-29 .n2-ss-slider-2{display:grid;position:relative;overflow:hidden;padding:0px 0px 0px 0px;border:0px solid RGBA(62,62,62,1);border-radius:0px;background-clip:padding-box;background-repeat:repeat;background-position:50% 50%;background-size:cover;background-attachment:scroll;z-index:1;}div#n2-ss-29:not(.n2-ss-loaded) .n2-ss-slider-2{background-image:none !important;}div#n2-ss-29 .n2-ss-slider-3{display:grid;grid-template-areas:'cover';position:relative;overflow:hidden;z-index:10;}div#n2-ss-29 .n2-ss-slider-3 > *{grid-area:cover;}div#n2-ss-29 .n2-ss-slide-backgrounds,div#n2-ss-29 .n2-ss-slider-3 > .n2-ss-divider{position:relative;}div#n2-ss-29 .n2-ss-slide-backgrounds{z-index:10;}div#n2-ss-29 .n2-ss-slide-backgrounds > *{overflow:hidden;}div#n2-ss-29 .n2-ss-slide-background{transform:translateX(-100000px);}div#n2-ss-29 .n2-ss-slider-4{place-self:center;position:relative;width:100%;height:100%;z-index:20;display:grid;grid-template-areas:'slide';}div#n2-ss-29 .n2-ss-slider-4 > *{grid-area:slide;}div#n2-ss-29.n2-ss-full-page--constrain-ratio .n2-ss-slider-4{height:auto;}div#n2-ss-29 .n2-ss-slide{display:grid;place-items:center;grid-auto-columns:100%;position:relative;z-index:20;-webkit-backface-visibility:hidden;transform:translateX(-100000px);}div#n2-ss-29 .n2-ss-slide{perspective:1500px;}div#n2-ss-29 .n2-ss-slide-active{z-index:21;}.n2-ss-background-animation{position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;}div#n2-ss-29 .nextend-arrow{cursor:pointer;overflow:hidden;line-height:0 !important;z-index:18;-webkit-user-select:none;}div#n2-ss-29 .nextend-arrow img{position:relative;display:block;}div#n2-ss-29 .nextend-arrow img.n2-arrow-hover-img{display:none;}div#n2-ss-29 .nextend-arrow:FOCUS img.n2-arrow-hover-img,div#n2-ss-29 .nextend-arrow:HOVER img.n2-arrow-hover-img{display:inline;}div#n2-ss-29 .nextend-arrow:FOCUS img.n2-arrow-normal-img,div#n2-ss-29 .nextend-arrow:HOVER img.n2-arrow-normal-img{display:none;}div#n2-ss-29 .nextend-arrow-animated{overflow:hidden;}div#n2-ss-29 .nextend-arrow-animated > div{position:relative;}div#n2-ss-29 .nextend-arrow-animated .n2-active{position:absolute;}div#n2-ss-29 .nextend-arrow-animated-fade{transition:background 0.3s, opacity 0.4s;}div#n2-ss-29 .nextend-arrow-animated-horizontal > div{transition:all 0.4s;transform:none;}div#n2-ss-29 .nextend-arrow-animated-horizontal .n2-active{top:0;}div#n2-ss-29 .nextend-arrow-previous.nextend-arrow-animated-horizontal .n2-active{left:100%;}div#n2-ss-29 .nextend-arrow-next.nextend-arrow-animated-horizontal .n2-active{right:100%;}div#n2-ss-29 .nextend-arrow-previous.nextend-arrow-animated-horizontal:HOVER > div,div#n2-ss-29 .nextend-arrow-previous.nextend-arrow-animated-horizontal:FOCUS > div{transform:translateX(-100%);}div#n2-ss-29 .nextend-arrow-next.nextend-arrow-animated-horizontal:HOVER > div,div#n2-ss-29 .nextend-arrow-next.nextend-arrow-animated-horizontal:FOCUS > div{transform:translateX(100%);}div#n2-ss-29 .nextend-arrow-animated-vertical > div{transition:all 0.4s;transform:none;}div#n2-ss-29 .nextend-arrow-animated-vertical .n2-active{left:0;}div#n2-ss-29 .nextend-arrow-previous.nextend-arrow-animated-vertical .n2-active{top:100%;}div#n2-ss-29 .nextend-arrow-next.nextend-arrow-animated-vertical .n2-active{bottom:100%;}div#n2-ss-29 .nextend-arrow-previous.nextend-arrow-animated-vertical:HOVER > div,div#n2-ss-29 .nextend-arrow-previous.nextend-arrow-animated-vertical:FOCUS > div{transform:translateY(-100%);}div#n2-ss-29 .nextend-arrow-next.nextend-arrow-animated-vertical:HOVER > div,div#n2-ss-29 .nextend-arrow-next.nextend-arrow-animated-vertical:FOCUS > div{transform:translateY(100%);}div#n2-ss-29 .n2-ss-slide-limiter{max-width:600px;}div#n2-ss-29 .n-uc-UtRsSUBDDY46{padding:10px 10px 10px 10px}div#n2-ss-29 .n-uc-42ExWYhPYaf5{padding:10px 10px 10px 10px}div#n2-ss-29 .n-uc-fdHcguFd4yxT{padding:10px 10px 10px 10px}div#n2-ss-29 .n-uc-HgWrncvhukqE{padding:10px 10px 10px 10px}div#n2-ss-29 .n-uc-yguYEkgxEQ6L{padding:10px 10px 10px 10px}div#n2-ss-29 .n-uc-Oiak94LgwE6S{padding:10px 10px 10px 10px}div#n2-ss-29 .n-uc-JgOc2l3FgCjI{padding:10px 10px 10px 10px}div#n2-ss-29 .nextend-arrow img{width: 32px}@media (min-width: 1200px){div#n2-ss-29 [data-hide-desktopportrait="1"]{display: none !important;}}@media (orientation: landscape) and (max-width: 1199px) and (min-width: 901px),(orientation: portrait) and (max-width: 1199px) and (min-width: 701px){div#n2-ss-29 [data-hide-tabletportrait="1"]{display: none !important;}}@media (orientation: landscape) and (max-width: 900px),(orientation: portrait) and (max-width: 700px){div#n2-ss-29 [data-hide-mobileportrait="1"]{display: none !important;}div#n2-ss-29 .nextend-arrow img{width: 16px}}</style>
+<script>(function(){this._N2=this._N2||{_r:[],_d:[],r:function(){this._r.push(arguments)},d:function(){this._d.push(arguments)}}}).call(window);</script><script src="../../../wp-content/plugins/smart-slider-3/Public/SmartSlider3/Application/Frontend/Assets/dist/n2.min.js%3Fver=c397fa89" defer async></script>
+<script src="../../../wp-content/plugins/smart-slider-3/Public/SmartSlider3/Application/Frontend/Assets/dist/smartslider-frontend.min.js%3Fver=c397fa89" defer async></script>
+<script src="../../../wp-content/plugins/smart-slider-3/Public/SmartSlider3/Slider/SliderType/Simple/Assets/dist/ss-simple.min.js%3Fver=c397fa89" defer async></script>
+<script src="../../../wp-content/plugins/smart-slider-3/Public/SmartSlider3/Widget/Arrow/ArrowImage/Assets/dist/w-arrow-image.min.js%3Fver=c397fa89" defer async></script>
+<script>_N2.r('documentReady',function(){_N2.r(["documentReady","smartslider-frontend","SmartSliderWidgetArrowImage","ss-simple"],function(){new _N2.SmartSliderSimple('n2-ss-28',{"admin":false,"background.video.mobile":1,"loadingTime":2000,"alias":{"id":0,"smoothScroll":0,"slideSwitch":0,"scroll":1},"align":"normal","isDelayed":0,"responsive":{"mediaQueries":{"all":false,"desktopportrait":["(min-width: 1200px)"],"tabletportrait":["(orientation: landscape) and (max-width: 1199px) and (min-width: 901px)","(orientation: portrait) and (max-width: 1199px) and (min-width: 701px)"],"mobileportrait":["(orientation: landscape) and (max-width: 900px)","(orientation: portrait) and (max-width: 700px)"]},"base":{"slideOuterWidth":600,"slideOuterHeight":500,"sliderWidth":600,"sliderHeight":500,"slideWidth":600,"slideHeight":500},"hideOn":{"desktopLandscape":false,"desktopPortrait":false,"tabletLandscape":false,"tabletPortrait":false,"mobileLandscape":false,"mobilePortrait":false},"onResizeEnabled":true,"type":"auto","sliderHeightBasedOn":"real","focusUser":1,"focusEdge":"auto","breakpoints":[{"device":"tabletPortrait","type":"max-screen-width","portraitWidth":1199,"landscapeWidth":1199},{"device":"mobilePortrait","type":"max-screen-width","portraitWidth":700,"landscapeWidth":900}],"enabledDevices":{"desktopLandscape":0,"desktopPortrait":1,"tabletLandscape":0,"tabletPortrait":1,"mobileLandscape":0,"mobilePortrait":1},"sizes":{"desktopPortrait":{"width":600,"height":500,"max":3000,"min":600},"tabletPortrait":{"width":600,"height":500,"customHeight":false,"max":1199,"min":600},"mobilePortrait":{"width":320,"height":266,"customHeight":false,"max":900,"min":320}},"overflowHiddenPage":0,"focus":{"offsetTop":"#wpadminbar","offsetBottom":""}},"controls":{"mousewheel":0,"touch":"horizontal","keyboard":1,"blockCarouselInteraction":1},"playWhenVisible":1,"playWhenVisibleAt":0.5,"lazyLoad":0,"lazyLoadNeighbor":0,"blockrightclick":0,"maintainSession":0,"autoplay":{"enabled":1,"start":1,"duration":8000,"autoplayLoop":1,"allowReStart":0,"reverse":0,"pause":{"click":1,"mouse":"0","mediaStarted":1},"resume":{"click":0,"mouse":"0","mediaEnded":1,"slidechanged":0},"interval":1,"intervalModifier":"loop","intervalSlide":"current"},"perspective":1500,"layerMode":{"playOnce":0,"playFirstLayer":1,"mode":"skippable","inAnimation":"mainInEnd"},"bgAnimations":0,"mainanimation":{"type":"horizontal","duration":800,"delay":0,"ease":"easeOutQuad","shiftedBackgroundAnimation":0},"carousel":1,"initCallbacks":function(){new _N2.SmartSliderWidgetArrowImage(this)}})});_N2.r(["documentReady","smartslider-frontend","SmartSliderWidgetArrowImage","ss-simple"],function(){new _N2.SmartSliderSimple('n2-ss-29',{"admin":false,"background.video.mobile":1,"loadingTime":2000,"alias":{"id":0,"smoothScroll":0,"slideSwitch":0,"scroll":1},"align":"normal","isDelayed":0,"responsive":{"mediaQueries":{"all":false,"desktopportrait":["(min-width: 1200px)"],"tabletportrait":["(orientation: landscape) and (max-width: 1199px) and (min-width: 901px)","(orientation: portrait) and (max-width: 1199px) and (min-width: 701px)"],"mobileportrait":["(orientation: landscape) and (max-width: 900px)","(orientation: portrait) and (max-width: 700px)"]},"base":{"slideOuterWidth":600,"slideOuterHeight":1200,"sliderWidth":600,"sliderHeight":1200,"slideWidth":600,"slideHeight":1200},"hideOn":{"desktopLandscape":false,"desktopPortrait":false,"tabletLandscape":false,"tabletPortrait":false,"mobileLandscape":false,"mobilePortrait":false},"onResizeEnabled":true,"type":"auto","sliderHeightBasedOn":"real","focusUser":1,"focusEdge":"auto","breakpoints":[{"device":"tabletPortrait","type":"max-screen-width","portraitWidth":1199,"landscapeWidth":1199},{"device":"mobilePortrait","type":"max-screen-width","portraitWidth":700,"landscapeWidth":900}],"enabledDevices":{"desktopLandscape":0,"desktopPortrait":1,"tabletLandscape":0,"tabletPortrait":1,"mobileLandscape":0,"mobilePortrait":1},"sizes":{"desktopPortrait":{"width":600,"height":1200,"max":3000,"min":600},"tabletPortrait":{"width":600,"height":1200,"customHeight":false,"max":1199,"min":600},"mobilePortrait":{"width":320,"height":640,"customHeight":false,"max":900,"min":320}},"overflowHiddenPage":0,"focus":{"offsetTop":"#wpadminbar","offsetBottom":""}},"controls":{"mousewheel":0,"touch":"horizontal","keyboard":1,"blockCarouselInteraction":1},"playWhenVisible":1,"playWhenVisibleAt":0.5,"lazyLoad":0,"lazyLoadNeighbor":0,"blockrightclick":0,"maintainSession":0,"autoplay":{"enabled":1,"start":1,"duration":8000,"autoplayLoop":1,"allowReStart":0,"reverse":0,"pause":{"click":1,"mouse":"0","mediaStarted":1},"resume":{"click":0,"mouse":"0","mediaEnded":1,"slidechanged":0},"interval":1,"intervalModifier":"loop","intervalSlide":"current"},"perspective":1500,"layerMode":{"playOnce":0,"playFirstLayer":1,"mode":"skippable","inAnimation":"mainInEnd"},"bgAnimations":0,"mainanimation":{"type":"horizontal","duration":800,"delay":0,"ease":"easeOutQuad","shiftedBackgroundAnimation":0},"carousel":1,"initCallbacks":function(){new _N2.SmartSliderWidgetArrowImage(this)}})})});</script><script type="text/javascript" src="../../../wp-includes/js/jquery/jquery.min.js%3Fver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="../../../wp-includes/js/jquery/jquery-migrate.min.js%3Fver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="../../../wp-content/themes/ehealthcon2026/js/jquery.flexslider-min.js%3Fv=1.01&amp;ver=6.9.1" id="custom-script-js"></script>
+<link rel="https://api.w.org/" href="https://www.e-healthconference.com/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://www.e-healthconference.com/wp-json/wp/v2/pages/9802" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.e-healthconference.com/xmlrpc.php?rsd" />
+<link rel='shortlink' href='https://www.e-healthconference.com/?p=9802' />
+	<style>img#wpstats{display:none}</style>
+				<script>
+			document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+		</script>
+				<style>
+			.no-js img.lazyload {
+				display: none;
+			}
 
+			figure.wp-block-image img.lazyloading {
+				min-width: 150px;
+			}
 
+			.lazyload,
+			.lazyloading {
+				--smush-placeholder-width: 100px;
+				--smush-placeholder-aspect-ratio: 1/1;
+				width: var(--smush-image-width, var(--smush-placeholder-width)) !important;
+				aspect-ratio: var(--smush-image-aspect-ratio, var(--smush-placeholder-aspect-ratio)) !important;
+			}
 
+						.lazyload, .lazyloading {
+				opacity: 0;
+			}
 
-<script>
-const canvas = document.getElementById("canvas");
+			.lazyloaded {
+				opacity: 1;
+				transition: opacity 400ms;
+				transition-delay: 0ms;
+			}
 
-/* ===== Booth logo handling ===== */
-const DEFAULT_LOGO = "hcc_logo.svg";
+					</style>
+		<link rel="icon" href="../../../wp-content/uploads/2022/03/cropped-site-icon-32x32.png" sizes="32x32" />
+<link rel="icon" href="../../../wp-content/uploads/2022/03/cropped-site-icon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.e-healthconference.com/wp-content/uploads/2022/03/cropped-site-icon-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.e-healthconference.com/wp-content/uploads/2022/03/cropped-site-icon-270x270.png" />
 
+    <!-- BEGIN - Make Tables Responsive -->
+    <style type="text/css">
+        
+    /* Multi-row tables */
+    @media (max-width: 767px) {
 
-const LOGOS = {
-  //ACCENTURE: "https://www.accenture.com/_acnmedia/images/logos/accenture.svg",
-  TELUS: "TELUS_Health_CareCentres_EN_Vert.svg",
-  WELL: "https://well.company/wp-content/uploads/well-logo.svg",
-  WORKDAY: "https://www.workday.com/content/dam/web/en-us/images/logos/workday-logo.svg",
-  PETAL: "https://petal-health.com/wp-content/uploads/petal-logo.svg",
-  TELADOC: "https://www.teladochealth.com/wp-content/uploads/teladoc-logo.svg",
-  DELOITTE: "https://www2.deloitte.com/content/dam/Deloitte/global/Images/logos/deloitte-logo.svg",
-  PHILIPS: "https://www.philips.com/c-dam/corporate/newscenter/global-standard/resources/philips-logo.svg",
-  NOVARTIS: "https://www.novartis.com/sites/novartis_com/files/novartis-logo.svg",
-  SOLVENTUM: "https://www.solventum.com/content/dam/solventum/logo/solventum-logo.svg",
-  ALCIDION: "https://www.alcidion.com/wp-content/uploads/Alcidion-logo.svg",
-  MEDITECH: "https://ehr.meditech.com/themes/custom/meditech/logo.svg",
-  //DCM: "https://www.dcm.ca/wp-content/uploads/dcm-logo.svg",
-  TALI: "https://www.tali.ai/wp-content/uploads/tali-logo.svg",
-  NOVARI: "https://novarihealth.com/wp-content/uploads/novari-logo.svg",
-  ORACLE: "https://www.oracle.com/a/ocom/img/oracle-logo.svg",
-  AWS: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
-  GOOGLE_CLOUD: "https://cloud.google.com/images/social-icon-google-cloud-1200-630.png", // consider SVG
-  STRYKER: "https://www.stryker.com/content/dam/stryker/logo/stryker-logo.svg",
-  //AKINOX: "https://akinoxsolutions.com/wp-content/uploads/2022/03/akinox-logo.svg"
-};
+        .mtr-table tbody,
+        .mtr-table {
+        	width: 100% !important;
+            display: table !important;
+        }
 
-const boothLogos = {
-  1: DEFAULT_LOGO,
-  3: DEFAULT_LOGO,
-  5: DEFAULT_LOGO,
-  7: DEFAULT_LOGO,
-  8: DEFAULT_LOGO,
-  9: DEFAULT_LOGO,
-  10: DEFAULT_LOGO,
-  11: DEFAULT_LOGO,
-  12: DEFAULT_LOGO,
-  13: DEFAULT_LOGO,
-  14: DEFAULT_LOGO,
-  15: DEFAULT_LOGO,
-  16: DEFAULT_LOGO,
-  17: DEFAULT_LOGO,
-  18: DEFAULT_LOGO,
-  19: DEFAULT_LOGO,
-  20: DEFAULT_LOGO,
-  21: LOGOS.SOLVENTUM,
-  22: DEFAULT_LOGO,
-  23: DEFAULT_LOGO,
-  24: DEFAULT_LOGO,
-  25: DEFAULT_LOGO,
-  26: DEFAULT_LOGO,
-  27: DEFAULT_LOGO,
-  28: LOGOS.PHILIPS,
-  29: DEFAULT_LOGO,
-  30: DEFAULT_LOGO,
-  31: DEFAULT_LOGO,
-  32: DEFAULT_LOGO,
-  33: DEFAULT_LOGO,
-  34: DEFAULT_LOGO,
-  35: DEFAULT_LOGO,
-  36: DEFAULT_LOGO,
-  37: DEFAULT_LOGO,
-  38: DEFAULT_LOGO,
-  39: DEFAULT_LOGO,
-  40: DEFAULT_LOGO,
-  41: LOGOS.MEDITECH,
-  42: DEFAULT_LOGO,
-  43: DEFAULT_LOGO,
-  44: DEFAULT_LOGO,
-  45: LOGOS.PETAL,
-  46: DEFAULT_LOGO,
-  47: DEFAULT_LOGO,
-  48: DEFAULT_LOGO,
-  49: LOGOS.DELOITTE,
-  50: DEFAULT_LOGO,
-  51: DEFAULT_LOGO,
-  52: DEFAULT_LOGO,
-  53: DEFAULT_LOGO,
-  54: DEFAULT_LOGO,
-  55: DEFAULT_LOGO,
-  56: DEFAULT_LOGO,
-  57: DEFAULT_LOGO,
-  58: DEFAULT_LOGO,
-  59: LOGOS.WORKDAY,
-  60: LOGOS.WORKDAY,
-  61: LOGOS.DELOITTE,
-  62: LOGOS.TALI,
-  63: DEFAULT_LOGO,
-  64: DEFAULT_LOGO,
-  65: LOGOS.PETAL,
-  66: LOGOS.TELADOC,
-  67: LOGOS.NOVARTIS,
-  68: LOGOS.NOVARTIS,
-  69: LOGOS.NOVARI,
-  70: LOGOS.WELL,
-  71: LOGOS.WELL,
-  72: LOGOS.WELL,
-  73: LOGOS.WELL,
-  74: DEFAULT_LOGO,
-  75: DEFAULT_LOGO,
-  76: DEFAULT_LOGO,
-  77: DEFAULT_LOGO,
-  78: DEFAULT_LOGO,
-  79: DEFAULT_LOGO,
-  80: LOGOS.WELL,
-  81: LOGOS.WELL,
-  82: LOGOS.WELL,
-  83: LOGOS.WELL,
-  84: LOGOS.NOVARI,
-  85: DEFAULT_LOGO,
-  86: DEFAULT_LOGO,
-  87: LOGOS.TELADOC,
-  88: DEFAULT_LOGO,
-  89: DEFAULT_LOGO,
-  90: DEFAULT_LOGO,
-  91: LOGOS.ALCIDION,
-  92: DEFAULT_LOGO,
-  93: DEFAULT_LOGO,
-  94: DEFAULT_LOGO,
-  95: DEFAULT_LOGO,
-  96: DEFAULT_LOGO,
-  97: DEFAULT_LOGO,
-  98: DEFAULT_LOGO,
-  99: DEFAULT_LOGO,
-  100: DEFAULT_LOGO,
-  101: DEFAULT_LOGO,
-  102: DEFAULT_LOGO,
-  103: DEFAULT_LOGO,
-  104: DEFAULT_LOGO,
-  105: DEFAULT_LOGO,
-  106: DEFAULT_LOGO,
-  107: LOGOS.ACCENTURE,
-  108: LOGOS.AWS,
-  109: LOGOS.AWS,
-  110: DEFAULT_LOGO,
-  111: DEFAULT_LOGO,
-  112: DEFAULT_LOGO,
-  113: DEFAULT_LOGO,
-  114: LOGOS.TELUS,
-  115: LOGOS.TELUS,
-  116: DEFAULT_LOGO,
-  117: DEFAULT_LOGO,
-  118: DEFAULT_LOGO,
-  119: DEFAULT_LOGO,
-  120: DEFAULT_LOGO,
-  121: DEFAULT_LOGO,
-  122: DEFAULT_LOGO,
-  123: DEFAULT_LOGO,
-  124: DEFAULT_LOGO,
-  125: DEFAULT_LOGO,
-  126: LOGOS.GOOGLE_CLOUD,
-  127: LOGOS.GOOGLE_CLOUD,
-  128: LOGOS.TELUS,
-  129: LOGOS.TELUS,
-  130: DEFAULT_LOGO,
-  131: DEFAULT_LOGO,
-  132: DEFAULT_LOGO,
-  133: DEFAULT_LOGO,
-  134: DEFAULT_LOGO,
-  135: DEFAULT_LOGO,
-  136: DEFAULT_LOGO,
-  137: DEFAULT_LOGO,
-  138: DEFAULT_LOGO,
-  139: DEFAULT_LOGO,
-  140: DEFAULT_LOGO,
-  141: DEFAULT_LOGO,
-  142: DEFAULT_LOGO,
-  143: DEFAULT_LOGO,
-  144: DEFAULT_LOGO,
-  145: DEFAULT_LOGO,
-  146: LOGOS.ORACLE,
-  147: LOGOS.ORACLE,
-  148: LOGOS.ORACLE,
-  149: LOGOS.STRYKER,
-  150: LOGOS.STRYKER,
-  151: DEFAULT_LOGO,
-  152: DEFAULT_LOGO,
-  153: DEFAULT_LOGO,
-  154: DEFAULT_LOGO,
-  155: DEFAULT_LOGO,
-  156: DEFAULT_LOGO,
-  157: DEFAULT_LOGO,
-  158: DEFAULT_LOGO,
-  159: DEFAULT_LOGO,
-  160: DEFAULT_LOGO,
+        .mtr-table tr,
+        .mtr-table .mtr-th-tag,
+        .mtr-table .mtr-td-tag {
+        	display: block !important;
+            clear: both !important;
+            height: auto !important;
+        }
 
-  /* Lettered booths */
-  A: DEFAULT_LOGO,
-  B: DEFAULT_LOGO,
-  C: DEFAULT_LOGO,
-  D: DEFAULT_LOGO,
-  E: DEFAULT_LOGO,
-  F: DEFAULT_LOGO,
-  G: DEFAULT_LOGO,
-  H: DEFAULT_LOGO,
-  I: DEFAULT_LOGO,
-  J: DEFAULT_LOGO,
-  K: DEFAULT_LOGO,
-  L: DEFAULT_LOGO,
-  M: DEFAULT_LOGO,
-  N: DEFAULT_LOGO,
-  O: DEFAULT_LOGO,
-  P: DEFAULT_LOGO,
-  Q: DEFAULT_LOGO,
-  R: DEFAULT_LOGO
-};
-
-
-function getVendorLogo(vendorName) {
-  const key = vendorName.toUpperCase().replace(/[^A-Z]/g, "_");
-  return LOGOS[key] || DEFAULT_LOGO;
-}
-
-/* Click handler */
-let activeBooth = null;
-
-function resetBooth(booth) {
-  if (!booth) return;
-
-  booth.classList.remove("has-logo");
-  booth.innerHTML = booth._originalHTML;
-
-  if (booth._largeLogo) {
-    booth._largeLogo.remove();
-    booth._largeLogo = null;
-  }
-}
-
-const LARGE_LOGO_WIDTH = 120;  // fixed width in px
-const LARGE_LOGO_HEIGHT = 80;  // fixed height in px
-
-/* 🔑 SINGLE TOGGLE FUNCTION
-   Used by BOTH booth clicks and vendor clicks */
-function toggleBoothById(boothId) {
-  const booth = [...document.querySelectorAll(".booth")]
-    .find(b => b.textContent.trim() === boothId);  
-
-  if (activeBooth && activeBooth !== booth) {
-    resetBooth(activeBooth);
-  }
-  if (!booth) return;
-
-  if (booth.classList.contains("has-logo")) {
-    resetBooth(booth);
-    activeBooth = null;
-    syncVendorHighlight(null);
-    return;
-  }
-
-  booth.classList.add("has-logo");
-  booth.innerHTML = "";
-
-  const logoUrl = boothLogos[boothId] || DEFAULT_LOGO;
-
-  const smallImg = document.createElement("img");
-  smallImg.src = logoUrl;
-  booth.appendChild(smallImg);
-
-  const rect = booth.getBoundingClientRect();
-  const canvasRect = canvas.getBoundingClientRect();
-
-  const largeLogo = document.createElement("div");
-  largeLogo.className = "booth-logo-large";
-
-    // Use fixed size instead of scaling
-  largeLogo.style.width = LARGE_LOGO_WIDTH + "px";
-  largeLogo.style.height = LARGE_LOGO_HEIGHT + "px";
-
-  let left = rect.right - canvasRect.left + 12;
-  let top  = rect.top - canvasRect.top;
-
-  // Move to left if it would overflow
-  if (left + LARGE_LOGO_WIDTH > canvasRect.width) {
-    left = rect.left - canvasRect.left - LARGE_LOGO_WIDTH - 12;
-  }
-
-  largeLogo.style.left = left + "px";
-  largeLogo.style.top  = top + "px";
-
-  const largeImg = document.createElement("img");
-  largeImg.src = logoUrl;
-  largeLogo.appendChild(largeImg);
-  canvas.appendChild(largeLogo);
-
-  booth._largeLogo = largeLogo;
-  activeBooth = booth;
-  syncVendorHighlight(boothId);
-}
-
-/* === Booth click now routes through toggle === */
-document.querySelectorAll(".booth").forEach(booth => {
-  booth._originalHTML = booth.innerHTML;
-  booth.addEventListener("click", () => {
-    toggleBoothById(booth.textContent.trim());
-  });
-});
-
-/* === Sync vendor highlight === */
-function syncVendorHighlight(boothId) {
-  document.querySelectorAll(".vendor-item").forEach(item => {
-    item.classList.toggle(
-      "active",
-      boothId && item.dataset.booth === boothId
-    );
-  });
-}
-
-/* === SEARCH (vendor OR booth) === */
-document.getElementById("vendor-search")
-  .addEventListener("input", e => {
-    const q = e.target.value.toLowerCase();
-    vendorItems.forEach(item => {
-      const match =
-        item.dataset.booth.includes(q) ||
-        item.dataset.vendor.includes(q);
-      item.style.display = match ? "" : "none";
-    });
-  });
-
-
-// Example data (replace with your event data)
-  const vendors = [
-{id:"v-accenture",name:"Accenture",booths:["92"],sponsorship:"Diamond"},
-{id:"v-accenture",name:"Accenture",booths:["107"],sponsorship:"Diamond"},
-{id:"v-telus health",name:"Telus Health",booths:["114"],sponsorship:"Diamond"},
-{id:"v-telus health",name:"Telus Health",booths:["115"],sponsorship:"Diamond"},
-{id:"v-telus health",name:"Telus Health",booths:["128"],sponsorship:"Diamond"},
-{id:"v-telus health",name:"Telus Health",booths:["129"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["70"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["83"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["71"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["82"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["72"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["81"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["73"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["80"],sponsorship:"Diamond"},
-{id:"v-amplify care",name:"Amplify Care",booths:["29"],sponsorship:"Platinum"},
-{id:"v-amplify care",name:"Amplify Care",booths:["40"],sponsorship:"Platinum"},
-{id:"v-workday",name:"Workday",booths:["59"],sponsorship:"Platinum"},
-{id:"v-workday",name:"Workday",booths:["60"],sponsorship:"Platinum"},
-{id:"v-petal health",name:"Petal Health",booths:["45"],sponsorship:"Platinum"},
-{id:"v-petal health",name:"Petal Health",booths:["65"],sponsorship:"Platinum"},
-{id:"v-teledoc health canada",name:"Teledoc Health Canada",booths:["66"],sponsorship:"Platinum"},
-{id:"v-teledoc health canada",name:"Teledoc Health Canada",booths:["87"],sponsorship:"Platinum"},
-{id:"v-deloitte",name:"Deloitte",booths:["49"],sponsorship:"Gold"},
-{id:"v-deloitte",name:"Deloitte",booths:["61"],sponsorship:"Gold"},
-{id:"v-philips healthcare",name:"Philips Healthcare",booths:["28"],sponsorship:"Gold"},
-{id:"v-novartis canada",name:"Novartis Canada",booths:["67"],sponsorship:"Silver"},
-{id:"v-novartis canada",name:"Novartis Canada",booths:["68"],sponsorship:"Silver"},
-{id:"v-solventum",name:"Solventum",booths:["21"],sponsorship:"Bronze"},
-{id:"v-alcidion",name:"Alcidion",booths:["91"],sponsorship:"Bronze"},
-{id:"v-meditech",name:"Meditech",booths:["41"],sponsorship:"Bronze"},
-{id:"v-dcm",name:"DCM",booths:["25"],sponsorship:"Bronze"},
-{id:"v-dcm",name:"DCM",booths:["44"],sponsorship:"Bronze"},
-{id:"v-tali ai",name:"Tali AI",booths:["62"],sponsorship:"Bronze"},
-{id:"v-venuti",name:"Venuti",booths:["111"],sponsorship:"Exhibitor"},
-{id:"v-healthtech consultants",name:"Healthtech Consultants",booths:["88"],sponsorship:"Exhibitor"},
-{id:"v-cybernet manufacturing",name:"Cybernet Manufacturing",booths:["48"],sponsorship:"Exhibitor"},
-{id:"v-securmedic",name:"SecurMEDIC",booths:["142"],sponsorship:"Exhibitor"},
-{id:"v-novari health",name:"Novari Health",booths:["69"],sponsorship:"Exhibitor"},
-{id:"v-novari health",name:"Novari Health",booths:["84"],sponsorship:"Exhibitor"},
-{id:"v-oracle",name:"Oracle",booths:["146"],sponsorship:"Diamond"},
-{id:"v-oracle",name:"Oracle",booths:["147"],sponsorship:"Diamond"},
-{id:"v-oracle",name:"Oracle",booths:["148"],sponsorship:"Diamond"},
-{id:"v-amazon web services",name:"Amazon Web Services",booths:["108"],sponsorship:"Platinum"},
-{id:"v-amazon web services",name:"Amazon Web Services",booths:["109"],sponsorship:"Platinum"},
-{id:"v-google cloud",name:"Google Cloud",booths:["126"],sponsorship:"Gold"},
-{id:"v-google cloud",name:"Google Cloud",booths:["127"],sponsorship:"Gold"},
-{id:"v-stryker",name:"Stryker",booths:["149"],sponsorship:"Bronze"},
-{id:"v-stryker",name:"Stryker",booths:["150"],sponsorship:"Bronze"},
-{id:"v-akinox",name:"Akinox",booths:["116"],sponsorship:"Exhibitor"},
-{id:"v-cloud diagnostics canada",name:"Cloud Diagnostics Canada",booths:["112"],sponsorship:"Exhibitor"},
-{id:"v-infologiq",name:"infologiQ",booths:["20"],sponsorship:"Exhibitor"},
-{id:"v-think research",name:"Think Research",booths:["63"],sponsorship:"Exhibitor"},
-{id:"v-think research",name:"Think Research",booths:["64"],sponsorship:"Exhibitor"},
-{id:"v-sciteline inc.",name:"Sciteline Inc.",booths:["85"],sponsorship:"Exhibitor"},
-{id:"v-surge learning inc.",name:"Surge Learning Inc.",booths:["131"],sponsorship:"Exhibitor"},
-{id:"v-stratford group",name:"Stratford Group",booths:["24"],sponsorship:"Exhibitor"},
-{id:"v-mariner",name:"Mariner",booths:["135"],sponsorship:"Platinum"},
-{id:"v-ontariomd",name:"OntarioMD",booths:["113"],sponsorship:"Bronze"},
-{id:"v-ontariomd",name:"OntarioMD",booths:["130"],sponsorship:"Bronze"},
-{id:"v-kainos",name:"Kainos",booths:["89"],sponsorship:"Silver"},
-{id:"v-kainos",name:"Kainos",booths:["90"],sponsorship:"Silver"},
-{id:"v-alayacare",name:"AlayaCare",booths:["136"],sponsorship:"Exhibitor"},
-{id:"v-well health",name:"WELL Health",booths:["70"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["83"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["71"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["82"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["72"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["81"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["73"],sponsorship:"Diamond"},
-{id:"v-well health",name:"WELL Health",booths:["80"],sponsorship:"Diamond"},
-{id:"v-smartprint inc.",name:"Smartprint Inc.",booths:["86"],sponsorship:"Exhibitor"},
-{id:"v-smile digital health",name:"Smile Digital Health",booths:["46"],sponsorship:"Silver"},
-{id:"v-canimmunize",name:"CaNImmunize",booths:["26"],sponsorship:"Bronze"},
-{id:"v-pwc",name:"PwC",booths:["132"],sponsorship:"Bronze"},
-{id:"v-pwc",name:"PwC",booths:["133"],sponsorship:"Bronze"},
-{id:"v-process fusin inc.",name:"Process Fusin Inc.",booths:["42"],sponsorship:"Gold"},
-{id:"v-cdw canada",name:"CDW Canada",booths:["22"],sponsorship:"Silver"},
-{id:"v-cdw canada",name:"CDW Canada",booths:["23"],sponsorship:"Silver"},
-{id:"v-plume ia",name:"Plume IA",booths:["110"],sponsorship:"Exhibitor"},
-{id:"v-goautomate inc.",name:"GoAutomate Inc.",booths:["50"],sponsorship:"Exhibitor"},
-{id:"v-digital health canada",name:"Digital Health Canada",booths:["1"],sponsorship:"Host"},
-{id:"v-digital health canada",name:"Digital Health Canada",booths:["2"],sponsorship:"Host"},
-{id:"v-canada health inforway",name:"Canada Health Inforway",booths:["3"],sponsorship:"Host"},
-{id:"v-canada health inforway",name:"Canada Health Inforway",booths:["4"],sponsorship:"Host"},
-{id:"v-cihi",name:"CIHI",booths:["5"],sponsorship:"Host"},
-{id:"v-cihi",name:"CIHI",booths:["6"],sponsorship:"Host"},
-{id:"v-heidi health",name:"Heidi Health",booths:["93"],sponsorship:"Bronze"},
-{id:"v-heidi health",name:"Heidi Health",booths:["94"],sponsorship:"Bronze"},
-{id:"v-quest diagnostics",name:"Quest Diagnostics",booths:["134"],sponsorship:"Exhibitor"},
-{id:"v-lime health",name:"Lime Health",booths:["43"],sponsorship:"Exhibitor"},
-{id:"v-baxter corporation",name:"Baxter Corporation",booths:["144"],sponsorship:"Exhibitor"},
-{id:"v-baxter corporation",name:"Baxter Corporation",booths:["145"],sponsorship:"Exhibitor"},
-{id:"v-ricoh canada",name:"Ricoh Canada",booths:["47"],sponsorship:"Exhibitor"},
-{id:"v-umano medical",name:"Umano Medical",booths:["56"],sponsorship:"Exhibitor"},
-{id:"v-altera digital health",name:"Altera Digital Health",booths:["117"],sponsorship:"Exhibitor"},
-{id:"v-altera digital health",name:"Altera Digital Health",booths:["118"],sponsorship:"Exhibitor"},
-{id:"v-piicomm inc.",name:"PiiComm Inc.",booths:["76"],sponsorship:"Gold"},
-{id:"v-piicomm inc.",name:"PiiComm Inc.",booths:["77"],sponsorship:"Gold"},
-{id:"v-dmf systems",name:"DMF Systems",booths:["137"],sponsorship:"Exhibitor"},
-{id:"v-zebra technologies",name:"Zebra Technologies",booths:["27"],sponsorship:"Exhibitor"},
-{id:"v-mikata health",name:"Mikata Health",booths:["39"],sponsorship:"Exhibitor"},
-{id:"v-checs (15100259 canada inc.)",name:"CheCS (15100259 Canada Inc.)",booths:["95"],sponsorship:"Exhibitor"},
-{id:"v-thinkon",name:"ThinkOn",booths:["105"],sponsorship:"Bronze"},
-{id:"v-cgi",name:"CGI",booths:["124"],sponsorship:"Bronze"},
-{id:"v-cgi",name:"CGI",booths:["125"],sponsorship:"Bronze"},
-{id:"v-vitall",name:"VITALL",booths:["58"],sponsorship:"Exhibitor"},
-{id:"v-sunco communications and installations",name:"Sunco Communications and Installations",booths:["30"],sponsorship:"Exhibitor"},
-{id:"v-ergotron",name:"Ergotron",booths:["19"],sponsorship:"Exhibitor"},
-{id:"v-cabot technologies",name:"Cabot Technologies",booths:["R"],sponsorship:"StartUp"},
-{id:"v-integraite",name:"INTEGRAiTE",booths:["Q"],sponsorship:"StartUp"},
-{id:"v-dt health ai",name:"DT Health AI",booths:["P"],sponsorship:"StartUp"},
-{id:"v-caredove inc.",name:"Caredove Inc.",booths:["78"],sponsorship:"Exhibitor"},
-{id:"v-deetken insight",name:"Deetken Insight",booths:["7"],sponsorship:"Exhibitor"},
-{id:"v-luma health",name:"Luma Health",booths:["143"],sponsorship:"Exhibitor"},
-{id:"v-harris arc health",name:"Harris Arc Health",booths:["75"],sponsorship:"Exhibitor"},
-{id:"v-trend micro",name:"Trend Micro",booths:["106"],sponsorship:"Exhibitor"},
-{id:"v-tectonic advisory services inc.",name:"Tectonic Advisory Services Inc.",booths:["38"],sponsorship:"Exhibitor"},
-{id:"v-healthasyst",name:"HealthAsyst",booths:["51"],sponsorship:"Exhibitor"},
-{id:"v-acf technologies",name:"ACF Technologies",booths:["98"],sponsorship:"Exhibitor"},
-{id:"v-virtual hallway",name:"Virtual Hallway",booths:["O"],sponsorship:"StartUp"},
-{id:"v-tangent",name:"Tangent",booths:["31"],sponsorship:"Exhibitor"},
-{id:"v-fonemed",name:"Fonemed",booths:["18"],sponsorship:"Exhibitor"},
-{id:"v-staffschedulecare",name:"StaffScheduleCare",booths:["138"],sponsorship:"Exhibitor"},
-{id:"v-softeck solutions, inc.",name:"Softeck Solutions, Inc.",booths:["104"],sponsorship:"Exhibitor"},
-{id:"v-ibm canada",name:"IBM Canada",booths:["57"],sponsorship:"Gold"},
-{id:"v-barrington consulting group",name:"Barrington Consulting Group",booths:["37"],sponsorship:"Exhibitor"},
-{id:"v-mara consulting",name:"Mara Consulting",booths:["55"],sponsorship:"Exhibitor"},
-{id:"v-strongest families institute",name:"Strongest Families Institute",booths:["A"],sponsorship:"StartUp"}];
-
-const vendorListEl = document.getElementById("vendor-list");
-
-let vendorItems = [];
-
-function getVendorList() {
+        .mtr-table .mtr-td-tag,
+        .mtr-table .mtr-th-tag {
+        	text-align: right !important;
+            width: auto !important;
+            box-sizing: border-box !important;
+            overflow: auto !important;
+        }
     
+            .mtr-table .mtr-cell-content {
+            	text-align: right !important;
+            }
+            
+        .mtr-table tbody,
+        .mtr-table tr,
+        .mtr-table {
+        	border: none !important;
+            padding: 0 !important;
+        }
 
-    /* Build vendor list */
-    vendors.forEach(vendor => {
-        vendor.booths.forEach(boothId => {
-            const item = document.createElement("button");
-            item.className = "list-group-item list-group-item-action vendor-item";
-            item.dataset.booth = boothId;
-            item.dataset.vendor = vendor.name.toLowerCase();
+        .mtr-table .mtr-td-tag,
+        .mtr-table .mtr-th-tag {
+        	border: none;
+        }
 
-            const logo = getVendorLogo(vendor.name);
+        .mtr-table tr:nth-child(even) .mtr-td-tag,
+        .mtr-table tr:nth-child(even) .mtr-th-tag {
+            border-bottom: 1px solid #dddddd !important;
+            border-left: 1px solid #dddddd !important;
+            border-right: 1px solid #dddddd !important;
+            border-top: none !important;
+        }
 
-            item.innerHTML = `
-                <div class="d-flex align-items-center gap-3">
-                    <div class="vendor-logo">
-                        <img src="${logo}" alt="${vendor.name} logo">
-                    </div>
+        .mtr-table tr:nth-child(odd) .mtr-td-tag,
+        .mtr-table tr:nth-child(odd) .mtr-th-tag {
+            border-bottom: 1px solid #bbbbbb !important;
+            border-left: 1px solid #bbbbbb !important;
+            border-right: 1px solid #bbbbbb !important;
+            border-top: none !important;
+        }
 
-                    <div class="flex-grow-1">
-                        <strong>${vendor.name}</strong><br>
-                        <small class="text-muted">Booth ${boothId}</small>
-                    </div>
-                    <span class="badge sponsorship-badge">${vendor.sponsorship}</span>
-                </div>
-            `;
+        .mtr-table tr:first-of-type td:first-of-type,
+        .mtr-table tr:first-of-type th:first-of-type {
+            border-top: 1px solid #bbbbbb !important;
+        }
 
-            item.style.minHeight = "36px";
-            item.classList.add("vendor-item");
-
-            /* ===== Hover & Click effects ===== */
-            item.addEventListener("click", () => {
-                toggleBoothById(boothId);
-            });
-
-            // Add hover effects
-            item.addEventListener("mouseenter", () => {
-                item.style.backgroundColor = "#e7f1ff"; // light blue
-                item.style.transform = "translateX(2px)";
-            });
-            item.addEventListener("mouseleave", () => {
-                item.style.backgroundColor = "";
-                item.style.transform = "";
-            });
-            vendorItems.push(item);
-            vendorListEl.appendChild(item);
-
-            // Color the badge based on sponsorship
-            const badge = item.querySelector(".sponsorship-badge");
-            switch (vendor.sponsorship.toLowerCase()) {
-                case "diamond":
-                    badge.style.backgroundColor = "#b9f2ff";
-                    badge.style.color = "#000";
-                    break;
-                case "platinum":
-                    badge.style.backgroundColor = "#e5e4e2";
-                    badge.style.color = "#000";
-                    break;
-                case "gold":
-                    badge.style.backgroundColor = "#ffd700";
-                    badge.style.color = "#000";
-                    break;
-                case "silver":
-                    badge.style.backgroundColor = "#c0c0c0";
-                    badge.style.color = "#000";
-                    break;
-                case "bronze":
-                    badge.style.backgroundColor = "#cd7f32";
-                    badge.style.color = "#fff";
-                    break;
-                case "host":
-                    badge.style.backgroundColor = "#4caf50";
-                    badge.style.color = "#fff";
-                    break;
-                case "exhibitor":
-                    badge.style.backgroundColor = "#0d6efd";
-                    badge.style.color = "#fff";
-                    break;
-                default:
-                    badge.style.backgroundColor = "#999";
-                    badge.style.color = "#fff";
+        .mtr-table.mtr-thead-td tr:nth-of-type(2) td:first-child,
+        .mtr-table.mtr-thead-td tr:nth-of-type(2) th:first-child,
+        .mtr-table.mtr-tr-th tr:nth-of-type(2) td:first-child,
+        .mtr-table.mtr-tr-th tr:nth-of-type(2) th:first-child,
+        .mtr-table.mtr-tr-td tr:nth-of-type(2) td:first-child,
+        .mtr-table.mtr-tr-td tr:nth-of-type(2) th:first-child {
+            border-top: 1px solid #dddddd !important;
+        }
+            .mtr-table tr:nth-child(even),
+            .mtr-table tr:nth-child(even) .mtr-td-tag,
+            .mtr-table tr:nth-child(even) .mtr-th-tag {
+                background: #ffffff !important;
             }
 
+            .mtr-table tr:nth-child(odd),
+            .mtr-table tr:nth-child(odd) .mtr-td-tag,
+            .mtr-table tr:nth-child(odd) .mtr-th-tag {
+                background: #dddddd !important;
+            }
+        .mtr-table .mtr-td-tag,
+        .mtr-table .mtr-td-tag:first-child,
+        .mtr-table .mtr-th-tag,
+        .mtr-table .mtr-th-tag:first-child {
+            padding: 5px 10px !important;
+        }
+        
+        .mtr-table td[data-mtr-content]:before,
+        .mtr-table th[data-mtr-content]:before {
+        	display: inline-block !important;
+        	content: attr(data-mtr-content) !important;
+        	float: left !important;
+            text-align: left !important;
+            white-space: pre-line !important;
+        }
+        
+        .mtr-table thead,
+        .mtr-table.mtr-tr-th tr:first-of-type,
+        .mtr-table.mtr-tr-td tr:first-of-type,
+        .mtr-table colgroup {
+        	display: none !important;
+        }
+    
+        .mtr-cell-content {
+            max-width: 49% !important;
+            display: inline-block !important;
+        }
             
-        });
-    });
-
+        .mtr-table td[data-mtr-content]:before,
+        .mtr-table th[data-mtr-content]:before {
+            max-width: 49% !important;
+        }
             
-  document.querySelectorAll(".booth").forEach(booth => {
-  booth.addEventListener("click", () => {
-    const boothId = booth.textContent.trim();
-
-    document
-      .querySelectorAll(".vendor-item")
-      .forEach(item => {
-        item.classList.toggle(
-          "active",
-          item.dataset.booth === boothId
-        );
-      });
-  });
-});
-}
-getVendorList();
-
-let focusedIndex = 0;
-
-document
-  .getElementById("vendor-list")
-  .addEventListener("keydown", e => {
-    const visibleItems = vendorItems.filter(
-      i => i.style.display !== "none"
-    );
-
-    if (!visibleItems.length) return;
-
-    if (e.key === "ArrowDown") {
-      focusedIndex = Math.min(
-        focusedIndex + 1,
-        visibleItems.length - 1
-      );
-      visibleItems[focusedIndex].focus();
-      e.preventDefault();
     }
+    
+    /* Single-row tables */
+    @media (max-width: 650px) {
 
-    if (e.key === "ArrowUp") {
-      focusedIndex = Math.max(focusedIndex - 1, 0);
-      visibleItems[focusedIndex].focus();
-      e.preventDefault();
-    }
+        .mtr-one-row-table .mtr-td-tag,
+        .mtr-one-row-table .mtr-th-tag {
+            box-sizing: border-box !important;
+        }
 
-    if (e.key === "Enter") {
-      visibleItems[focusedIndex].click();
+        .mtr-one-row-table colgroup {
+        	display: none !important;
+        }
+
+    
+        .mtr-one-row-table tbody,
+        .mtr-one-row-table tr,
+        .mtr-one-row-table {
+        	border: none !important;
+            padding: 0 !important;
+            width: 100% !important;
+            display: block;
+        }
+
+        .mtr-one-row-table .mtr-td-tag,
+        .mtr-one-row-table .mtr-th-tag {
+            border: none;
+        }
+        
+        .mtr-one-row-table .mtr-td-tag,
+        .mtr-one-row-table .mtr-th-tag {
+        	display: block !important;
+            width: 50% !important;
+        }
+        .mtr-one-row-table tr {
+            display: flex !important;
+            flex-wrap: wrap !important;
+        }
+        
+            .mtr-one-row-table td:nth-child(4n+1),
+            .mtr-one-row-table th:nth-child(4n+1),
+            .mtr-one-row-table td:nth-child(4n+2),
+            .mtr-one-row-table th:nth-child(4n+2) {
+                background: #dddddd !important;
+            }
+
+            .mtr-one-row-table th:nth-child(2n+1),
+            .mtr-one-row-table td:nth-child(2n+1) {
+                border-right: 1px solid #bbbbbb !important;
+                border-left: 1px solid #bbbbbb !important;
+            }
+
+            .mtr-one-row-table td:nth-child(2n+2),
+            .mtr-one-row-table th:nth-child(2n+2) {
+                border-right: 1px solid #bbbbbb !important;
+            }
+
+            /* last two */
+            .mtr-one-row-table td:nth-last-child(-n+2),
+            .mtr-one-row-table th:nth-last-child(-n+2) {
+                border-bottom: 1px solid #bbbbbb !important;
+            }
+            
+        .mtr-one-row-table .mtr-td-tag,
+        .mtr-one-row-table .mtr-th-tag {
+            border-top: 1px solid #bbbbbb !important;
+            padding: 5px 10px !important;
+        }
+        
     }
-  });
-  
+    </style>
+    <!-- END - Make Tables Responsive -->
+            
+    
+    <!-- Javascript  -->
+	<script type="text/javascript" src="../../../wp-content/themes/ehealthcon2026/js/custom.js%3Fv=787442902"></script>
+	<script type="text/javascript" src="../../../wp-content/themes/ehealthcon2026/js/superfish.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HHBJBSM6RZ"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-HHBJBSM6RZ');
+	</script>
+	
+	 
+	
+<link rel='stylesheet' id='magnific-popup-css' href='../../../wp-content/plugins/mapplic/css/magnific-popup.css' type='text/css' media='all' />
+<link rel='stylesheet' id='mapplic-style-css' href='../../../wp-content/plugins/mapplic/core/mapplic.css%3Fver=7.1.css' type='text/css' media='all' />
+
+</head>
+	
+<body data-rsssl=1 class="wp-singular page-template-default page page-id-9802 page-child parent-pageid-6582 wp-theme-ehealthcon2026">
+
+<div id="header-overlay"></div>
+
+	
+	<div class="container">			
+	</div>
+</section>
+
+<section id="main">
+	<div class="container">
+		
+        <div class="content">
+<div id="mapplic-id9882" data-mapdata="{&quot;mapwidth&quot;:&quot;1500&quot;,&quot;mapheight&quot;:&quot;1500&quot;,&quot;minheight&quot;:&quot;100&quot;,&quot;action&quot;:&quot;tooltip&quot;,&quot;maxscale&quot;:&quot;3&quot;,&quot;basecolor&quot;:&quot;#e9e9ed&quot;,&quot;fullscreen&quot;:true,&quot;hovertip&quot;:true,&quot;hovertipdesc&quot;:true,&quot;smartip&quot;:false,&quot;deeplinking&quot;:false,&quot;linknewtab&quot;:true,&quot;minimap&quot;:false,&quot;animations&quot;:false,&quot;zoom&quot;:true,&quot;zoombuttons&quot;:true,&quot;clearbutton&quot;:true,&quot;zoomoutclose&quot;:true,&quot;closezoomout&quot;:true,&quot;mousewheel&quot;:true,&quot;mapfill&quot;:false,&quot;sidebar&quot;:false,&quot;search&quot;:false,&quot;searchdescription&quot;:false,&quot;alphabetic&quot;:false,&quot;thumbholder&quot;:false,&quot;sidebartoggle&quot;:false,&quot;filtersopened&quot;:false,&quot;highlight&quot;:false,&quot;customcss&quot;:&quot;&quot;,&quot;levels&quot;:[{&quot;id&quot;:&quot;my-map&quot;,&quot;title&quot;:&quot;e-Health26&quot;,&quot;map&quot;:&quot;\/2026_booths.svg&quot;,&quot;minimap&quot;:&quot;&quot;}],&quot;styles&quot;:[],&quot;categories&quot;:[],&quot;locations&quot;:[{&quot;title&quot;:&quot;Accenture (92\/107)&quot;,&quot;id&quot;:&quot;_x39_2&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;a href=\&quot;https:\/\/www.accenture.com\/ca-en\&quot;&gt;&lt;img class=\&quot;wp-image-9859 size-full alignnone\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Diamond-Accenture-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/a&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5613&quot;,&quot;y&quot;:&quot;0.4100&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Accenture (92\/107)&quot;,&quot;id&quot;:&quot;_x31_07&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;a href=\&quot;https:\/\/www.accenture.com\/ca-en\&quot;&gt;&lt;img class=\&quot;wp-image-9859 size-full alignnone\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Diamond-Accenture-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/a&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5906&quot;,&quot;y&quot;:&quot;0.4088&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;TELUS Health (114\/115\/128\/129)&quot;,&quot;id&quot;:&quot;_x31_15&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;a href=\&quot;https:\/\/www.telus.com\/en\/health\&quot;&gt;&lt;img class=\&quot;alignleft size-full wp-image-9860\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Diamond-Telus-Health-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/a&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6394&quot;,&quot;y&quot;:&quot;0.4925&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;TELUS Health (114\/115\/128\/129)&quot;,&quot;id&quot;:&quot;_x31_14&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;a href=\&quot;https:\/\/www.telus.com\/en\/health\&quot;&gt;&lt;img class=\&quot;alignleft size-full wp-image-9860\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Diamond-Telus-Health-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/a&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6400&quot;,&quot;y&quot;:&quot;0.5238&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;TELUS Health (114\/115\/128\/129)&quot;,&quot;id&quot;:&quot;_x31_28&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;a href=\&quot;https:\/\/www.telus.com\/en\/health\&quot;&gt;&lt;img class=\&quot;alignleft size-full wp-image-9860\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Diamond-Telus-Health-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/a&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6700&quot;,&quot;y&quot;:&quot;0.4938&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;TELUS Health (114\/115\/128\/129)&quot;,&quot;id&quot;:&quot;_x31_29&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;a href=\&quot;https:\/\/www.telus.com\/en\/health\&quot;&gt;&lt;img class=\&quot;alignleft size-full wp-image-9860\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Diamond-Telus-Health-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/a&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6663&quot;,&quot;y&quot;:&quot;0.5263&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Venuiti (111)&quot;,&quot;id&quot;:&quot;_x31_11&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5919&quot;,&quot;y&quot;:&quot;0.5813&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9913\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Exhibitor-Venuiti-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Healthtech Consultants (88)&quot;,&quot;id&quot;:&quot;_x38_8&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5631&quot;,&quot;y&quot;:&quot;0.5807&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-medium wp-image-9870\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/12\/Current-Healthtech-Full-Color-300x200-1-300x200.jpg\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Cybernet Manufacturing Inc. (48)&quot;,&quot;id&quot;:&quot;_x34_8&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4081&quot;,&quot;y&quot;:&quot;0.4938&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9911\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Exhibitor-Cybernet-Manufacturing-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Tali AI (62)&quot;,&quot;id&quot;:&quot;_x36_2&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4369&quot;,&quot;y&quot;:&quot;0.4913&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9901\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Bronze-Tali-AI-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Solventum (21)&quot;,&quot;id&quot;:&quot;_x32_1&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2813&quot;,&quot;y&quot;:&quot;0.4925&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9900\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Bronze-Solventum-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;MEDITECH (41)&quot;,&quot;id&quot;:&quot;_x34_1&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3569&quot;,&quot;y&quot;:&quot;0.4913&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-6740\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/Meditech-logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;DCM (25\/44)&quot;,&quot;id&quot;:&quot;_x32_5&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3306&quot;,&quot;y&quot;:&quot;0.5788&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9855\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Bronze-DCM-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;DCM (25\/44)&quot;,&quot;id&quot;:&quot;_x34_4&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3619&quot;,&quot;y&quot;:&quot;0.5788&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9855\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Bronze-DCM-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Alcidion (91)&quot;,&quot;id&quot;:&quot;_x39_1&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5631&quot;,&quot;y&quot;:&quot;0.4925&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9854\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Bronze-Alcidion-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Novartis Canada (67\/68)&quot;,&quot;id&quot;:&quot;_x36_7&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4869&quot;,&quot;y&quot;:&quot;0.5500&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9910\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Silver-Novartis-Canada-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Novartis Canada (67\/68)&quot;,&quot;id&quot;:&quot;_x36_8&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4869&quot;,&quot;y&quot;:&quot;0.5213&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9910\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Silver-Novartis-Canada-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Deloitte (49\/61)&quot;,&quot;id&quot;:&quot;_x34_9&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4100&quot;,&quot;y&quot;:&quot;0.4050&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9904\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Gold-Deloitte-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Deloitte (49\/61)&quot;,&quot;id&quot;:&quot;_x36_1&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4363&quot;,&quot;y&quot;:&quot;0.4088&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9904\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Gold-Deloitte-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Teladoc Health Canada (66\/87)&quot;,&quot;id&quot;:&quot;_x36_6&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4869&quot;,&quot;y&quot;:&quot;0.5800&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9908\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Platinum-Teladoc-Health-Canada-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Teladoc Health Canada (66\/87)&quot;,&quot;id&quot;:&quot;_x38_7&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5131&quot;,&quot;y&quot;:&quot;0.5800&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9908\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Platinum-Teladoc-Health-Canada-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Petal Health (45\/65)&quot;,&quot;id&quot;:&quot;_x34_5&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4069&quot;,&quot;y&quot;:&quot;0.5775&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9907\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Platinum-Petal-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Petal Health (45\/65)&quot;,&quot;id&quot;:&quot;_x36_5&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4363&quot;,&quot;y&quot;:&quot;0.5788&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9907\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Platinum-Petal-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Amplify Care (29\/40)&quot;,&quot;id&quot;:&quot;_x32_9&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3294&quot;,&quot;y&quot;:&quot;0.4063&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9906\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Platinum-Amplify-Care-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Amplify Care (29\/40)&quot;,&quot;id&quot;:&quot;_x34_0&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3594&quot;,&quot;y&quot;:&quot;0.4063&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9906\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Platinum-Amplify-Care-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;WELLSTAR&quot;,&quot;id&quot;:&quot;_x37_0&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4869&quot;,&quot;y&quot;:&quot;0.4075&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;img src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/2026-WELLSTAR-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; class=\&quot;aligncenter size-full wp-image-10363\&quot; \/&gt;&quot;},{&quot;title&quot;:&quot;WELLSTAR&quot;,&quot;id&quot;:&quot;_x38_3&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5144&quot;,&quot;y&quot;:&quot;0.4063&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;img src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/2026-WELLSTAR-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; class=\&quot;aligncenter size-full wp-image-10363\&quot; \/&gt;&quot;},{&quot;title&quot;:&quot;WELLSTAR&quot;,&quot;id&quot;:&quot;_x37_1&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4849&quot;,&quot;y&quot;:&quot;0.3759&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;img src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/2026-WELLSTAR-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; class=\&quot;aligncenter size-full wp-image-10363\&quot; \/&gt;&quot;},{&quot;title&quot;:&quot;WELLSTAR&quot;,&quot;id&quot;:&quot;_x38_2&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5106&quot;,&quot;y&quot;:&quot;0.3750&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;img src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/2026-WELLSTAR-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; class=\&quot;aligncenter size-full wp-image-10363\&quot; \/&gt;&quot;},{&quot;title&quot;:&quot;HEALLWELL AI&quot;,&quot;id&quot;:&quot;_x37_3&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4844&quot;,&quot;y&quot;:&quot;0.3207&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;img src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/2026-HEALWELL-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; class=\&quot;aligncenter size-full wp-image-10362\&quot; \/&gt;&quot;},{&quot;title&quot;:&quot;Orion Health&quot;,&quot;id&quot;:&quot;_x38_0&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5106&quot;,&quot;y&quot;:&quot;0.3213&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;img src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/2026-Orion-Health-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; class=\&quot;aligncenter size-full wp-image-10364\&quot; \/&gt;&quot;},{&quot;title&quot;:&quot;HEALWELL AI&quot;,&quot;id&quot;:&quot;_x37_2&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4844&quot;,&quot;y&quot;:&quot;0.3444&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;img src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/2026-HEALWELL-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; class=\&quot;aligncenter size-full wp-image-10362\&quot; \/&gt;&quot;},{&quot;title&quot;:&quot;Orion Health&quot;,&quot;id&quot;:&quot;_x38_1&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5094&quot;,&quot;y&quot;:&quot;0.3463&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;img src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/2026-Orion-Health-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; class=\&quot;aligncenter size-full wp-image-10364\&quot; \/&gt;&quot;},{&quot;title&quot;:&quot;Philips Healthcare (28)&quot;,&quot;id&quot;:&quot;_x32_8&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3281&quot;,&quot;y&quot;:&quot;0.4913&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7185\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/02\/Logos.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Novari Health (69\/84)&quot;,&quot;id&quot;:&quot;_x36_9&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4869&quot;,&quot;y&quot;:&quot;0.4900&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9871\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Exhibitor-Novari-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Novari Health (69\/84)&quot;,&quot;id&quot;:&quot;_x38_4&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5125&quot;,&quot;y&quot;:&quot;0.4900&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9871\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Exhibitor-Novari-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Oracle (146\/147\/148)&quot;,&quot;id&quot;:&quot;_x31_46&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3694&quot;,&quot;y&quot;:&quot;0.6713&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7311\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/03\/Oracle-BUNDLE-SKBK-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Oracle (146\/147\/148)&quot;,&quot;id&quot;:&quot;_x31_47&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3969&quot;,&quot;y&quot;:&quot;0.6713&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7311\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/03\/Oracle-BUNDLE-SKBK-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Oracle (146\/147\/148)&quot;,&quot;id&quot;:&quot;_x31_48&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4269&quot;,&quot;y&quot;:&quot;0.6700&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7311\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/03\/Oracle-BUNDLE-SKBK-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;AWS (108\/109)&quot;,&quot;id&quot;:&quot;_x31_08&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5906&quot;,&quot;y&quot;:&quot;0.4913&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-6939\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/12\/2026-AWS-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;AWS (108\/109)&quot;,&quot;id&quot;:&quot;_x31_09&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5906&quot;,&quot;y&quot;:&quot;0.5225&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-6939\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/12\/2026-AWS-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Akinox (116)&quot;,&quot;id&quot;:&quot;_x31_16&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6388&quot;,&quot;y&quot;:&quot;0.4075&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;a href=\&quot;https:\/\/www.akinox.com\/\&quot;&gt;&lt;img class=\&quot;aligncenter wp-image-8041 size-full\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Akinox-logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/a&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Scitline (85)&quot;,&quot;id&quot;:&quot;_x38_5&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5138&quot;,&quot;y&quot;:&quot;0.5200&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8455\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Sciteline-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Stryker (149\/150)&quot;,&quot;id&quot;:&quot;_x31_49&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5369&quot;,&quot;y&quot;:&quot;0.6700&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7049\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/Stryker-Logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Stryker (149\/150)&quot;,&quot;id&quot;:&quot;_x31_50&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5619&quot;,&quot;y&quot;:&quot;0.6700&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7049\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/Stryker-Logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Host: Digital Health Canada&quot;,&quot;id&quot;:&quot;_x31_&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2506&quot;,&quot;y&quot;:&quot;0.5663&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-6818\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/Digital-Health-Canada-no-tagline-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Host: Canada Health Infoway&quot;,&quot;id&quot;:&quot;_x33_&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2506&quot;,&quot;y&quot;:&quot;0.5113&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-6813\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/Canada-Health-Infoway-logo-2024-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Host: CIHI&quot;,&quot;id&quot;:&quot;_x35_&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2506&quot;,&quot;y&quot;:&quot;0.3938&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-6789\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/11\/CIHI-logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Google Cloud (126\/127)&quot;,&quot;id&quot;:&quot;_x31_26&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6663&quot;,&quot;y&quot;:&quot;0.3782&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7496\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/Google_Cloud_logo-300x200-for-web.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Google Cloud (126\/127)&quot;,&quot;id&quot;:&quot;_x31_27&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6656&quot;,&quot;y&quot;:&quot;0.4050&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7496\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/Google_Cloud_logo-300x200-for-web.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Cloud Diagnostics Canada (112)&quot;,&quot;id&quot;:&quot;_x31_12&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6381&quot;,&quot;y&quot;:&quot;0.5788&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8278\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Cloud-DX-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;InfologiQ (20)&quot;,&quot;id&quot;:&quot;_x32_0&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2794&quot;,&quot;y&quot;:&quot;0.4063&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8059\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/InfologiQ-logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Think Research (63\/64)&quot;,&quot;id&quot;:&quot;_x36_3&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4369&quot;,&quot;y&quot;:&quot;0.5213&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8254\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Think-Research-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Think Research (63\/64)&quot;,&quot;id&quot;:&quot;_x36_4&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4350&quot;,&quot;y&quot;:&quot;0.5538&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8254\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Think-Research-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Surge Learning Inc. (131)&quot;,&quot;id&quot;:&quot;_x31_31&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6694&quot;,&quot;y&quot;:&quot;0.5800&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10033\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/09\/Surge-Learning-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Stratford Group (24)&quot;,&quot;id&quot;:&quot;_x32_4&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2794&quot;,&quot;y&quot;:&quot;0.5763&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8318\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Stratford-Group-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Mariner Partners (135)&quot;,&quot;id&quot;:&quot;_x31_35&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.7163&quot;,&quot;y&quot;:&quot;0.4963&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10046\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/10\/Mariner-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Kainos (89\/90)&quot;,&quot;id&quot;:&quot;_x38_9&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10043\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/10\/Kainos-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5619&quot;,&quot;y&quot;:&quot;0.5507&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Kainos (89\/90)&quot;,&quot;id&quot;:&quot;_x39_0&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10043\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/10\/Kainos-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5619&quot;,&quot;y&quot;:&quot;0.5225&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;AlayaCare (136)&quot;,&quot;id&quot;:&quot;_x31_36&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.7262&quot;,&quot;y&quot;:&quot;0.4163&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8048\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/AlayaCare-logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;OntarioMD (113\/130)&quot;,&quot;id&quot;:&quot;_x31_13&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8042\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/OntarioMD-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6381&quot;,&quot;y&quot;:&quot;0.5513&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;OntarioMD&quot;,&quot;id&quot;:&quot;_x31_30&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8042\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/OntarioMD-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6681&quot;,&quot;y&quot;:&quot;0.5550&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Smile Digital Health (46)&quot;,&quot;id&quot;:&quot;_x34_6&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7312\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/03\/Smile-Digital-Health-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4063&quot;,&quot;y&quot;:&quot;0.5519&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;CANImmunize (26)&quot;,&quot;id&quot;:&quot;_x32_6&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7051\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/CanImmunize-logo-for-map-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3287&quot;,&quot;y&quot;:&quot;0.5513&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;SmartPrint (86)&quot;,&quot;id&quot;:&quot;_x38_6&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10060\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/10\/Smart-Print-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5150&quot;,&quot;y&quot;:&quot;0.5513&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Plume AI (110)&quot;,&quot;id&quot;:&quot;_x31_10&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5913&quot;,&quot;y&quot;:&quot;0.5500&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;a href=\&quot;https:\/\/plumeia.ca\/\&quot;&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10067\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/PlumeAI-logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/a&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Process Fusion Inc. (42)&quot;,&quot;id&quot;:&quot;_x34_2&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3613&quot;,&quot;y&quot;:&quot;0.5250&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8126\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/12\/Process-Fusion-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;Workday (59\/60)&quot;,&quot;id&quot;:&quot;_x35_9&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9909\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Platinum-Workday-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4369&quot;,&quot;y&quot;:&quot;0.3507&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Workday (59\/60)&quot;,&quot;id&quot;:&quot;_x36_0&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-9909\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Platinum-Workday-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4369&quot;,&quot;y&quot;:&quot;0.3775&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;GoAutomate Inc. (50)&quot;,&quot;id&quot;:&quot;_x35_0&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;a href=\&quot;https:\/\/goautomatemd.com\/\&quot;&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7236\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/e-Health-map-logo-Go-Automate.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/a&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4050&quot;,&quot;y&quot;:&quot;0.3794&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;CDW Canada (22\/23)&quot;,&quot;id&quot;:&quot;_x32_2&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7474\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/CDW-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2800&quot;,&quot;y&quot;:&quot;0.5213&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;CDW Canada (22\/23)&quot;,&quot;id&quot;:&quot;_x32_3&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7474\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/CDW-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2800&quot;,&quot;y&quot;:&quot;0.5513&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;PwC (132\/133)&quot;,&quot;id&quot;:&quot;_x31_32&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8125\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/12\/NEW-PWC-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.7163&quot;,&quot;y&quot;:&quot;0.5813&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;PwC Canada (132\/133)&quot;,&quot;id&quot;:&quot;_x31_33&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8125\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/12\/NEW-PWC-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.7150&quot;,&quot;y&quot;:&quot;0.5513&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Lime Health (43)&quot;,&quot;id&quot;:&quot;_x34_3&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10106\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Lime-2024-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3581&quot;,&quot;y&quot;:&quot;0.5519&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Quest Diagnostics (134)&quot;,&quot;id&quot;:&quot;_x31_34&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8269\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/02\/Quest-Diagnostics-Logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.7144&quot;,&quot;y&quot;:&quot;0.5219&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Baxter (144\/145)&quot;,&quot;id&quot;:&quot;_x31_44&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8054\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Baxter-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2144&quot;,&quot;y&quot;:&quot;0.6982&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Baxter (144\/145)&quot;,&quot;id&quot;:&quot;_x31_45&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8054\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Baxter-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2144&quot;,&quot;y&quot;:&quot;0.6688&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Heidi Health (93\/94)&quot;,&quot;id&quot;:&quot;_x39_3&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8313\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Heidi-Health-Logo-300-x-200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5625&quot;,&quot;y&quot;:&quot;0.3782&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Heidi Health (93\/94)&quot;,&quot;id&quot;:&quot;_x39_4&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8313\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Heidi-Health-Logo-300-x-200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5613&quot;,&quot;y&quot;:&quot;0.3513&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;DMF Systems (137)&quot;,&quot;id&quot;:&quot;_x31_37&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-medium wp-image-10153\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/DMF-Systems-Logo-300-x-200-300x200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.7169&quot;,&quot;y&quot;:&quot;0.3788&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Zebra Technologies (27)&quot;,&quot;id&quot;:&quot;_x32_7&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8043\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Zebra-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3281&quot;,&quot;y&quot;:&quot;0.5232&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Mikata Health (39)&quot;,&quot;id&quot;:&quot;_x33_9&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10154\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Mikata-Health-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3594&quot;,&quot;y&quot;:&quot;0.3782&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;PiiComm (76\/77)&quot;,&quot;id&quot;:&quot;_x37_6&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10155\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/12\/PiiComm-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4656&quot;,&quot;y&quot;:&quot;0.2094&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;PiiComm (76\/77)&quot;,&quot;id&quot;:&quot;_x37_7&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10155\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/12\/PiiComm-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4969&quot;,&quot;y&quot;:&quot;0.2088&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Ricoh Canada (47)&quot;,&quot;id&quot;:&quot;_x34_7&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10202\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Ricoh-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4069&quot;,&quot;y&quot;:&quot;0.5232&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Altera Digital Health (117\/118)&quot;,&quot;id&quot;:&quot;_x31_17&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-6938\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/Altera-Digital-Health-Logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6394&quot;,&quot;y&quot;:&quot;0.3788&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Altera Digital Health (117\/118)&quot;,&quot;id&quot;:&quot;_x31_18&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-6938\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/Altera-Digital-Health-Logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6394&quot;,&quot;y&quot;:&quot;0.3500&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Umano Medical (56)&quot;,&quot;id&quot;:&quot;_x35_6&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10241\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Umano-Medical-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4363&quot;,&quot;y&quot;:&quot;0.2638&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Trend Micro (106)&quot;,&quot;id&quot;:&quot;_x31_06&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5931&quot;,&quot;y&quot;:&quot;0.3738&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10319\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Trend-Micro-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;},{&quot;title&quot;:&quot;CHeCS (95)&quot;,&quot;id&quot;:&quot;_x39_5&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10242\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/CHeCS-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5619&quot;,&quot;y&quot;:&quot;0.3225&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Cabot Technology Solutions (Kiosk R)&quot;,&quot;id&quot;:&quot;R&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10278\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Cabot-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5656&quot;,&quot;y&quot;:&quot;0.7294&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;ThinkOn (105)&quot;,&quot;id&quot;:&quot;_x31_05&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10279\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/ThinkOn-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5906&quot;,&quot;y&quot;:&quot;0.3500&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;CGI (124\/125)&quot;,&quot;id&quot;:&quot;_x31_24&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7048\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/CGI-Logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6675&quot;,&quot;y&quot;:&quot;0.3194&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;CGI (124\/125)&quot;,&quot;id&quot;:&quot;_x31_25&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7048\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/CGI-Logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6687&quot;,&quot;y&quot;:&quot;0.3507&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;pin&quot;:&quot;hidden&quot;},{&quot;title&quot;:&quot;CGI (124\/125)&quot;,&quot;id&quot;:&quot;_x31_25&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7048\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/CGI-Logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:0.5,&quot;y&quot;:0.5,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;CGI (124\/125)&quot;,&quot;id&quot;:&quot;_x31_25&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7048\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/CGI-Logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:0.5,&quot;y&quot;:0.5,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;CGI (124\/125)&quot;,&quot;id&quot;:&quot;_x31_25&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7048\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2023\/09\/CGI-Logo-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6681&quot;,&quot;y&quot;:&quot;0.3500&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;VITALL (58)&quot;,&quot;id&quot;:&quot;_x35_8&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10280\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/VITALL-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4369&quot;,&quot;y&quot;:&quot;0.3213&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Sunco Communication and Installation (30)&quot;,&quot;id&quot;:&quot;_x33_0&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10281\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Sunco-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3294&quot;,&quot;y&quot;:&quot;0.3763&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;INTEGRAiTE (Kiosk Q)&quot;,&quot;id&quot;:&quot;Q&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10288\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/INTEGRAiTE-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5651&quot;,&quot;y&quot;:&quot;0.7550&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Ergotron (19)&quot;,&quot;id&quot;:&quot;_x31_9&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10293\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/2026-Ergotron-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2794&quot;,&quot;y&quot;:&quot;0.3794&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;DT Health AI (Kiosk P)&quot;,&quot;id&quot;:&quot;P&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10301\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2026\/01\/DT-Health-AI-Logo-300-x-200-2.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5650&quot;,&quot;y&quot;:&quot;0.7794&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Deetken Insight (7)&quot;,&quot;id&quot;:&quot;_x37_&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-7192\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/02\/Deetken-Insight-300x200-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2512&quot;,&quot;y&quot;:&quot;0.3507&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Caredove Inc. (78)&quot;,&quot;id&quot;:&quot;_x37_8&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8270\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Caredove-logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5138&quot;,&quot;y&quot;:&quot;0.2600&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Luma Health (143)&quot;,&quot;id&quot;:&quot;_x31_43&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10307\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Luma-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2150&quot;,&quot;y&quot;:&quot;0.7282&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Tangent (31)&quot;,&quot;id&quot;:&quot;_x33_1&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8425\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Tangent-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3306&quot;,&quot;y&quot;:&quot;0.3507&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Harris Arc Health (75)&quot;,&quot;id&quot;:&quot;_x37_5&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10320\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Harris-Arc-Health-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4856&quot;,&quot;y&quot;:&quot;0.2613&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;StaffScheduleCare (138)&quot;,&quot;id&quot;:&quot;_x31_38&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10321\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/StaffScheduleCare-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.7156&quot;,&quot;y&quot;:&quot;0.3513&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Fonemed (18)&quot;,&quot;id&quot;:&quot;_x31_8&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10322\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Fonemed-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2806&quot;,&quot;y&quot;:&quot;0.3488&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;SecurMEDIC (142)&quot;,&quot;id&quot;:&quot;_x31_42&quot;,&quot;description&quot;:&quot;&lt;img class=\&quot;aligncenter size-full wp-image-9912\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/12\/2026-SecurMEDIC-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.2144&quot;,&quot;y&quot;:&quot;0.7588&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Tectonic Advisory Services (38)&quot;,&quot;id&quot;:&quot;_x33_8&quot;,&quot;description&quot;:&quot;&lt;img src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Tectonic-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; class=\&quot;aligncenter size-full wp-image-8364\&quot; \/&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3581&quot;,&quot;y&quot;:&quot;0.3500&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;HealthAsyst (51)&quot;,&quot;id&quot;:&quot;_x35_1&quot;,&quot;description&quot;:&quot;&lt;img src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/HealthAsyst-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; class=\&quot;aligncenter size-full wp-image-10323\&quot; \/&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4081&quot;,&quot;y&quot;:&quot;0.3500&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Virtual Hallway&quot;,&quot;id&quot;:&quot;O&quot;,&quot;description&quot;:&quot;&lt;img src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Virtual-Hallway-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; class=\&quot;aligncenter size-full wp-image-10324\&quot; \/&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5669&quot;,&quot;y&quot;:&quot;0.8288&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;ACF Technologies (98)&quot;,&quot;id&quot;:&quot;_x39_8&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10325\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/ACF-Technologies-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5819&quot;,&quot;y&quot;:&quot;0.2100&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Strongest Families Institute (A)&quot;,&quot;id&quot;:&quot;A&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8133\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/12\/Strongest-Families-logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3350&quot;,&quot;y&quot;:&quot;0.7319&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Softek Solutions, Inc. (104)&quot;,&quot;id&quot;:&quot;_x31_04&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10345\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Softek-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5913&quot;,&quot;y&quot;:&quot;0.3225&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;IBM Canada (57)&quot;,&quot;id&quot;:&quot;_x35_7&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4363&quot;,&quot;y&quot;:&quot;0.2888&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Mara Consulting Inc. (55)&quot;,&quot;id&quot;:&quot;_x35_5&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10346\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Mara-Consulting-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3937&quot;,&quot;y&quot;:&quot;0.2088&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Barrington Consulting Group (37)&quot;,&quot;id&quot;:&quot;_x33_7&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10347\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/Barrington-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3575&quot;,&quot;y&quot;:&quot;0.3238&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;Capsa Healthcare (52)&quot;,&quot;id&quot;:&quot;_x35_2&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8289\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/Capsa-Healthcare-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4081&quot;,&quot;y&quot;:&quot;0.3232&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;University of Waterloo (B)&quot;,&quot;id&quot;:&quot;B&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8134\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/12\/Uni-of-Waterloo.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;120\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3344&quot;,&quot;y&quot;:&quot;0.7550&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;CloudWave (97)&quot;,&quot;id&quot;:&quot;_x39_7&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-8046\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2024\/09\/CloudWave-logo.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.5606&quot;,&quot;y&quot;:&quot;0.2607&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;HP Canada (53)&quot;,&quot;id&quot;:&quot;_x35_3&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;aligncenter size-full wp-image-10355\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2025\/08\/HP-Logo-300-x-200.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4069&quot;,&quot;y&quot;:&quot;0.2919&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;id&quot;:&quot;_x35_4&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;alignnone size-full wp-image-10369\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2026\/02\/WP-RESIZED_Harmony-1.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.4075&quot;,&quot;y&quot;:&quot;0.2638&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;,&quot;title&quot;:&quot;Harmony Healthcare IT (54)&quot;},{&quot;title&quot;:&quot;Braver (122)&quot;,&quot;id&quot;:&quot;_x31_22&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;alignnone size-full wp-image-10367\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2026\/02\/WP-RESIZED_Braver.png\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6675&quot;,&quot;y&quot;:&quot;0.2613&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;id&quot;:&quot;F&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3525&quot;,&quot;y&quot;:&quot;0.8438&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;id&quot;:&quot;G&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.3762&quot;,&quot;y&quot;:&quot;0.8438&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;},{&quot;title&quot;:&quot;BD (119)&quot;,&quot;id&quot;:&quot;_x31_19&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;img class=\&quot;alignnone size-full wp-image-10383\&quot; src=\&quot;https:\/\/www.e-healthconference.com\/wp-content\/uploads\/2026\/02\/BD_300x200NEW.jpeg\&quot; alt=\&quot;\&quot; width=\&quot;300\&quot; height=\&quot;200\&quot; \/&gt;&lt;\/p&gt;&quot;,&quot;pin&quot;:&quot;hidden&quot;,&quot;fill&quot;:&quot;#e9e9ed&quot;,&quot;action&quot;:&quot;default&quot;,&quot;x&quot;:&quot;0.6425&quot;,&quot;y&quot;:&quot;0.3207&quot;,&quot;level&quot;:&quot;my-map&quot;,&quot;color&quot;:&quot;#e9e9ed&quot;}]}"></div>
+             <p class="edit-link"></p>
+        </div>
+		
+		<!--<aside id="sidebar">
+			<div><div class="textwidget custom-html-widget"><div class="ad-box big-box">
+<div class="n2-section-smartslider fitvidsignore  n2_clear" data-ssid="28"><div id="n2-ss-28-align" class="n2-ss-align"><div class="n2-padding"><div id="n2-ss-28" data-creator="Smart Slider 3" data-responsive="auto" class="n2-ss-slider n2-ow n2-has-hover n2notransition  "><div class="n2-ss-slider-wrapper-inside">
+        <div class="n2-ss-slider-1 n2_ss__touch_element n2-ow">
+            <div class="n2-ss-slider-2 n2-ow">
+                                                <div class="n2-ss-slider-3 n2-ow">
+
+                    <div class="n2-ss-slide-backgrounds n2-ow-all"><div class="n2-ss-slide-background" data-public-id="1" data-mode="fill"><div class="n2-ss-slide-background-image" data-blur="0" data-opacity="100" data-x="50" data-y="50" data-alt="" data-title=""><picture class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"><img src="../../../wp-content/uploads/2025/08/Logo-only-1.png" alt="" title="" loading="lazy" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"></picture></div><div data-color="RGBA(255,255,255,0)" style="background-color: RGBA(255,255,255,0);" class="n2-ss-slide-background-color"></div></div><div class="n2-ss-slide-background" data-public-id="2" data-mode="fill" aria-hidden="true"><div class="n2-ss-slide-background-image" data-blur="0" data-opacity="100" data-x="50" data-y="50" data-alt="" data-title=""><picture class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"><img src="../../../wp-content/uploads/2025/08/Exhibit.png" alt="" title="" loading="lazy" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"></picture></div><div data-color="RGBA(255,255,255,0)" style="background-color: RGBA(255,255,255,0);" class="n2-ss-slide-background-color"></div></div><div class="n2-ss-slide-background" data-public-id="3" data-mode="fill" aria-hidden="true"><div class="n2-ss-slide-background-image" data-blur="0" data-opacity="100" data-x="50" data-y="50" data-alt="" data-title=""><picture class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"><img src="../../../wp-content/uploads/2025/08/Sponsorship.png" alt="" title="" loading="lazy" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"></picture></div><div data-color="RGBA(255,255,255,0)" style="background-color: RGBA(255,255,255,0);" class="n2-ss-slide-background-color"></div></div><div class="n2-ss-slide-background" data-public-id="4" data-mode="fill" aria-hidden="true"><div class="n2-ss-slide-background-image" data-blur="0" data-opacity="100" data-x="50" data-y="50" data-alt="" data-title=""><picture class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"><img src="../../../wp-content/uploads/2025/12/Ad-Plan-your-day-1.png" alt="" title="" loading="lazy" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"></picture></div><div data-color="RGBA(255,255,255,0)" style="background-color: RGBA(255,255,255,0);" class="n2-ss-slide-background-color"></div></div></div>                    <div class="n2-ss-slider-4 n2-ow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" data-related-device="desktopPortrait" class="n2-ow n2-ss-preserve-size n2-ss-preserve-size--slider n2-ss-slide-limiter"></svg><div data-first="1" data-slide-duration="0" data-id="3564" data-slide-public-id="1" data-title="Logo only" class="n2-ss-slide n2-ow  n2-ss-slide-3564"><div role="note" class="n2-ss-slide--focus" tabindex="-1">Logo only</div><div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-xrphMKwiX5gK" data-sstype="slide" data-pm="default"></div></div></div><div data-slide-duration="0" data-id="3563" data-slide-public-id="2" aria-hidden="true" data-title="Exhibit" data-haslink="1" data-href="https://www.e-healthconference.com/e-health26/e-health-sponsorship/exhibit-opportunities/" tabindex="0" role="button" data-n2click="url" data-force-pointer="" class="n2-ss-slide n2-ow  n2-ss-slide-3563"><div role="note" class="n2-ss-slide--focus">Exhibit</div><div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-GgYZIwfOr4TC" data-sstype="slide" data-pm="default"></div></div></div><div data-slide-duration="0" data-id="3565" data-slide-public-id="3" aria-hidden="true" data-title="Sponsorship" data-haslink="1" data-href="https://www.e-healthconference.com/e-health26/e-health-sponsorship/" tabindex="0" role="button" data-n2click="url" data-force-pointer="" class="n2-ss-slide n2-ow  n2-ss-slide-3565"><div role="note" class="n2-ss-slide--focus">Sponsorship</div><div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-cM3u82IrFtkZ" data-sstype="slide" data-pm="default"></div></div></div><div data-slide-duration="0" data-id="3581" data-slide-public-id="4" aria-hidden="true" data-title="Ad - Plan your day" data-haslink="1" data-href="https://www.e-healthconference.com/e-health26/program-at-a-glance/" tabindex="0" role="button" data-n2click="url" data-force-pointer="" class="n2-ss-slide n2-ow  n2-ss-slide-3581"><div role="note" class="n2-ss-slide--focus">Ad - Plan your day</div><div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-XVw6bcMPvQt4" data-sstype="slide" data-pm="default"></div></div></div>                    </div>
+
+                                    </div>
+            </div>
+        </div>
+        <div class="n2-ss-slider-controls n2-ss-slider-controls-absolute-left-center"><div style="--widget-offset:15px;" class="n2-ss-widget nextend-arrow n2-ow-all nextend-arrow-previous  nextend-arrow-animated-fade" data-hide-mobileportrait="1" id="n2-ss-28-arrow-previous" role="button" aria-label="previous arrow" tabindex="0"><img width="32" height="32" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xMS40MzMgMTUuOTkyTDIyLjY5IDUuNzEyYy4zOTMtLjM5LjM5My0xLjAzIDAtMS40Mi0uMzkzLS4zOS0xLjAzLS4zOS0xLjQyMyAwbC0xMS45OCAxMC45NGMtLjIxLjIxLS4zLjQ5LS4yODUuNzYtLjAxNS4yOC4wNzUuNTYuMjg0Ljc3bDExLjk4IDEwLjk0Yy4zOTMuMzkgMS4wMy4zOSAxLjQyNCAwIC4zOTMtLjQuMzkzLTEuMDMgMC0xLjQybC0xMS4yNTctMTAuMjkiCiAgICAgICAgICBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjgiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPgo8L3N2Zz4=" alt="previous arrow"></div></div><div class="n2-ss-slider-controls n2-ss-slider-controls-absolute-right-center"><div style="--widget-offset:15px;" class="n2-ss-widget nextend-arrow n2-ow-all nextend-arrow-next  nextend-arrow-animated-fade" data-hide-mobileportrait="1" id="n2-ss-28-arrow-next" role="button" aria-label="next arrow" tabindex="0"><img width="32" height="32" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xMC43MjIgNC4yOTNjLS4zOTQtLjM5LTEuMDMyLS4zOS0xLjQyNyAwLS4zOTMuMzktLjM5MyAxLjAzIDAgMS40MmwxMS4yODMgMTAuMjgtMTEuMjgzIDEwLjI5Yy0uMzkzLjM5LS4zOTMgMS4wMiAwIDEuNDIuMzk1LjM5IDEuMDMzLjM5IDEuNDI3IDBsMTIuMDA3LTEwLjk0Yy4yMS0uMjEuMy0uNDkuMjg0LS43Ny4wMTQtLjI3LS4wNzYtLjU1LS4yODYtLjc2TDEwLjcyIDQuMjkzeiIKICAgICAgICAgIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuOCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPg==" alt="next arrow"></div></div></div></div><ss3-loader></ss3-loader></div></div><div class="n2_clear"></div></div></div></div></div><div><div class="textwidget custom-html-widget"><div class="ad-box wide-skyscraper">
+<div class="n2-section-smartslider fitvidsignore  n2_clear" data-ssid="29"><div id="n2-ss-29-align" class="n2-ss-align"><div class="n2-padding"><div id="n2-ss-29" data-creator="Smart Slider 3" data-responsive="auto" class="n2-ss-slider n2-ow n2-has-hover n2notransition  "><div class="n2-ss-slider-wrapper-inside">
+        <div class="n2-ss-slider-1 n2_ss__touch_element n2-ow">
+            <div class="n2-ss-slider-2 n2-ow">
+                                                <div class="n2-ss-slider-3 n2-ow">
+
+                    <div class="n2-ss-slide-backgrounds n2-ow-all"><div class="n2-ss-slide-background" data-public-id="1" data-mode="fill"><div class="n2-ss-slide-background-image" data-blur="0" data-opacity="100" data-x="50" data-y="50" data-alt="" data-title=""><picture class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"><img src="../../../wp-content/uploads/2025/12/Ad-8-EB-reminder.png" alt="" title="" loading="lazy" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"></picture></div><div data-color="RGBA(255,255,255,0)" style="background-color: RGBA(255,255,255,0);" class="n2-ss-slide-background-color"></div></div><div class="n2-ss-slide-background" data-public-id="2" data-mode="fill" aria-hidden="true"><div class="n2-ss-slide-background-image" data-blur="0" data-opacity="100" data-x="50" data-y="50" data-alt="" data-title=""><picture class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"><img src="../../../wp-content/uploads/2025/12/Ad-7-Petal-Health.png" alt="" title="" loading="lazy" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"></picture></div><div data-color="RGBA(255,255,255,0)" style="background-color: RGBA(255,255,255,0);" class="n2-ss-slide-background-color"></div></div><div class="n2-ss-slide-background" data-public-id="3" data-mode="fill" aria-hidden="true"><div class="n2-ss-slide-background-image" data-blur="0" data-opacity="100" data-x="50" data-y="50" data-alt="" data-title=""><picture class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"><img src="../../../wp-content/uploads/2025/12/Ad-10-Travel.png" alt="" title="" loading="lazy" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"></picture></div><div data-color="RGBA(255,255,255,0)" style="background-color: RGBA(255,255,255,0);" class="n2-ss-slide-background-color"></div></div><div class="n2-ss-slide-background" data-public-id="4" data-mode="fill" aria-hidden="true"><div class="n2-ss-slide-background-image" data-blur="0" data-opacity="100" data-x="50" data-y="50" data-alt="" data-title=""><picture class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"><img src="../../../wp-content/uploads/2026/01/of-ED-visits-dont-require-in-person-care.-Website-2.png" alt="" title="" loading="lazy" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"></picture></div><div data-color="RGBA(255,255,255,0)" style="background-color: RGBA(255,255,255,0);" class="n2-ss-slide-background-color"></div></div><div class="n2-ss-slide-background" data-public-id="5" data-mode="fill" aria-hidden="true"><div class="n2-ss-slide-background-image" data-blur="0" data-opacity="100" data-x="50" data-y="50" data-alt="" data-title=""><picture class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"><img src="../../../wp-content/uploads/2025/12/Ad-5-Volunteer-1.png" alt="" title="" loading="lazy" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"></picture></div><div data-color="RGBA(255,255,255,0)" style="background-color: RGBA(255,255,255,0);" class="n2-ss-slide-background-color"></div></div><div class="n2-ss-slide-background" data-public-id="6" data-mode="fill" aria-hidden="true"><div class="n2-ss-slide-background-image" data-blur="0" data-opacity="100" data-x="50" data-y="50" data-alt="" data-title=""><picture class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"><img src="../../../wp-content/uploads/2026/02/8013-0055-Conference-WebAd-04.png" alt="" title="" loading="lazy" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"></picture></div><div data-color="RGBA(255,255,255,0)" style="background-color: RGBA(255,255,255,0);" class="n2-ss-slide-background-color"></div></div><div class="n2-ss-slide-background" data-public-id="7" data-mode="fill" aria-hidden="true"><div class="n2-ss-slide-background-image" data-blur="0" data-opacity="100" data-x="50" data-y="50" data-alt="" data-title=""><picture class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"><img src="../../../wp-content/uploads/2025/12/Ad-9-Hotels-1.png" alt="" title="" loading="lazy" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1"></picture></div><div data-color="RGBA(255,255,255,0)" style="background-color: RGBA(255,255,255,0);" class="n2-ss-slide-background-color"></div></div></div>                    <div class="n2-ss-slider-4 n2-ow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1200" data-related-device="desktopPortrait" class="n2-ow n2-ss-preserve-size n2-ss-preserve-size--slider n2-ss-slide-limiter"></svg><div data-first="1" data-slide-duration="0" data-id="3573" data-slide-public-id="1" data-title="Ad - EB reminder" data-haslink="1" data-href="https://www.e-healthconference.com/e-health26/e-health26-early-bird-registration/" tabindex="0" role="button" data-n2click="url" data-force-pointer="" class="n2-ss-slide n2-ow  n2-ss-slide-3573"><div role="note" class="n2-ss-slide--focus">Ad - EB reminder</div><div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-UtRsSUBDDY46" data-sstype="slide" data-pm="default"></div></div></div><div data-slide-duration="0" data-id="3577" data-slide-public-id="2" aria-hidden="true" data-title="Sponsor Ad - Petal Health" data-haslink="1" data-href="https://www.petal-health.com/en/" tabindex="0" role="button" data-n2click="url" data-force-pointer="" class="n2-ss-slide n2-ow  n2-ss-slide-3577"><div role="note" class="n2-ss-slide--focus">Sponsor Ad - Petal Health</div><div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-42ExWYhPYaf5" data-sstype="slide" data-pm="default"></div></div></div><div data-slide-duration="0" data-id="3575" data-slide-public-id="3" aria-hidden="true" data-title="Ad - Travel" data-haslink="1" data-href="https://www.e-healthconference.com/e-health26/getting-there/" tabindex="0" role="button" data-n2click="url" data-force-pointer="" class="n2-ss-slide n2-ow  n2-ss-slide-3575"><div role="note" class="n2-ss-slide--focus">Ad - Travel</div><div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-fdHcguFd4yxT" data-sstype="slide" data-pm="default"></div></div></div><div data-slide-duration="0" data-id="3583" data-slide-public-id="4" aria-hidden="true" data-title="Sponsor Ad - Think research" data-haslink="1" data-href="https://www.thinkresearch.com/ca/resources/digital-front-door-ebook/?utm_source=ehealth_website&amp;utm_medium=banner&amp;utm_campaign=ehealth_conf" tabindex="0" role="button" data-n2click="url" data-force-pointer="" class="n2-ss-slide n2-ow  n2-ss-slide-3583"><div role="note" class="n2-ss-slide--focus">Sponsor Ad - Think research</div><div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-HgWrncvhukqE" data-sstype="slide" data-pm="default"></div></div></div><div data-slide-duration="0" data-id="3579" data-slide-public-id="5" aria-hidden="true" data-title="Ad - Volunteer" data-haslink="1" data-href="https://www.e-healthconference.com/e-health26/e-health-student-volunteer-application/" tabindex="0" role="button" data-n2click="url" data-force-pointer="" class="n2-ss-slide n2-ow  n2-ss-slide-3579"><div role="note" class="n2-ss-slide--focus">Ad - Volunteer</div><div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-yguYEkgxEQ6L" data-sstype="slide" data-pm="default"></div></div></div><div data-slide-duration="0" data-id="3584" data-slide-public-id="6" aria-hidden="true" data-title="Sponsor Ad - DCM" data-haslink="1" data-href="https://www.datacm.com/industries/healthcare-wellness" tabindex="0" role="button" data-n2click="url" data-force-pointer="" class="n2-ss-slide n2-ow  n2-ss-slide-3584"><div role="note" class="n2-ss-slide--focus">Sponsor Ad - DCM</div><div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-Oiak94LgwE6S" data-sstype="slide" data-pm="default"></div></div></div><div data-slide-duration="0" data-id="3580" data-slide-public-id="7" aria-hidden="true" data-title="Ad - Hotels" data-haslink="1" data-href="https://www.e-healthconference.com/e-health26/accommodations/" tabindex="0" role="button" data-n2click="url" data-force-pointer="" class="n2-ss-slide n2-ow  n2-ss-slide-3580"><div role="note" class="n2-ss-slide--focus">Ad - Hotels</div><div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-JgOc2l3FgCjI" data-sstype="slide" data-pm="default"></div></div></div>                    </div>
+
+                                    </div>
+            </div>
+        </div>
+        <div class="n2-ss-slider-controls n2-ss-slider-controls-absolute-left-center"><div style="--widget-offset:15px;" class="n2-ss-widget nextend-arrow n2-ow-all nextend-arrow-previous  nextend-arrow-animated-fade" data-hide-mobileportrait="1" id="n2-ss-29-arrow-previous" role="button" aria-label="previous arrow" tabindex="0"><img width="32" height="32" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xMS40MzMgMTUuOTkyTDIyLjY5IDUuNzEyYy4zOTMtLjM5LjM5My0xLjAzIDAtMS40Mi0uMzkzLS4zOS0xLjAzLS4zOS0xLjQyMyAwbC0xMS45OCAxMC45NGMtLjIxLjIxLS4zLjQ5LS4yODUuNzYtLjAxNS4yOC4wNzUuNTYuMjg0Ljc3bDExLjk4IDEwLjk0Yy4zOTMuMzkgMS4wMy4zOSAxLjQyNCAwIC4zOTMtLjQuMzkzLTEuMDMgMC0xLjQybC0xMS4yNTctMTAuMjkiCiAgICAgICAgICBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjgiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPgo8L3N2Zz4=" alt="previous arrow"></div></div><div class="n2-ss-slider-controls n2-ss-slider-controls-absolute-right-center"><div style="--widget-offset:15px;" class="n2-ss-widget nextend-arrow n2-ow-all nextend-arrow-next  nextend-arrow-animated-fade" data-hide-mobileportrait="1" id="n2-ss-29-arrow-next" role="button" aria-label="next arrow" tabindex="0"><img width="32" height="32" class="skip-lazy jetpack-lazy-image" data-skip-lazy="1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xMC43MjIgNC4yOTNjLS4zOTQtLjM5LTEuMDMyLS4zOS0xLjQyNyAwLS4zOTMuMzktLjM5MyAxLjAzIDAgMS40MmwxMS4yODMgMTAuMjgtMTEuMjgzIDEwLjI5Yy0uMzkzLjM5LS4zOTMgMS4wMiAwIDEuNDIuMzk1LjM5IDEuMDMzLjM5IDEuNDI3IDBsMTIuMDA3LTEwLjk0Yy4yMS0uMjEuMy0uNDkuMjg0LS43Ny4wMTQtLjI3LS4wNzYtLjU1LS4yODYtLjc2TDEwLjcyIDQuMjkzeiIKICAgICAgICAgIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuOCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPg==" alt="next arrow"></div></div></div></div><ss3-loader></ss3-loader></div></div><div class="n2_clear"></div></div></div></div></div>		</aside>
+		
+	</div>-->
+</section>
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/ehealthcon2026/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
-</body></html>
+			<script>
+				// Used by Gallery Custom Links to handle tenacious Lightboxes
+				//jQuery(document).ready(function () {
+
+					function mgclInit() {
+						
+						// In jQuery:
+						// if (jQuery.fn.off) {
+						// 	jQuery('.no-lightbox, .no-lightbox img').off('click'); // jQuery 1.7+
+						// }
+						// else {
+						// 	jQuery('.no-lightbox, .no-lightbox img').unbind('click'); // < jQuery 1.7
+						// }
+
+						// 2022/10/24: In Vanilla JS
+						var elements = document.querySelectorAll('.no-lightbox, .no-lightbox img');
+						for (var i = 0; i < elements.length; i++) {
+						 	elements[i].onclick = null;
+						}
+
+
+						// In jQuery:
+						//jQuery('a.no-lightbox').click(mgclOnClick);
+
+						// 2022/10/24: In Vanilla JS:
+						var elements = document.querySelectorAll('a.no-lightbox');
+						for (var i = 0; i < elements.length; i++) {
+						 	elements[i].onclick = mgclOnClick;
+						}
+
+						// in jQuery:
+						// if (jQuery.fn.off) {
+						// 	jQuery('a.set-target').off('click'); // jQuery 1.7+
+						// }
+						// else {
+						// 	jQuery('a.set-target').unbind('click'); // < jQuery 1.7
+						// }
+						// jQuery('a.set-target').click(mgclOnClick);
+
+						// 2022/10/24: In Vanilla JS:
+						var elements = document.querySelectorAll('a.set-target');
+						for (var i = 0; i < elements.length; i++) {
+						 	elements[i].onclick = mgclOnClick;
+						}
+					}
+
+					function mgclOnClick() {
+						if (!this.target || this.target == '' || this.target == '_self')
+							window.location = this.href;
+						else
+							window.open(this.href,this.target);
+						return false;
+					}
+
+					// From WP Gallery Custom Links
+					// Reduce the number of  conflicting lightboxes
+					function mgclAddLoadEvent(func) {
+						var oldOnload = window.onload;
+						if (typeof window.onload != 'function') {
+							window.onload = func;
+						} else {
+							window.onload = function() {
+								oldOnload();
+								func();
+							}
+						}
+					}
+
+					mgclAddLoadEvent(mgclInit);
+					mgclInit();
+
+				//});
+			</script>
+		<script type="text/javascript" src="../../../wp-content/plugins/accordion-blocks/js/accordion-blocks.min.js%3Fver=1.5.0" id="pb-accordion-blocks-frontend-script-js"></script>
+<script type="text/javascript" id="collapseomatic-js-js-before">
+/* <![CDATA[ */
+const com_options = {"colomatduration":"fast","colomatslideEffect":"slideFade","colomatpauseInit":"","colomattouchstart":""}
+//# sourceURL=collapseomatic-js-js-before
+/* ]]> */
+</script>
+<script type="text/javascript" src="../../../wp-content/plugins/jquery-collapse-o-matic/js/collapse.js%3Fver=1.7.2" id="collapseomatic-js-js"></script>
+<script type="text/javascript" id="page-scroll-to-id-plugin-script-js-extra">
+/* <![CDATA[ */
+var mPS2id_params = {"instances":{"mPS2id_instance_0":{"selector":"a[href*='#']:not([href='#'])","autoSelectorMenuLinks":"true","excludeSelector":"#registration-left ul li a, a[href^='#tab-'], a[href^='#tabs-'], a[data-toggle]:not([data-toggle='tooltip']), a[data-slide], a[data-vc-tabs], a[data-vc-accordion], a.screen-reader-text.skip-link","scrollSpeed":800,"autoScrollSpeed":"true","scrollEasing":"easeInOutQuint","scrollingEasing":"easeOutQuint","forceScrollEasing":"false","pageEndSmoothScroll":"true","stopScrollOnUserAction":"false","autoCorrectScroll":"false","autoCorrectScrollExtend":"false","layout":"vertical","offset":"120","dummyOffset":"true","highlightSelector":"","clickedClass":"mPS2id-clicked","targetClass":"mPS2id-target","highlightClass":"mPS2id-highlight","forceSingleHighlight":"false","keepHighlightUntilNext":"false","highlightByNextTarget":"false","appendHash":"false","scrollToHash":"true","scrollToHashForAll":"true","scrollToHashDelay":0,"scrollToHashUseElementData":"true","scrollToHashRemoveUrlHash":"false","disablePluginBelow":0,"adminDisplayWidgetsId":"true","adminTinyMCEbuttons":"true","unbindUnrelatedClickEvents":"false","unbindUnrelatedClickEventsSelector":"","normalizeAnchorPointTargets":"false","encodeLinks":"false"}},"total_instances":"1","shortcode_class":"_ps2id"};
+//# sourceURL=page-scroll-to-id-plugin-script-js-extra
+/* ]]> */
+</script>
+<script type="text/javascript" src="../../../wp-content/plugins/page-scroll-to-id/js/page-scroll-to-id.min.js%3Fver=1.7.9" id="page-scroll-to-id-plugin-script-js"></script>
+<script type="text/javascript" src="../../../wp-content/plugins/page-links-to/dist/new-tab.js%3Fver=3.3.7" id="page-links-to-js"></script>
+<script type="text/javascript" id="smush-lazy-load-js-before">
+/* <![CDATA[ */
+var smushLazyLoadOptions = {"autoResizingEnabled":false,"autoResizeOptions":{"precision":5,"skipAutoWidth":true}};
+//# sourceURL=smush-lazy-load-js-before
+/* ]]> */
+</script>
+<script type="text/javascript" src="../../../wp-content/plugins/wp-smushit/app/assets/js/smush-lazy-load.min.js%3Fver=3.24.0" id="smush-lazy-load-js"></script>
+<script type="text/javascript" id="jetpack-stats-js-before">
+/* <![CDATA[ */
+_stq = window._stq || [];
+_stq.push([ "view", {"v":"ext","blog":"220731657","post":"9802","tz":"-5","srv":"www.e-healthconference.com","j":"1:15.5-beta"} ]);
+_stq.push([ "clickTrackerInit", "220731657", "9802" ]);
+//# sourceURL=jetpack-stats-js-before
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://stats.wp.com/e-202609.js" id="jetpack-stats-js" defer="defer" data-wp-strategy="defer"></script>
+<script type="text/javascript" src="../../../wp-content/plugins/mapplic/js/jquery.mousewheel.js" id="mousewheel-js"></script>
+<script type="text/javascript" src="../../../wp-content/plugins/mapplic/js/magnific-popup.js" id="magnific-popup-js"></script>
+<script type="text/javascript" id="mapplic-script-js-extra">
+/* <![CDATA[ */
+var mapplic_localization = {"more":"More","search":"Search","notfound":"Nothing found. Please try a different search.","iconfile":"https://www.e-healthconference.com/wp-content/plugins/mapplic/core/images/icons.svg?v=7.1"};
+//# sourceURL=mapplic-script-js-extra
+/* ]]> */
+</script>
+<script type="text/javascript" src="../../../wp-content/plugins/mapplic/core/mapplic.js%3Fver=7.1" id="mapplic-script-js"></script>
+<div class="ps2id-dummy-offset-wrapper" style="overflow:hidden;height:0;z-index:-1"><div id="ps2id-dummy-offset" style="width:100%"></div></div>
+</body>
+</html>
